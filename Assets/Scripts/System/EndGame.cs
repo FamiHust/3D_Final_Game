@@ -2,30 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
-    public TextMeshProUGUI victoryText;
-    public GameObject EndGame_Panel;
-
-    void Start()
-    {
-        EndGame_Panel.SetActive(false);
-    }
+    public GameObject WinPanel;
+    public GameObject LosePanel;
 
     void Update()
     {
         if (PlayerHp.staticHp <= 0)
         {
-            EndGame_Panel.SetActive(true);
-            victoryText.text = "DEFEATED";
+            GameOver();
         }
 
         if (EnemyHp.staticHp <= 0)
         {
-            EndGame_Panel.SetActive(true);
-            victoryText.text = "VICTORY";
+            Victory();
         }
     }
 
+    public void Victory()
+    {
+        Time.timeScale = 0;
+        WinPanel.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        LosePanel.SetActive(true);
+    }
+
+    public void ReplayGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("AdventureTime");
+    }
 }

@@ -12,8 +12,7 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gold = 100;
-        gold = PlayerPrefs.GetInt("gold", 100);
+        // gold = PlayerPrefs.GetInt("gold", 100);
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class Shop : MonoBehaviour
             gold = 0;
             return;
         }
-        PlayerPrefs.SetInt("gold", gold);
+        // PlayerPrefs.SetInt("gold", gold);
         SceneManager.LoadScene("OpenPack");
     }
 
@@ -43,7 +42,7 @@ public class Shop : MonoBehaviour
             return;
         }
         
-        PlayerPrefs.SetInt("gold", gold);
+        // PlayerPrefs.SetInt("gold", gold);
         SceneManager.LoadScene("OpenPack");
     }
 }

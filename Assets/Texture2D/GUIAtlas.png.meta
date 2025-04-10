@@ -264,7 +264,7 @@ TextureImporter:
         width: 153
         height: 159
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -272,6 +272,48 @@ TextureImporter:
       bones: []
       spriteID: 3e23c3b1eb8acf048b28696323e4f48d
       internalID: -266073077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_5
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 850
+        width: 177
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3096eaabff2dcaf4f9adb360e2fa9838
+      internalID: 1493655573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_6
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 849
+        width: 173
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c9e8ed62edf58443a2028353cdeddca
+      internalID: -793031718
       vertices: []
       indices: 
       edges: []
@@ -293,6 +335,8 @@ TextureImporter:
       GUIAtlas_2: -1678977114
       GUIAtlas_3: 211425566
       GUIAtlas_4: -266073077
+      GUIAtlas_5: 1493655573
+      GUIAtlas_6: -793031718
       uiCancel: 21300002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

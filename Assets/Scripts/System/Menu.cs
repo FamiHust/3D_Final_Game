@@ -5,11 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public string play;
     public string deck;
     public string collection;
     public string Settings;
     public string menu;
     public string shop;
+
+    public GameObject ConcedeDefeat;
+
+    public void LoadPlay()
+    {
+        SceneManager.LoadScene(play);
+    }
 
     public void LoadDeck()
     {
@@ -28,7 +36,20 @@ public class Menu : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(menu);
+    }
+
+    public void ConcedeDefeated()
+    {
+        Time.timeScale = 0;
+        ConcedeDefeat.SetActive(true);
+    }
+
+    public void ExitConcedeDefeated()
+    {
+        Time.timeScale = 1;
+        ConcedeDefeat.SetActive(false);
     }
 
     public void ExitGame()
