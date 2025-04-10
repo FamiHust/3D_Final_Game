@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AICardBack : MonoBehaviour
+{
+    public GameObject Deck;
+    public GameObject It;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Deck = GameObject.Find("Deck_Panel_Enemy");
+        It.transform.SetParent(Deck.transform);
+        It.transform.localScale = Vector3.one;
+        It.transform.localPosition = new Vector3(It.transform.localPosition.x, It.transform.localPosition.y, 0f);
+        It.transform.eulerAngles = new Vector3(90, 0, 0);
+    }
+}

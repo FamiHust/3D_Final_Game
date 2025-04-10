@@ -1,15 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace SA
+[System.Serializable]
+public class Card
 {
-    [CreateAssetMenu(menuName = "Card")]
-    public class Card : ScriptableObject
+    public int id;
+    public string cardName;
+    public int cost;
+    public int attack;
+    public int defense;
+    public string cardDescription;
+    public int drawXcards;
+    public int addXmaxMana;
+
+    public Sprite thisImage;
+    public int returnXcards;
+    public int healXpower;
+
+    public bool spell;
+    public int damageDealBySpell;
+
+    public Card()
     {
-        public CardType cardType;
-        public CardProperties[] properties;
-        
+
+    }
+
+    public Card(int Id, string CardName, int Cost, int Attack, int Defense, string CardDescription,
+                Sprite ThisImage, int DrawXcards, int AddXmaxMana, int ReturnXcards, int HealXpower,
+                bool Spell, int DamageDealBySpell)
+    {
+        id = Id;
+        cardName = CardName;
+        cost = Cost;
+        attack = Attack;
+        defense = Defense;
+        cardDescription = CardDescription;
+        thisImage = ThisImage;
+        drawXcards = DrawXcards;
+        addXmaxMana = AddXmaxMana;
+        returnXcards = ReturnXcards;
+        healXpower = HealXpower;
+
+        spell = Spell;
+        damageDealBySpell = DamageDealBySpell;
     }
 }
-

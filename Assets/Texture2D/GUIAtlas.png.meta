@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 0
     aniso: 4
     mipBias: 0
     wrapU: 1
@@ -85,7 +85,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 4096
@@ -98,7 +98,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 4096
@@ -111,7 +111,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -171,10 +171,115 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_0
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 1970
+        width: 63
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f659743a77a43a4684acd02c91f2a3b
+      internalID: 1751032681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_1
+      rect:
+        serializedVersion: 2
+        x: 1878
+        y: 463
+        width: 165
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19211fb2335bd9f408e994fad02411b4
+      internalID: 2060114067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_2
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 1177
+        width: 149
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf806dac1c413349b8c1a1854e17141
+      internalID: -1678977114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1489
+        width: 266
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f8de6b4918debe4db6a51e41deb544a
+      internalID: 211425566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_4
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 1809
+        width: 153
+        height: 159
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e23c3b1eb8acf048b28696323e4f48d
+      internalID: -266073077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f8754810826f1b54e9550812a367d9d2
     internalID: 0
     vertices: []
     indices: 
@@ -183,6 +288,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       CardAmount: 21300000
+      GUIAtlas_0: 1751032681
+      GUIAtlas_1: 2060114067
+      GUIAtlas_2: -1678977114
+      GUIAtlas_3: 211425566
+      GUIAtlas_4: -266073077
       uiCancel: 21300002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

@@ -113,31 +113,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: uiButtonGreen
-      rect:
-        serializedVersion: 2
-        x: 579
-        y: 756
-        width: 75
-        height: 79
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 35, y: 45, z: 30, w: 30}
-      outline:
-      - - {x: 37.5, y: -39.5}
-        - {x: -37.5, y: -39.5}
-        - {x: -37.5, y: 39.5}
-        - {x: 37.5, y: 39.5}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02305410000000000800000000000000
-      internalID: 21300000
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: low_GUIAtlas_2_0
       rect:
         serializedVersion: 2
@@ -335,7 +310,7 @@ TextureImporter:
         width: 168
         height: 238
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -343,6 +318,153 @@ TextureImporter:
       bones: []
       spriteID: ed7dea22f43625d49a5e61d2ccdd46c5
       internalID: -1225626784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_10
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 215
+        width: 138
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8444516f3206f4f469f65325de80a1c1
+      internalID: -1710486744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_11
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 457
+        width: 136
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01da04ef610e4ac499aa85f7c11cf53b
+      internalID: 1568607543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_12
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 570
+        width: 75
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de187e9f6f439b84990a419aa0d5d10a
+      internalID: 1152081256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_13
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 570
+        width: 76
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06cbae40755b4b147afdf5ba93801318
+      internalID: 787707461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_14
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 677
+        width: 76
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0efe54e1cb25341860a93a6befb796
+      internalID: -1543394894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_15
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 757
+        width: 76
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 713d590d383c120498c365d7e20a2505
+      internalID: -699507933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: low_GUIAtlas_2_16
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 571
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d26fce3c999494085136a213927a9c
+      internalID: 538194590
       vertices: []
       indices: 
       edges: []
@@ -360,6 +482,13 @@ TextureImporter:
     nameFileIdTable:
       low_GUIAtlas_2_0: -1933971914
       low_GUIAtlas_2_1: -1859530527
+      low_GUIAtlas_2_10: -1710486744
+      low_GUIAtlas_2_11: 1568607543
+      low_GUIAtlas_2_12: 1152081256
+      low_GUIAtlas_2_13: 787707461
+      low_GUIAtlas_2_14: -1543394894
+      low_GUIAtlas_2_15: -699507933
+      low_GUIAtlas_2_16: 538194590
       low_GUIAtlas_2_2: -494521142
       low_GUIAtlas_2_3: 2099236451
       low_GUIAtlas_2_4: -456599090
