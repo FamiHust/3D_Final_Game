@@ -2,34 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class DeckCreator : MonoBehaviour
 {
     public int[] cardsWithThisID;
     public bool mouseOverDeck;
     public int dragged;
-    public GameObject coll;
     public int numberOfCardsInDatabase;
     public int sum;
     public int numberOfDifferentCards;
 
-    public int[] saveDeck;
+    public GameObject coll;
     public GameObject prefab;
+
+    public int[] saveDeck;
     public bool[] alreadyCreated;
     public static int lastAdded;
     public int[] quantity;
+
     // Start is called before the first frame update
     void Start()
     {
         sum = 0;
-        numberOfCardsInDatabase = 30;
+        numberOfCardsInDatabase = 32;
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update() 
     {
-        
+
     }
 
     public void CreateDeck()
@@ -119,11 +122,6 @@ public class DeckCreator : MonoBehaviour
         if (mouseOverDeck == true && coll.GetComponent<Collection>().HowManyCards[dragged] > 0)
         {
             cardsWithThisID[dragged]++;
-
-            // if (cardsWithThisID[dragged] > 12)
-            // {
-            //     cardsWithThisID[dragged] = 12;
-            // }
 
             if (cardsWithThisID[dragged] < 0)
             {

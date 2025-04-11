@@ -74,6 +74,8 @@
     <Compile Include="Assets\Scripts\System\Collection.cs" />
     <Compile Include="Assets\Scripts\Sample\config\CardPlayConfig.cs" />
     <Compile Include="Assets\Scripts\Sample\config\ZoomConfig.cs" />
+    <Compile Include="Assets\Scripts\Cards\CardInfoDisplay.cs" />
+    <Compile Include="Assets\Scripts\ChampionSelector.cs" />
     <Compile Include="Assets\Scripts\System\PlayerDeck.cs" />
     <Compile Include="Assets\Scripts\Sample\events\CardDestroy.cs" />
     <Compile Include="Assets\Scripts\System\Draggable.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\System\WindowInDeck.cs" />
     <Compile Include="Assets\Scripts\System\TurnSystem.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInCollection.cs" />
+    <Compile Include="Assets\Scripts\ZoneHighlighter.cs" />
     <Compile Include="Assets\Scripts\System\DropZone.cs" />
     <Compile Include="Assets\Scripts\Cards\CardBack.cs" />
     <Compile Include="Assets\Scripts\Sample\config\EventsConfig.cs" />

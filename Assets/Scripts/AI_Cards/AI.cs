@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Linq;
+using UnityEngine.UI;
+
+public enum AIType
+{
+    ThuyTinh,
+    SonTinh
+}
 
 public class AI : MonoBehaviour
 {
+    
     public List<Card> deck = new List<Card>();
     public List<Card> container = new List<Card>();
     public static List<Card> staticEnemyDeck = new List<Card>();
@@ -51,6 +59,14 @@ public class AI : MonoBehaviour
 
     public bool[] canAttack;
     public static bool AiEndPhase;
+    public AIType aiType;
+
+    public GameObject avtSonTinh;
+    public GameObject avtThuyTinh;
+    public Image avatarFrame;
+
+    public Color sonTinhColor;
+    public Color thuyTinhColor;
 
     void Awake()
     {
@@ -60,11 +76,15 @@ public class AI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        avtSonTinh.SetActive(false);
+        avtThuyTinh.SetActive(false);
+
         StartCoroutine(WaitFiveSeconds());
         StartCoroutine(StartGame());
 
         Hand = GameObject.Find("Enemy_Hand");
         Graveyard = GameObject.Find("ENemy_Graveyard");
+        aiType = ChampionSelector.selectedChampion;
 
         for (int i = 0; i < 8; i++)
         {
@@ -84,7 +104,18 @@ public class AI : MonoBehaviour
 
         for (int i = 0; i < deckSize; i++)
         {
-            z = Random.Range(41, 60);
+            if (aiType == AIType.ThuyTinh)
+            {
+                avtThuyTinh.SetActive(true);
+                avatarFrame.color = thuyTinhColor;
+                z = Random.Range(41, 60); 
+            }
+            else if (aiType == AIType.SonTinh)
+            {
+                avtSonTinh.SetActive(true);
+                avatarFrame.color = sonTinhColor;
+                z = Random.Range(61, 99); 
+            }
             deck[i] = CardDatabase.cardList[z];
         }
     }

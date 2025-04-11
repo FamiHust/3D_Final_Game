@@ -33,11 +33,6 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         if (d != null)
         {
             d.parentToReturnTo = this.transform;
-
-            // // Reset lại scale và vị trí sau khi drop
-            // d.transform.localScale = Vector3.one;
-            // d.transform.localPosition = Vector3.zero;
-            // d.transform.localRotation = Quaternion.identity;
         }
     }
 }

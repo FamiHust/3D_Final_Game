@@ -11,10 +11,10 @@ public class CardDatabase : MonoBehaviour
         /* Lac Viet Deck */
         //Creature cards
         cardList.Add(new Card(0, "None", 0, 0, 0,"None", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, false, 0));
-        cardList.Add(new Card(1, "Lạc Long Quân", 2, 6, 6,"Thêm 2 lá bài lên tay", Resources.Load<Sprite>("Lac_Viet_Deck/Lac_Long_Quan"), 2, 0, 0, 0, false, 0));
-        cardList.Add(new Card(2, "Cờ Binh Lạc Việt", 3, 3, 3," ", Resources.Load<Sprite>("Lac_Viet_Deck/Co_binh"), 0, 0, 0, 0, false, 0));
-        cardList.Add(new Card(3, "Cung thủ Lạc Việt", 2, 1, 1," ", Resources.Load<Sprite>("Lac_Viet_Deck/Cung_thu"), 0, 0, 0, 0, false, 0));
-        cardList.Add(new Card(4, "Dũng tướng tiên phong", 4, 3, 3," ", Resources.Load<Sprite>("Lac_Viet_Deck/Dung_tuong"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(1, "Lạc Long Quân", 2, 6, 6,"Thêm 2 lá bài lên tay", Resources.Load<Sprite>("Lac_Viet_Deck/Lac_Long_Quan"), 0, 2, 0, 0, false, 0));
+        cardList.Add(new Card(2, "Cờ Binh Lạc Việt", 3, 3, 3," ", Resources.Load<Sprite>("Lac_Viet_Deck/Co_binh"), 0, 2, 0, 0, false, 0));
+        cardList.Add(new Card(3, "Cung thủ Lạc Việt", 2, 1, 1," ", Resources.Load<Sprite>("Lac_Viet_Deck/Cung_thu"), 2, 0, 0, 0, false, 0));
+        cardList.Add(new Card(4, "Dũng tướng tiên phong", 4, 3, 3," ", Resources.Load<Sprite>("Lac_Viet_Deck/Dung_tuong"), 2, 0, 0, 0, false, 0));
         cardList.Add(new Card(5, "Giáp sắt", 4, 4, 4," ", Resources.Load<Sprite>("Lac_Viet_Deck/Giap_sat"), 0, 0, 0, 0, false, 0));
         cardList.Add(new Card(6, "Khiên thủ Lạc Việt", 2, 3, 3," ", Resources.Load<Sprite>("Lac_Viet_Deck/Khien_thu"), 0, 0, 0, 0, false, 0));
         cardList.Add(new Card(7, "Kỵ binh xông xáo", 2, 3, 1," ", Resources.Load<Sprite>("Lac_Viet_Deck/Ky_binh"), 0, 0, 0, 0, false, 0));
@@ -37,15 +37,13 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(22, "Chiến nỏ", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Chien_no"), 0, 0, 0, 0, true, 1));
         cardList.Add(new Card(23, "Tĩnh dưỡng", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Tinh_duong"), 0, 2, 0, 2, true, 0));
         cardList.Add(new Card(24, "Hố chông", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Ho_chong"), 0, 0, 0, 0, true, 2));
-        // cardList.Add(new Card(25, "Đồng lòng chiến đấu", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Dong_long_chien_dau"), 0, 0, 2, 0, true, 0));
-        // cardList.Add(new Card(26, "Bắt cóc", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_coc"), 0, 0, 1, 0, true, 0));
         cardList.Add(new Card(25, "Công thành bất ngờ", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Cong_thanh"), 0, 0, 0, 0, true, 3));
         cardList.Add(new Card(26, "Liên hoàn sấm sét", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Sam_set"), 0, 0, 0, 0, true, 4));
         cardList.Add(new Card(27, "Bất hoại", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_hoai"), 0, 0, 0, 3, true, 0));
         cardList.Add(new Card(28, "Trao kiếm", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Trao_kiem"), 2, 0, 0, 0, true, 0));
         cardList.Add(new Card(29, "Chiến trường không khoan nhượng", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Chien_truong"), 0, 0, 0, 0, true, 5));
-        cardList.Add(new Card(30, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
-        cardList.Add(new Card(31, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
+        cardList.Add(new Card(30, "Đồng lòng chiến đấu", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Dong_long_chien_dau"), 0, 0, 2, 0, true, 0));
+        cardList.Add(new Card(31, "Bắt cóc", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_coc"), 0, 0, 1, 0, true, 0));
         cardList.Add(new Card(32, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
         cardList.Add(new Card(33, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
         cardList.Add(new Card(34, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
@@ -56,7 +54,7 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(39, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
         cardList.Add(new Card(40, " ", 0, 0, 0," ", Resources.Load<Sprite>("0_CardBack"), 0, 0, 0, 0, true, 0));
 
-        /* Thuy Tinh Deck*/
+        /* Thủy Tinh Deck*/
         // Creature Cards
         cardList.Add(new Card(41, "Thủy Tinh", 2, 1, 6," ", Resources.Load<Sprite>("Thuy_Tinh_Deck/Thuy_Tinh"), 0, 0, 0, 0, false, 0));
         cardList.Add(new Card(42, "Binh tôm", 1, 1, 1," ", Resources.Load<Sprite>("Thuy_Tinh_Deck/Binh_tom"), 0, 0, 0, 0, false, 0));
@@ -79,7 +77,46 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(59, "Sấu tướng tha hóa", 3, 3, 1," ", Resources.Load<Sprite>("Thuy_Tinh_Deck/Sau_tuong"), 0, 0, 0, 0, false, 0));
         cardList.Add(new Card(60, "Lily, Thủy nương quyến rũ", 4, 1, 4," ", Resources.Load<Sprite>("Thuy_Tinh_Deck/Lily"), 0, 0, 0, 0, false, 0));
         
-        // Spell Cards
-
+        /* Sơn Tinh Deck*/
+        cardList.Add(new Card(61, "Sơn Tinh", 2, 1, 7," ", Resources.Load<Sprite>("Son_Tinh_Deck/Son_Tinh"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(62, "Beo hoa sát thủ", 3, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Beo_hoa"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(63, "Cu li Sơn tộc", 3, 3, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Cu_li"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(64, "Gà 6 cựa", 5, 3, 5," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ga_6_cua"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(65, "Gà 9 cựa", 6, 4, 6," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ga_9_cua"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(66, "Gấu con hăng hái", 2, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Gau_con"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(67, "Hùng tướng say máu", 3, 1, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Hung_tuong"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(68, "Học sĩ chim cu gáy", 3, 1, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Chim_cu_gay"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(69, "Lang băm hươu sao", 2, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Huou_sao"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(70, "Lính sói", 1, 1, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Linh_soi"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(71, "Lục Lục", 3, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Luc_Luc"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(72, "Ngựa 6 hồng mao", 4, 3, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ngua_6_mao"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(73, "Ngựa 9 hồng mao", 5, 3, 5," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ngua_9_mao"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(74, "Nhím nhặt nhạnh", 2, 3, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Nhim_nhat_nhanh"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(75, "Sói đàn", 2, 1, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Soi_dan"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(76, "Tai Đỏ", 3, 2, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Tai_Do"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(77, "Tay Đen", 5, 3, 5," ", Resources.Load<Sprite>("Son_Tinh_Deck/Tay_Den"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(78, "Tham Lang", 3, 1, 5," ", Resources.Load<Sprite>("Son_Tinh_Deck/Tham_Lang"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(79, "Thầy lang voọc", 1, 1, 1," ", Resources.Load<Sprite>("Son_Tinh_Deck/Thay_lang_vooc"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(80, "Thỏ bầy", 1, 1, 1," ", Resources.Load<Sprite>("Son_Tinh_Deck/Tho_bay"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(81, "Trâu tướng say máu", 4, 1, 5," ", Resources.Load<Sprite>("Son_Tinh_Deck/Trau_tuong"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(82, "Tê giác binh", 4, 4, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Te_giac_binh"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(83, "Tê giác phá hoại", 4, 1, 4," ", Resources.Load<Sprite>("Son_Tinh_Deck/Te_giac_pha_hoai"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(84, "Tí Nị", 4, 2, 4," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ti_Ni"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(85, "Voi 6 ngà", 6, 6, 6," ", Resources.Load<Sprite>("Son_Tinh_Deck/Voi_6_nga"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(86, "Voi 9 ngà", 6, 6, 6," ", Resources.Load<Sprite>("Son_Tinh_Deck/Voi_9_nga"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(87, "Voi đá", 2, 4, 4," ", Resources.Load<Sprite>("Son_Tinh_Deck/Voi_da"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(88, "Đầu bếp dã trư", 2, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Da_tru"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(89, "Đại hùng Sơn tướng", 3, 2, 4," ", Resources.Load<Sprite>("Son_Tinh_Deck/Dai_hung"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(90, "Hổ Ca", 2, 1, 6," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ho_ca"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(91, "Tí Nị", 2, 1, 6," ", Resources.Load<Sprite>("Son_Tinh_Deck/Ti_Ni_2"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(92, "Do thám liều lĩnh", 3, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Do_tham"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(93, "Voọc chờ thời", 3, 1, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Vooc_cho_thoi"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(94, "Lang tộc thám thính", 2, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Lang_toc_tham_thinh"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(95, "Chó rừng tò mò", 2, 2, 2," ", Resources.Load<Sprite>("Son_Tinh_Deck/Cho_rung"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(96, "Tham Lang, kẻ bị lật đổ", 2, 2, 1," ", Resources.Load<Sprite>("Son_Tinh_Deck/Tham_lang_2"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(97, "Thuận Thiên Hổ", 3, 3, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Thuan_thien_ho"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(98, "Lang tộc dẫn đầu", 2, 3, 3," ", Resources.Load<Sprite>("Son_Tinh_Deck/Lang_toc_dan_dau"), 0, 0, 0, 0, false, 0));
+        cardList.Add(new Card(99, "Lang tộc viện binh", 4, 4, 4," ", Resources.Load<Sprite>("Son_Tinh_Deck/Lang_toc_vien_binh"), 0, 0, 0, 0, false, 0));
+        
     }
 }

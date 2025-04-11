@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &177445994492049797
 RectTransform:
   m_ObjectHideFlags: 0
@@ -747,22 +747,26 @@ MonoBehaviour:
   attackBorder: {fileID: 1081815014520953648}
   Target: {fileID: 0}
   Enemy: {fileID: 0}
+  summonBorder: {fileID: 5049278236091521433}
+  Graveyard: {fileID: 0}
   summoningSickness: 0
   cantAttack: 0
   canAttack: 0
   targeting: 0
   targetingEnemy: 0
   onlyThisCardAttack: 0
-  summonBorder: {fileID: 5049278236091521433}
-  Graveyard: {fileID: 0}
   canBeDestroyed: 0
   beInGraveyard: 0
+  useReturn: 0
+  canHeal: 0
+  spell: 0
+  dealDamage: 0
+  stopDealDamage: 0
   hurted: 0
   actualpower: 0
   returnXcards: 0
-  useReturn: 0
   healXpower: 0
-  canHeal: 0
+  damageDealBySpell: 0
   battleZones:
   - {fileID: 0}
   - {fileID: 0}
@@ -782,10 +786,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   aiCardToHand: {fileID: 0}
-  spell: 0
-  damageDealBySpell: 0
-  dealDamage: 0
-  stopDealDamage: 0
 --- !u!114 &185548870429530680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,6 +946,38 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3900766588737116527}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: OnCardClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3900766588737116527}
+          m_TargetAssemblyTypeName: ThisCard, Assembly-CSharp
+          m_MethodName: OnCardExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5049278236091521433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,7 +1123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9907f36692b8c447ba85544f600227a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e6feea7650c56447ac59bda4f76f6cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

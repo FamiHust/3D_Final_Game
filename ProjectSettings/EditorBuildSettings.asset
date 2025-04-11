@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scene/_hirez/Scenes/Menu.unity
     guid: 6f30bc7c84d667d4483111f2dffa302d
   - enabled: 1
+    path: Assets/Scene/_hirez/Scenes/Map.unity
+    guid: 6e71f5e1971a79342baf0f19a57776ee
+  - enabled: 1
     path: Assets/Scene/_hirez/Scenes/CreatingDeck.unity
     guid: ffa09122da028c2448f10718d2459948
   - enabled: 1

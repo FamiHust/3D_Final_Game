@@ -213,4 +213,17 @@ public class AICardToHand : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         thisCardCanBeDestroyed = true;
     }
+
+    public void OnClickAICard()
+    {
+        if (thisCard.Count > 0 && cardBack.activeSelf == false)
+        {
+            CardInfoDisplay.instance.ShowCardInfo(thisCard[0]);
+        }
+    } 
+
+    public void OnExitAICard()
+    {
+        CardInfoDisplay.instance.HideCardInfo();
+    }  
 }

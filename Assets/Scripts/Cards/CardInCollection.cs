@@ -64,4 +64,14 @@ public class CardInCollection : MonoBehaviour
             thatImage.color = originalColor;
         }
     }
+
+    public void OnCardClick()
+    {
+        CardInfoDisplay.instance.ShowCardInfo(thisCard[0]);
+    }
+
+    public void OnCardExit()
+    {
+        CardInfoDisplay.instance.HideCardInfo();
+    }
 }

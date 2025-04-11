@@ -40,40 +40,35 @@ public class ThisCard : MonoBehaviour
     public GameObject attackBorder;
     public GameObject Target;
     public GameObject Enemy;
+    public GameObject summonBorder;
+    public GameObject Graveyard;
+
     public bool summoningSickness;
     public bool cantAttack;
     public bool canAttack;
     public static bool staticTargeting;
     public static bool staticTargetingEnemy;
-
     public bool targeting;
     public bool targetingEnemy;
     public bool onlyThisCardAttack;
-
-    public GameObject summonBorder;
-    public GameObject Graveyard;
-
     public bool canBeDestroyed;
     public bool beInGraveyard;
+    public bool useReturn;
+    public static bool UcanReturn;
+    public bool canHeal;
+    public bool spell;
+    public bool dealDamage;
+    public bool stopDealDamage;
 
     public int hurted;
     public int actualpower;
     public int returnXcards;
-    public bool useReturn;
-
-    public static bool UcanReturn;
-
     public int healXpower;
-    public bool canHeal;
+    public int damageDealBySpell;
 
     public GameObject[] battleZones = new GameObject[8];
     public GameObject[] EnemyZones = new GameObject[8];
     public AICardToHand aiCardToHand;
-
-    public bool spell;
-    public int damageDealBySpell;
-    public bool dealDamage;
-    public bool stopDealDamage;
 
     void Start()
     {
@@ -105,7 +100,6 @@ public class ThisCard : MonoBehaviour
             cardBack = false;
         }
 
-        // Gán dữ liệu từ card database
         Card card = thisCard[0];
         id = card.id;
         cardName = card.cardName;
@@ -121,7 +115,6 @@ public class ThisCard : MonoBehaviour
         spell = card.spell;
         damageDealBySpell = card.damageDealBySpell;
 
-        // Update UI
         nameText.text = cardName;
         costText.text = cost.ToString();
         actualpower = defense - hurted;
@@ -345,6 +338,11 @@ public class ThisCard : MonoBehaviour
             summoned = false;
             beInGraveyard = true;
             hurted = 0;
+
+            if (spell)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -407,6 +405,19 @@ public class ThisCard : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnCardClick()
+    {
+        if (thisCard.Count > 0 && !cardBack)
+        {
+            CardInfoDisplay.instance.ShowCardInfo(thisCard[0]);
+        }
+    }
+
+    public void OnCardExit()
+    {
+        CardInfoDisplay.instance.HideCardInfo();
     }
 
     IEnumerator Wait()

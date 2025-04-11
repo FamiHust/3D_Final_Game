@@ -391,8 +391,10 @@
 "Assets/Scripts/Cards/CardBackPrefab.cs"
 "Assets/Scripts/Cards/CardDatabase.cs"
 "Assets/Scripts/Cards/CardInCollection.cs"
+"Assets/Scripts/Cards/CardInfoDisplay.cs"
 "Assets/Scripts/Cards/CardToHand.cs"
 "Assets/Scripts/Cards/ThisCard.cs"
+"Assets/Scripts/ChampionSelector.cs"
 "Assets/Scripts/GoToHeaven.cs"
 "Assets/Scripts/Health/EnemyHp.cs"
 "Assets/Scripts/Health/PlayerHp.cs"
@@ -422,6 +424,7 @@
 "Assets/Scripts/System/PlayerDeck.cs"
 "Assets/Scripts/System/TurnSystem.cs"
 "Assets/Scripts/System/WindowInDeck.cs"
+"Assets/Scripts/ZoneHighlighter.cs"
 -langversion:9.0
 /deterministic
 /optimize+

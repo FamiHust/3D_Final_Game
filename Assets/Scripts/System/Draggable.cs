@@ -10,14 +10,16 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public Transform parentToReturnTo = null;
     public Transform placeHolderParent = null;
 
-    GameObject placeHolder = null;
-
+    private GameObject placeHolder = null;
     private Vector3 originalScale;
+    
     private bool isDragging = false;
+    private ZoneHighlighter zoneHighlighter;
 
     private void Start()
     {
         originalScale = transform.localScale;
+        zoneHighlighter = FindObjectOfType<ZoneHighlighter>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -40,6 +42,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
 
+        zoneHighlighter.HighlightZones();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -80,6 +83,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         transform.localRotation = Quaternion.identity;
 
         Destroy(placeHolder);
+        zoneHighlighter.ResetZones();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public string play;
+    public string map;
     public string deck;
     public string collection;
     public string Settings;
@@ -17,6 +18,11 @@ public class Menu : MonoBehaviour
     public void LoadPlay()
     {
         SceneManager.LoadScene(play);
+    }
+
+    public void LoadMap()
+    {
+        SceneManager.LoadScene(map);
     }
 
     public void LoadDeck()
