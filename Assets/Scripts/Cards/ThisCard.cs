@@ -313,7 +313,7 @@ public class ThisCard : MonoBehaviour
                         if (aiCard != null && aiCard.isTarget)
                         {
                             aiCard.hurted = attack;
-                            hurted = aiCard.defense;
+                            hurted = aiCard.attack;
                             cantAttack = true;
                             break;
                         }

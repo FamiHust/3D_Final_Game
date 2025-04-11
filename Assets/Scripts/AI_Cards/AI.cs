@@ -84,7 +84,7 @@ public class AI : MonoBehaviour
 
         for (int i = 0; i < deckSize; i++)
         {
-            z = Random.Range(1, 21);
+            z = Random.Range(41, 60);
             deck[i] = CardDatabase.cardList[z];
         }
     }
@@ -101,6 +101,12 @@ public class AI : MonoBehaviour
         if (deckSize < 3)  cardInDeck5.SetActive(false);
         if (deckSize < 2)  cardInDeck6.SetActive(false);
         if (deckSize < 1)  cardInDeck7.SetActive(false);
+
+        if (AICardToHand.DrawX > 0)
+        {
+            StartCoroutine(Draw(AICardToHand.DrawX));
+            AICardToHand.DrawX = 0;
+        }
 
         int handSize = Hand.transform.childCount;
 

@@ -48,6 +48,11 @@ public class AICardToHand : MonoBehaviour
     public bool canAttack;
     public bool summoningSickness;
 
+    public bool isSummoned;
+    public GameObject[] battleZones = new GameObject[8];
+
+    public int healXpower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,6 +74,14 @@ public class AICardToHand : MonoBehaviour
         }
 
         summoningSickness = true;
+
+        for (int i = 0; i < 8; i++)
+        {
+            if (i == 0)
+                battleZones[i] = GameObject.Find("Enemy_Zone");
+            else
+                battleZones[i] = GameObject.Find("Enemy_Zone" + i);
+        }
     }
 
     // Update is called once per frame
@@ -106,6 +119,8 @@ public class AICardToHand : MonoBehaviour
         defText.text = "" + actualpower;
         descriptionText.text = "" + cardDescription;
         thatImage.sprite = thisSprite;
+
+        healXpower = thisCard[0].healXpower;
 
         if (this.tag == "Clones")
         {
@@ -154,7 +169,33 @@ public class AICardToHand : MonoBehaviour
                 break;
             }
         }
+        
+        foreach (GameObject zone in battleZones)
+        {
+            if (this.transform.parent == zone.transform && isSummoned == false)
+            {
+                if (drawXcards > 0)
+                {
+                    DrawX = drawXcards;
+                    isSummoned = true;
+                    break;
+                }
 
+                if (id == 23)
+                {
+                    TurnSystem.maxEnemyMana += 2;
+                    isSummoned = true;
+                }
+
+                if (healXpower > 0)
+                {
+                    EnemyHp.staticHp += healXpower;
+                    isSummoned = true;
+                }
+
+                isSummoned = true;
+            }
+        }
     }
 
     public void BeingTarget()

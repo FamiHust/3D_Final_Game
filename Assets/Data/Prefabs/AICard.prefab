@@ -790,6 +790,17 @@ MonoBehaviour:
   - {fileID: 0}
   canAttack: 0
   summoningSickness: 0
+  isSummoned: 0
+  battleZones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  healXpower: 0
 --- !u!114 &2078557440048066232
 MonoBehaviour:
   m_ObjectHideFlags: 0

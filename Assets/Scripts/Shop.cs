@@ -23,26 +23,35 @@ public class Shop : MonoBehaviour
 
     public void BuyPackX1()
     {
-        gold -= 10;
-        if (gold <= 0) 
+        if (gold >= 10) 
+        {
+            gold -= 10;
+            // PlayerPrefs.SetInt("gold", gold);
+
+            SceneManager.LoadScene("OpenPack");
+        }
+
+        if (gold <= 0)
         {
             gold = 0;
             return;
         }
-        // PlayerPrefs.SetInt("gold", gold);
-        SceneManager.LoadScene("OpenPack");
     }
 
     public void BuyPackX10()
     {
-        gold -= 100;
-        if (gold <= 0) 
+        if (gold >= 100)
+        {
+            gold -= 100;
+            // PlayerPrefs.SetInt("gold", gold);
+
+            SceneManager.LoadScene("OpenPack");
+        }
+
+        if (gold <= 0)
         {
             gold = 0;
             return;
         }
-        
-        // PlayerPrefs.SetInt("gold", gold);
-        SceneManager.LoadScene("OpenPack");
     }
 }
