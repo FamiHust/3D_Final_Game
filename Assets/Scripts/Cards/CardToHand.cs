@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CardToHand : MonoBehaviour
 {
-    public GameObject Hand;
-    public GameObject It;
+    [SerializeField] private GameObject Hand;
+    [SerializeField] private GameObject It;
     public int x;
-    // Start is called before the first frame update
+
     void Start()
     {
         Hand = GameObject.Find("My_Hands");

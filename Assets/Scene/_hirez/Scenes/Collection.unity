@@ -535,7 +535,6 @@ GameObject:
   - component: {fileID: 64115126}
   - component: {fileID: 64115125}
   - component: {fileID: 64115124}
-  - component: {fileID: 64115128}
   m_Layer: 5
   m_Name: Menu_btn
   m_TagString: Untagged
@@ -676,20 +675,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64115122}
   m_CullTransparentMesh: 1
---- !u!114 &64115128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 64115122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da6d4052cf28434bba43fa887dad8c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentToReturnTo: {fileID: 0}
-  placeHolderParent: {fileID: 0}
 --- !u!1 &79442627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1851,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -1965,29 +1952,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 188225579}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 188225579}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3155,6 +3126,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -3254,29 +3227,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 303979244}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 303979244}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3850,6 +3807,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -3949,29 +3908,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 346884654}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 346884654}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7427,7 +7370,7 @@ MonoBehaviour:
   - {fileID: 853928958}
   - {fileID: 1083797060}
   - {fileID: 999453915}
-  HowManyCards: 0000000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  HowManyCards: 00000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   openPack: 0
   cardObjects_2: []
   o: 
@@ -11682,6 +11625,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -11781,29 +11726,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1239075340}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1239075340}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13181,6 +13110,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -13280,29 +13211,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1389429579}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1389429579}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13383,6 +13298,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -13482,29 +13399,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1392604506}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1392604506}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -13661,6 +13562,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -13760,29 +13663,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1405814693}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1405814693}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14207,6 +14094,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -14306,29 +14195,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1477229715}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1477229715}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -14721,6 +14594,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -14820,29 +14695,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1496113618}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1496113618}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15132,7 +14991,6 @@ GameObject:
   - component: {fileID: 1516988390}
   - component: {fileID: 1516988389}
   - component: {fileID: 1516988388}
-  - component: {fileID: 1516988391}
   m_Layer: 5
   m_Name: Up_btn
   m_TagString: Untagged
@@ -15253,20 +15111,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516988386}
   m_CullTransparentMesh: 1
---- !u!114 &1516988391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516988386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da6d4052cf28434bba43fa887dad8c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentToReturnTo: {fileID: 0}
-  placeHolderParent: {fileID: 0}
 --- !u!1 &1527027318
 GameObject:
   m_ObjectHideFlags: 0
@@ -16731,7 +16575,6 @@ GameObject:
   - component: {fileID: 1677252746}
   - component: {fileID: 1677252745}
   - component: {fileID: 1677252744}
-  - component: {fileID: 1677252747}
   m_Layer: 5
   m_Name: Down_btn
   m_TagString: Untagged
@@ -16852,20 +16695,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677252742}
   m_CullTransparentMesh: 1
---- !u!114 &1677252747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677252742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da6d4052cf28434bba43fa887dad8c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentToReturnTo: {fileID: 0}
-  placeHolderParent: {fileID: 0}
 --- !u!1 &1718194932
 GameObject:
   m_ObjectHideFlags: 0
@@ -18196,6 +18025,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -18295,29 +18126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1855902081}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1855902081}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -18664,6 +18479,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -18786,29 +18603,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1931244519}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1931244519}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -22310,6 +22111,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 
@@ -22339,29 +22142,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8560371798646211849}
           m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
           m_MethodName: OnCardClick
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8560371798646211849}
-          m_TargetAssemblyTypeName: CardInCollection, Assembly-CSharp
-          m_MethodName: OnCardExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
-    public GameObject WinPanel;
-    public GameObject LosePanel;
+    [SerializeField] private GameObject WinPanel;
+    [SerializeField] private GameObject LosePanel;
+
+    [SerializeField] private GameObject money;
+    [SerializeField] private bool gotMoney;
+    [SerializeField] private int goldReceived;
 
     void Update()
     {
@@ -19,6 +23,11 @@ public class EndGame : MonoBehaviour
         if (EnemyHp.staticHp <= 0)
         {
             Victory();
+            if (gotMoney == false)
+            {
+                money.GetComponent<Shop>().gold += goldReceived;
+                gotMoney = true;               
+            }
         }
     }
 
@@ -36,7 +45,7 @@ public class EndGame : MonoBehaviour
 
     public void ReplayGame()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene("AdventureTime");
+        Time.timeScale = 1;
     }
 }

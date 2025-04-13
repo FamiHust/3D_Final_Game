@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ElementType
+{
+    None,
+    Earth,
+    Water,
+    Forest,
+    Swamp
+}
+
 [System.Serializable]
 public class Card
 {
@@ -22,14 +31,12 @@ public class Card
     public bool spell;
     public int damageDealBySpell;
 
-    public Card()
-    {
-
-    }
+    public string rarity;
+    public ElementType elementType;
 
     public Card(int Id, string CardName, int Cost, int Attack, int Defense, string CardDescription,
                 Sprite ThisImage, int DrawXcards, int AddXmaxMana, int ReturnXcards, int HealXpower,
-                bool Spell, int DamageDealBySpell)
+                bool Spell, int DamageDealBySpell, string Rarity, ElementType Type)
     {
         id = Id;
         cardName = CardName;
@@ -45,5 +52,8 @@ public class Card
 
         spell = Spell;
         damageDealBySpell = DamageDealBySpell;
+
+        rarity = Rarity;
+        elementType = Type;
     }
 }

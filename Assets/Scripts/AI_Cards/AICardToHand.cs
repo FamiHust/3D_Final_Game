@@ -16,14 +16,14 @@ public class AICardToHand : MonoBehaviour
     public int defense;
     public string cardDescription;
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI costText;
-    public TextMeshProUGUI atkText;
-    public TextMeshProUGUI defText;
-    public TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private TextMeshProUGUI atkText;
+    [SerializeField] private TextMeshProUGUI defText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    public Sprite thisSprite;
-    public Image thatImage;
+    [SerializeField] private Sprite thisSprite;
+    [SerializeField] private Image thatImage;
 
     public static int DrawX;
     public int drawXcards;
@@ -34,24 +34,22 @@ public class AICardToHand : MonoBehaviour
     public int returnXcards;
 
     public GameObject Hand;
-    public int z = 0;
     public GameObject It;
-    public int numberOfCardsInDeck;
-
-    public bool isTarget;
     public GameObject Graveyard;
-    public bool thisCardCanBeDestroyed;
-
     public GameObject cardBack;
     public GameObject[] AiZones = new GameObject[8];
-
-    public bool canAttack;
-    public bool summoningSickness;
-
-    public bool isSummoned;
     public GameObject[] battleZones = new GameObject[8];
 
+    public int z = 0;
+    public int numberOfCardsInDeck;
     public int healXpower;
+
+    public bool isTarget;
+    public bool thisCardCanBeDestroyed;
+    public bool canAttack;
+    public bool summoningSickness;
+    public bool isSummoned;
+
 
     // Start is called before the first frame update
     void Start()

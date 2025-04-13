@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class AICardBack : MonoBehaviour
 {
-    public GameObject Deck;
-    public GameObject It;
+    [SerializeField] private GameObject Deck;
+    [SerializeField] private GameObject It;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Deck = GameObject.Find("Deck_Panel_Enemy");

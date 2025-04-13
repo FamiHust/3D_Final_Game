@@ -9,7 +9,7 @@ public class Collection : MonoBehaviour
     public List<TextMeshProUGUI> cardTexts;
 
     public static int x;
-    public int[] HowManyCards = new int[41];
+    public int[] HowManyCards = new int[91];
 
     public bool openPack;
     public List<GameObject> cardObjects_2;
@@ -21,7 +21,7 @@ public class Collection : MonoBehaviour
     void Start()
     {
         x = 1;
-        for (int i = 1; i <= 40; i++)
+        for (int i = 1; i <= 90; i++)
         {
             HowManyCards[i] = PlayerPrefs.GetInt("x" + i, 0);
         }
@@ -39,10 +39,10 @@ public class Collection : MonoBehaviour
     {
         if (openPack == false)
         {
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 10; i++)
             {
                 int cardID = x + i;
-                if (cardID > 40) continue;
+                if (cardID > 90) continue;
 
                 cardObjects[i].GetComponent<CardInCollection>().thisID = cardID;
                 cardTexts[i].text = "x" + HowManyCards[cardID];
@@ -53,7 +53,7 @@ public class Collection : MonoBehaviour
         }
 
         // Lưu lại PlayerPrefs
-        for (int i = 1; i <= 40; i++)
+        for (int i = 1; i <= 90; i++)
         {
             PlayerPrefs.SetInt("x" + i, HowManyCards[i]);
         }
@@ -72,18 +72,20 @@ public class Collection : MonoBehaviour
 
     public void UpButton()
     {
-        x = Mathf.Max(1, x - 12);
+        if (x - 10 >= 1)
+            x -= 10;
     }
 
     public void DownButton()
     {
-        x = Mathf.Min(40 - 11, x + 12);
+        if (x + 10 <= 90)
+            x += 10;
     }
 
     public void ChangeCardAmount(int index, int delta)
     {
         int cardID = x + index;
-        if (cardID < 1 || cardID > 40) return;
+        if (cardID < 1 || cardID > 90) return;
 
         HowManyCards[cardID] += delta;
         HowManyCards[cardID] = Mathf.Max(0, HowManyCards[cardID]);
@@ -119,19 +121,13 @@ public class Collection : MonoBehaviour
     public void Card10Plus() => ChangeCardAmount(9, 1);
     public void Card10Minus() => ChangeCardAmount(9, -1);
 
-    public void Card11Plus() => ChangeCardAmount(10, 1);
-    public void Card11Minus() => ChangeCardAmount(10, -1);
-
-    public void Card12Plus() => ChangeCardAmount(11, 1);
-    public void Card12Minus() => ChangeCardAmount(11, -1);
-
     public void getRandomCard()
     {
-        rand = Random.Range(1, 29);
+        rand = Random.Range(1, 90);
         PlayerPrefs.SetInt("x" + rand, (int)HowManyCards[rand]++);
         card = CardDatabase.cardList[rand].cardName;
 
-        for (int i = 1; i <= 29; i++)
+        for (int i = 1; i <= 90; i++)
         {
             PlayerPrefs.SetInt("x" + i, (int)HowManyCards[i]);
         }

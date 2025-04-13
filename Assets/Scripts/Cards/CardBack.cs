@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CardBack : MonoBehaviour
 {
-        public GameObject cardBack;
-        public ThisCard thisCardScript;
+        [SerializeField] private GameObject cardBack;
+        [SerializeField] private ThisCard thisCardScript;
 
         void Update()
         {

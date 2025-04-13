@@ -15,15 +15,15 @@ public class CardInCollection : MonoBehaviour
     public int defense;
     public string cardDescription;
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI costText;
-    public TextMeshProUGUI atkText;
-    public TextMeshProUGUI defText;
-    public TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private TextMeshProUGUI atkText;
+    [SerializeField] private TextMeshProUGUI defText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    public Sprite thisSprite;
-    public Image thatImage;
-    public Color originalColor;
+    [SerializeField] private Sprite thisSprite;
+    [SerializeField] private Image thatImage;
+    [SerializeField] private Color originalColor;
 
     public bool beGrey;
     // Start is called before the first frame update

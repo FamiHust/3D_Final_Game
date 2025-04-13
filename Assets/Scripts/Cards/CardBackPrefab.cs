@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class CardBackPrefab : MonoBehaviour
 {
-    public GameObject Deck;
-    public GameObject It;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private GameObject Deck;
+    [SerializeField] private GameObject It;
     // Update is called once per frame
     void Update()
     {

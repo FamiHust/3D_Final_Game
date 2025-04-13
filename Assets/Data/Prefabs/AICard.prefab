@@ -772,12 +772,8 @@ MonoBehaviour:
   actualpower: 0
   returnXcards: 0
   Hand: {fileID: 0}
-  z: 0
   It: {fileID: 4199560293524222039}
-  numberOfCardsInDeck: 40
-  isTarget: 0
   Graveyard: {fileID: 0}
-  thisCardCanBeDestroyed: 0
   cardBack: {fileID: 8548312372205022109}
   AiZones:
   - {fileID: 0}
@@ -788,9 +784,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  canAttack: 0
-  summoningSickness: 0
-  isSummoned: 0
   battleZones:
   - {fileID: 0}
   - {fileID: 0}
@@ -800,7 +793,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  z: 0
+  numberOfCardsInDeck: 40
   healXpower: 0
+  isTarget: 0
+  thisCardCanBeDestroyed: 0
+  canAttack: 0
+  summoningSickness: 0
+  isSummoned: 0
 --- !u!114 &2078557440048066232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,7 +820,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: -2610353111430109804}
           m_TargetAssemblyTypeName: AICardToHand, Assembly-CSharp
-          m_MethodName: BeingTarget
+          m_MethodName: OnClickAICard
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -832,7 +832,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: -2610353111430109804}
           m_TargetAssemblyTypeName: AICardToHand, Assembly-CSharp
-          m_MethodName: OnClickAICard
+          m_MethodName: BeingTarget
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -848,7 +848,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: -2610353111430109804}
           m_TargetAssemblyTypeName: AICardToHand, Assembly-CSharp
-          m_MethodName: DontBeingTarget
+          m_MethodName: OnExitAICard
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -860,7 +860,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: -2610353111430109804}
           m_TargetAssemblyTypeName: AICardToHand, Assembly-CSharp
-          m_MethodName: OnExitAICard
+          m_MethodName: DontBeingTarget
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

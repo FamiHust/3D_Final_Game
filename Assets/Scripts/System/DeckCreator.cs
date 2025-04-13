@@ -26,8 +26,6 @@ public class DeckCreator : MonoBehaviour
     void Start()
     {
         sum = 0;
-        numberOfCardsInDatabase = 32;
-
     }
 
     private void Update() 
@@ -107,14 +105,6 @@ public class DeckCreator : MonoBehaviour
     public void Card10()
     {
         dragged = Collection.x+9;
-    }
-    public void Card11()
-    {
-        dragged = Collection.x+10;
-    }
-    public void Card12()
-    {
-        dragged = Collection.x+11;
     }
 
     public void Drop()

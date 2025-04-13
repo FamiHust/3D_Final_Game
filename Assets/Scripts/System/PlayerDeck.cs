@@ -46,7 +46,7 @@ public class PlayerDeck : MonoBehaviour
         //     x = Random.Range(1, 29);
         //     deck[i] = CardDatabase.cardList[x];
         // }
-        for (int i = 1; i <= 31; i++)
+        for (int i = 1; i <= 99; i++)
         {
             if (PlayerPrefs.GetInt("deck" + i, 0) > 0)
             {

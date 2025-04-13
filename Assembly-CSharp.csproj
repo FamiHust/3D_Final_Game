@@ -64,47 +64,39 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.60f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Sample\CardContainer.cs" />
     <Compile Include="Assets\Scripts\Cards\CardDatabase.cs" />
     <Compile Include="Assets\Scripts\Cards\CardBackPrefab.cs" />
-    <Compile Include="Assets\Scripts\Sample\events\CardEvent.cs" />
+    <Compile Include="Assets\Scripts\LandSetupUI.cs" />
     <Compile Include="Assets\Scripts\GoToHeaven.cs" />
     <Compile Include="Assets\Scripts\Shop.cs" />
+    <Compile Include="Assets\Scripts\LandManager.cs" />
     <Compile Include="Assets\Scripts\OpenPack.cs" />
     <Compile Include="Assets\Scripts\System\Collection.cs" />
-    <Compile Include="Assets\Scripts\Sample\config\CardPlayConfig.cs" />
-    <Compile Include="Assets\Scripts\Sample\config\ZoomConfig.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInfoDisplay.cs" />
     <Compile Include="Assets\Scripts\ChampionSelector.cs" />
+    <Compile Include="Assets\Scripts\ZoneElement.cs" />
     <Compile Include="Assets\Scripts\System\PlayerDeck.cs" />
-    <Compile Include="Assets\Scripts\Sample\events\CardDestroy.cs" />
     <Compile Include="Assets\Scripts\System\Draggable.cs" />
-    <Compile Include="Assets\Scripts\Sample\events\CardHover.cs" />
     <Compile Include="Assets\Scripts\AI_Cards\AI.cs" />
     <Compile Include="Assets\Scripts\System\EndGame.cs" />
-    <Compile Include="Assets\Scripts\Sample\config\AnimationSpeedConfig.cs" />
+    <Compile Include="Assets\Arrow\Scripts\ArrowRenderer.cs" />
     <Compile Include="Assets\Scripts\Cards\CardToHand.cs" />
     <Compile Include="Assets\Scripts\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\AI_Cards\AICardToHand.cs" />
     <Compile Include="Assets\Scripts\System\DeckCreator.cs" />
-    <Compile Include="Assets\Scripts\Sample\demo\CardDestroyer.cs" />
-    <Compile Include="Assets\Scripts\Sample\events\CardUnhover.cs" />
-    <Compile Include="Assets\Scripts\Sample\demo\ClonePreviewManager.cs" />
-    <Compile Include="Assets\Scripts\Sample\CardWrapper.cs" />
     <Compile Include="Assets\Scripts\Health\EnemyHp.cs" />
     <Compile Include="Assets\Scripts\AI_Cards\AICardBack.cs" />
-    <Compile Include="Assets\Scripts\Sample\events\CardPlayed.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Health\PlayerHp.cs" />
-    <Compile Include="Assets\Scripts\Sample\CardPreviewManager.cs" />
+    <Compile Include="Assets\Scripts\LandGroup.cs" />
     <Compile Include="Assets\Scripts\System\WindowInDeck.cs" />
     <Compile Include="Assets\Scripts\System\TurnSystem.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInCollection.cs" />
     <Compile Include="Assets\Scripts\ZoneHighlighter.cs" />
     <Compile Include="Assets\Scripts\System\DropZone.cs" />
     <Compile Include="Assets\Scripts\Cards\CardBack.cs" />
-    <Compile Include="Assets\Scripts\Sample\config\EventsConfig.cs" />
-    <Compile Include="Assets\Scripts\Sample\CardAlignment.cs" />
     <Compile Include="Assets\Scripts\Cards\ThisCard.cs" />
+    <Compile Include="Assets\Arrow\Demo\Scripts\FollowMouseDemo.cs" />
     <Compile Include="Assets\Scripts\System\Menu.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,19 +4,19 @@ using UnityEngine.UI;
 
 public class CardInfoDisplay : MonoBehaviour
 {
-    public Image cardImage;
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI atkText;
-    public TextMeshProUGUI defText;
-    public TextMeshProUGUI costText;
-
     public static CardInfoDisplay instance;
+
+    [SerializeField] private Image cardImage;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI atkText;
+    [SerializeField] private TextMeshProUGUI defText;
+    [SerializeField] private TextMeshProUGUI costText;
 
     void Awake()
     {
         instance = this;
-        gameObject.SetActive(false); // Ẩn UI lúc đầu
+        gameObject.SetActive(false); 
     }
 
     public void ShowCardInfo(Card card)

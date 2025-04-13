@@ -5,38 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public string play;
-    public string map;
-    public string deck;
-    public string collection;
-    public string Settings;
-    public string menu;
-    public string shop;
+    [SerializeField] private string play;
+    [SerializeField] private string map;
+    [SerializeField] private string deck;
+    [SerializeField] private string collection;
+    [SerializeField] private string Settings;
+    [SerializeField] private string menu;
+    [SerializeField] private string shop;
 
-    public GameObject ConcedeDefeat;
+    [SerializeField] private GameObject ConcedeDefeat;
 
     public void LoadPlay()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(play);
     }
 
     public void LoadMap()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(map);
     }
 
     public void LoadDeck()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(deck);
     }
 
     public void LoadCollection()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(collection);
     }
 
     public void LoadShop()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(shop);
     }
 

@@ -9,8 +9,8 @@ public class PlayerHp : MonoBehaviour
     public static float maxHp;
     public static float staticHp;
     public float hp;
-    public Image Health;
-    public TextMeshProUGUI hpText;
+    [SerializeField] private Image Health;
+    [SerializeField] private TextMeshProUGUI hpText;
 
     void Start()
     {

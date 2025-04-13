@@ -16,14 +16,14 @@ public class ThisCard : MonoBehaviour
     public int defense;
     public string cardDescription;
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI costText;
-    public TextMeshProUGUI atkText;
-    public TextMeshProUGUI defText;
-    public TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI costText;
+    [SerializeField] private TextMeshProUGUI atkText;
+    [SerializeField] private TextMeshProUGUI defText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
-    public Sprite thisSprite;
-    public Image thatImage;
+    [SerializeField] private Sprite thisSprite;
+    [SerializeField] private Image thatImage;
     public GameObject Hand;
 
     public bool cardBack;
@@ -140,12 +140,32 @@ public class ThisCard : MonoBehaviour
 
         if (!summoned)
         {
+            // foreach (GameObject zone in battleZones)
+            // {
+            //     if (this.transform.parent == zone.transform)
+            //     {
+            //         Summon();
+            //         break;
+            //     }
+            // }
             foreach (GameObject zone in battleZones)
             {
                 if (this.transform.parent == zone.transform)
                 {
-                    Summon();
-                    break;
+                    var zoneElement = zone.GetComponent<ZoneElement>();
+                    if (zoneElement != null && zoneElement.elementType == thisCard[0].elementType)
+                    {
+                        Summon();
+                    }
+                    else
+                    {
+                        // Nếu không khớp thuộc tính thì đẩy về tay
+                        this.transform.SetParent(Hand.transform);
+                        transform.localPosition = Vector3.zero;
+                        transform.localRotation = Quaternion.identity;
+                        transform.localScale = Vector3.one;
+                    }
+                 break;
                 }
             }
         }
@@ -168,7 +188,6 @@ public class ThisCard : MonoBehaviour
             Attack();
         }
 
-        // summonBorder.SetActive((canBeSummon || UcanReturn) && beInGraveyard);
         // Khi bài chưa ở mộ và đủ điều kiện triệu hồi bình thường
         if (canBeSummon)
         {

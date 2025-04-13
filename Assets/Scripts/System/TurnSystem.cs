@@ -10,32 +10,33 @@ public class TurnSystem : MonoBehaviour
     public static bool isYourTurn;
     public int yourTurn;
     public int yourOpponentTurn;
+
+    public TextMeshProUGUI manaText;
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI enemyManaText;
     public TextMeshProUGUI turnText;
+
+
+    public int random;
+    public int seconds;
+    public bool turnEnd;
+    public bool timerStart;
 
     public static int maxMana;
     public static int currentMana;
-    public TextMeshProUGUI manaText;
-
-    public static bool startTurn;
-
-    public int random;
-    public bool turnEnd;
-    public TextMeshProUGUI timerText;
-    public int seconds;
-    public bool timerStart;
-
     public static int maxEnemyMana;
     public static int currentEnemyMana;
-    public TextMeshProUGUI enemyManaText;
+
+    public static bool startTurn;
+    public static bool landConfirmed = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        seconds = 20;
+        seconds = 30;
         timerStart = true;
 
         StartGame();
-
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class TurnSystem : MonoBehaviour
 
         manaText.text = currentMana + "/" + maxMana;
 
-        if (isYourTurn == true && seconds > 0 && timerStart == true)
+        if (isYourTurn == true && seconds > 0 && timerStart == true && landConfirmed)
         {
             StartCoroutine(Timer());
             timerStart = false;
@@ -60,12 +61,12 @@ public class TurnSystem : MonoBehaviour
         {
             EndYourTurn();
             timerStart = true;
-            seconds = 20;
+            seconds = 30;
         }
 
         timerText.text = seconds + "";
 
-        if (isYourTurn == false && seconds > 0 && timerStart == true)
+        if (isYourTurn == false && seconds > 0 && timerStart == true && landConfirmed)
         {
             StartCoroutine(EnemyTimer());
             timerStart = false;
@@ -75,7 +76,7 @@ public class TurnSystem : MonoBehaviour
         {
             EndOpponentTurn();
             timerStart = true;
-            seconds = 20;
+            seconds = 30;
         }
 
         enemyManaText.text = currentEnemyMana + "/" + maxEnemyMana;
@@ -89,6 +90,8 @@ public class TurnSystem : MonoBehaviour
     
     public void EndYourTurn()
     {
+        if (!landConfirmed) return;
+
         isYourTurn = false;
         yourOpponentTurn++;
         maxEnemyMana++;
@@ -97,12 +100,14 @@ public class TurnSystem : MonoBehaviour
         AI.draw = false;
 
         timerStart = true;
-        seconds = 20;
+        seconds = 30;
 
     }
 
     public void EndOpponentTurn()
     {
+        if (!landConfirmed) return;
+
         isYourTurn = true;
         yourTurn ++;
         maxMana ++;
@@ -110,23 +115,24 @@ public class TurnSystem : MonoBehaviour
 
         startTurn = true;
         timerStart = true;
-        seconds = 20;
+        seconds = 30;
     }
 
     public void StartGame()
     {
+        maxMana = 2;
+        currentMana = 2;
+        maxEnemyMana = 2;
+        currentMana = 2;
+
+        if (!landConfirmed) return;
         random = Random.Range(0, 2);
+
         if (random == 0)
         {
             isYourTurn = true;
             yourTurn = 1;
             yourOpponentTurn = 0;
-
-            maxMana = 2;
-            currentMana = 2;
-            maxEnemyMana = 2;
-            currentMana = 2;
-
             startTurn = false;
         }
 
@@ -135,11 +141,6 @@ public class TurnSystem : MonoBehaviour
             isYourTurn = false;
             yourTurn = 0;
             yourOpponentTurn = 1;
-
-            maxMana = 2;
-            currentMana = 2;
-            maxEnemyMana = 2;
-            currentEnemyMana = 2;
         }
     }
 

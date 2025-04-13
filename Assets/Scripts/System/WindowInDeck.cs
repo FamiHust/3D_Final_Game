@@ -6,6 +6,7 @@ using TMPro;
 
 public class WindowInDeck : MonoBehaviour
 {
+    
     public GameObject Panel;
     public TextMeshProUGUI nameText;
 

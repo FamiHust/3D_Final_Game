@@ -327,7 +327,7 @@ TextureImporter:
         width: 502
         height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -335,6 +335,48 @@ TextureImporter:
       bones: []
       spriteID: ce619ec1457aff1428912d3e82637964
       internalID: -1446829398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_8
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 1489
+        width: 156
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d81e4781ac4bc36439c8cf29a8ad5647
+      internalID: 875475342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_10
+      rect:
+        serializedVersion: 2
+        x: 1795
+        y: 1417
+        width: 129
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02f728714fb220c428fbb387d116708e
+      internalID: -1482030061
       vertices: []
       indices: 
       edges: []
@@ -353,12 +395,15 @@ TextureImporter:
       CardAmount: 21300000
       GUIAtlas_0: 1751032681
       GUIAtlas_1: 2060114067
+      GUIAtlas_10: -1482030061
       GUIAtlas_2: -1678977114
       GUIAtlas_3: 211425566
       GUIAtlas_4: -266073077
       GUIAtlas_5: 1493655573
       GUIAtlas_6: -793031718
       GUIAtlas_7: -1446829398
+      GUIAtlas_8: 875475342
+      GUIAtlas_9: -1587382842
       uiCancel: 21300002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

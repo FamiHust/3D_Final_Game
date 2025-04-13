@@ -25,16 +25,16 @@ public class AI : MonoBehaviour
     public GameObject[] playerZones = new GameObject[8];
     public GameObject Graveyard;
 
-    public int z;
+    [SerializeField] private int z;
     public static int deckSize;
 
-    public GameObject cardInDeck1;
-    public GameObject cardInDeck2;
-    public GameObject cardInDeck3;
-    public GameObject cardInDeck4;
-    public GameObject cardInDeck5;
-    public GameObject cardInDeck6;
-    public GameObject cardInDeck7;
+    [SerializeField] private GameObject cardInDeck1;
+    [SerializeField] private GameObject cardInDeck2;
+    [SerializeField] private GameObject cardInDeck3;
+    [SerializeField] private GameObject cardInDeck4;
+    [SerializeField] private GameObject cardInDeck5;
+    [SerializeField] private GameObject cardInDeck6;
+    [SerializeField] private GameObject cardInDeck7;
 
     public GameObject CardBack;
     public GameObject CardToHand;
@@ -51,7 +51,7 @@ public class AI : MonoBehaviour
     public int summonThisID;
     public int summonID;
 
-    public AICardToHand aICardToHand;
+    AICardToHand aICardToHand;
     public int sumonID;
     public int howManyCards;
     public int howManyCards_2;
@@ -63,6 +63,8 @@ public class AI : MonoBehaviour
 
     public GameObject avtSonTinh;
     public GameObject avtThuyTinh;
+    public GameObject Thuy_Tinh_Land;
+    public GameObject Son_Tinh_Land;
     public Image avatarFrame;
 
     public Color sonTinhColor;
@@ -106,15 +108,17 @@ public class AI : MonoBehaviour
         {
             if (aiType == AIType.ThuyTinh)
             {
+                Thuy_Tinh_Land.SetActive(true);
                 avtThuyTinh.SetActive(true);
                 avatarFrame.color = thuyTinhColor;
-                z = Random.Range(41, 60); 
+                z = Random.Range(32, 51); 
             }
             else if (aiType == AIType.SonTinh)
             {
+                Son_Tinh_Land.SetActive(true);
                 avtSonTinh.SetActive(true);
                 avatarFrame.color = sonTinhColor;
-                z = Random.Range(61, 99); 
+                z = Random.Range(52, 90); 
             }
             deck[i] = CardDatabase.cardList[z];
         }
