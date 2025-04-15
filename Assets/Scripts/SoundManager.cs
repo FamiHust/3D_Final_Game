@@ -3,20 +3,10 @@ using UnityEngine.UI;
 
 public enum SoundType
 {
-    PLAYERATTACK,
-    PLAYERHURT,
-    SELECT,
-    ENEMYATTACK,
-    VICTORY,
-    GAMEOVER,
-    EXPLORE,
-    MERGE,
-    TILE,
-    BOSS,
-    BOSSDIE,
-    WOODDESTROY,
-    TRAP,
-    ENEMYDIE
+    Attack,
+    Hurted,
+    Summoned,
+    Draw
 }
 
 [RequireComponent(typeof(AudioSource))]

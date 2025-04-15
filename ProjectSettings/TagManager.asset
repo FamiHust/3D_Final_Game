@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Clone
   - Clones
+  - GameMusic
   layers:
   - Default
   - TransparentFX

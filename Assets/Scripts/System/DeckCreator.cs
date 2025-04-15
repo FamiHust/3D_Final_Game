@@ -21,41 +21,18 @@ public class DeckCreator : MonoBehaviour
     public bool[] alreadyCreated;
     public static int lastAdded;
     public int[] quantity;
+    public int maxCards = 40;
+    public TextMeshProUGUI cardCountText;
 
     // Start is called before the first frame update
     void Start()
     {
         sum = 0;
+        cardCountText.text = $"Deck: {sum}/{maxCards}";
     }
 
-    private void Update() 
-    {
 
-    }
-
-    public void CreateDeck()
-    {
-        for (int i = 0; i < numberOfCardsInDatabase; i++)
-        {
-            sum += cardsWithThisID[i];
-        }
-
-        if (sum == 40)
-        {
-            for (int i=0; i < numberOfCardsInDatabase; i++)
-            {
-                PlayerPrefs.SetInt("deck" + i, cardsWithThisID[i]);
-            }
-        }
-        sum = 0;
-        numberOfDifferentCards = 0;
-
-        for (int i = 0; i < numberOfCardsInDatabase; i++)
-        {
-            saveDeck[i] = PlayerPrefs.GetInt("deck" + i, 0);
-        }
-    }
-
+    
     public void EnterDeck()
     {
         mouseOverDeck = true;
@@ -121,6 +98,7 @@ public class DeckCreator : MonoBehaviour
             coll.GetComponent<Collection>().HowManyCards[dragged]--;
 
             CalculateDrop();
+            UpdateCardCountDisplay();
         }
     }
 
@@ -141,5 +119,42 @@ public class DeckCreator : MonoBehaviour
         {
             quantity[i] ++;
         }
+    }
+
+    public void CreateDeck()
+    {
+        sum = 0;
+        for (int i = 0; i < numberOfCardsInDatabase; i++)
+        {
+            sum += cardsWithThisID[i];
+        }
+
+        if (sum == 40)
+        {
+            for (int i = 0; i < numberOfCardsInDatabase; i++)
+            {
+                PlayerPrefs.SetInt("deck" + i, cardsWithThisID[i]);
+            }
+        }
+
+        sum = 0;
+        numberOfDifferentCards = 0;
+
+        for (int i = 0; i < numberOfCardsInDatabase; i++)
+        {
+            saveDeck[i] = PlayerPrefs.GetInt("deck" + i, 0);
+        }
+    }
+
+
+    public void UpdateCardCountDisplay()
+    {
+        sum = 0;
+        for (int i = 0; i < numberOfCardsInDatabase; i++)
+        {
+            sum += cardsWithThisID[i];
+        }
+
+        cardCountText.text = $"Deck: {sum}/{maxCards}";
     }
 }

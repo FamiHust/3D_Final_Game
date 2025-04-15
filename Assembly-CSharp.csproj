@@ -68,9 +68,11 @@
     <Compile Include="Assets\Scripts\Cards\CardBackPrefab.cs" />
     <Compile Include="Assets\Scripts\LandSetupUI.cs" />
     <Compile Include="Assets\Scripts\GoToHeaven.cs" />
+    <Compile Include="Assets\Scripts\CameraMoverSwitcher.cs" />
     <Compile Include="Assets\Scripts\Shop.cs" />
     <Compile Include="Assets\Scripts\LandManager.cs" />
     <Compile Include="Assets\Scripts\OpenPack.cs" />
+    <Compile Include="Assets\Scripts\DoNotDestroy.cs" />
     <Compile Include="Assets\Scripts\System\Collection.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInfoDisplay.cs" />
     <Compile Include="Assets\Scripts\ChampionSelector.cs" />
