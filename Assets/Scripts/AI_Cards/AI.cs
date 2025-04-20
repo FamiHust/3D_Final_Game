@@ -51,7 +51,7 @@ public class AI : MonoBehaviour
     public int summonThisID;
     public int summonID;
 
-    AICardToHand aICardToHand;
+    AICardToHand AiCardToHand;
     public int sumonID;
     public int howManyCards;
     public int howManyCards_2;
@@ -85,7 +85,7 @@ public class AI : MonoBehaviour
         StartCoroutine(StartGame());
 
         Hand = GameObject.Find("Enemy_Hand");
-        Graveyard = GameObject.Find("ENemy_Graveyard");
+        Graveyard = GameObject.Find("Enemy_Graveyard");
         aiType = ChampionSelector.selectedChampion;
 
         for (int i = 0; i < 8; i++)
@@ -144,6 +144,7 @@ public class AI : MonoBehaviour
         }
 
         int handSize = Hand.transform.childCount;
+        
 
         if (TurnSystem.startTurn == false && draw == false)
         {
