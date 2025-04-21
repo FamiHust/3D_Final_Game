@@ -115,7 +115,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 4096
@@ -128,7 +128,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 4096
@@ -141,7 +141,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -1155,10 +1155,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GUIAtlas_3_0
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 625
+        width: 357
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370f91dd9550d2e42a66a69573fd1991
+      internalID: 197263923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 39c51da1ad503194a9345da6534bde8f
     internalID: 0
     vertices: []
     indices: 
@@ -1173,6 +1194,7 @@ TextureImporter:
       Fisto_burst: 21300018
       Fisto_mit: 21300016
       Fistogoldcard: 21300022
+      GUIAtlas_3_0: 197263923
       Icon_CardGold: 21300020
       TC_challengebox: 21300006
       TC_portraitbox: 21300004

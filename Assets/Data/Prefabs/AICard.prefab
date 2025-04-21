@@ -752,6 +752,8 @@ MonoBehaviour:
     healXpower: 0
     spell: 0
     damageDealBySpell: 0
+    rarity: 
+    elementType: 0
   thisID: 1
   id: 0
   cardName: 

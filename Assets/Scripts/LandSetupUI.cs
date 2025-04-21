@@ -4,7 +4,8 @@ using TMPro;
 public class LandSetupUI : MonoBehaviour
 {
     public LandGroup[] lands;              
-    public TMP_Dropdown[] landDropdowns;   
+    public TMP_Dropdown[] landDropdowns;
+    public GameObject Buttons;  
 
     void Awake()
     {
@@ -23,8 +24,11 @@ public class LandSetupUI : MonoBehaviour
 
     public void ConfirmElementSetup()
     {
-        // giữ lại nếu sau này m muốn làm gì khi nhấn Confirm
         gameObject.SetActive(false);
+        Buttons.SetActive(true);
         TurnSystem.landConfirmed = true;
+
+        FindObjectOfType<PlayerDeck>().StartGame(); 
+        FindObjectOfType<AI>().AIStartGame();
     }
 }

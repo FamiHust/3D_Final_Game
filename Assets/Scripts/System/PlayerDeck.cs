@@ -54,7 +54,7 @@ public class PlayerDeck : MonoBehaviour
         }
         Shuffle();
 
-        StartCoroutine(StartGame());
+        // StartCoroutine(StartGame());
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class PlayerDeck : MonoBehaviour
 
         if (TurnSystem.startTurn == true)
         {
-            if (handSize < 5)
+            if (handSize <= 4)
             {
                 StartCoroutine(Draw(1));
             }
@@ -94,6 +94,20 @@ public class PlayerDeck : MonoBehaviour
         }
 
         deckSizeText.text = "Deck: " + deckSize;
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(StartGameCoroutine());
+    }
+
+    IEnumerator StartGameCoroutine()
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
+        }
     }
 
     IEnumerator Example()
@@ -109,15 +123,15 @@ public class PlayerDeck : MonoBehaviour
         
     }
 
-    IEnumerator StartGame()
-    {
-        for (int i = 0; i <= 4; i++)
-        {
-            yield return new WaitForSeconds(0.5f);
-            Instantiate(CardToHand, transform.position, transform.rotation);
-        }
+    // public IEnumerator StartGame()
+    // {
+    //     for (int i = 0; i <= 4; i++)
+    //     {
+    //         yield return new WaitForSeconds(0.5f);
+    //         Instantiate(CardToHand, transform.position, transform.rotation);
+    //     }
         
-    }
+    // }
 
     public void Shuffle()
     {

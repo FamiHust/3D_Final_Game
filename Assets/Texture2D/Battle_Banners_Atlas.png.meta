@@ -118,7 +118,7 @@ TextureImporter:
         width: 438
         height: 119
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -139,7 +139,7 @@ TextureImporter:
         width: 472
         height: 151
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,6 +147,27 @@ TextureImporter:
       bones: []
       spriteID: f1702e2e618bc15479eed59ae6baa104
       internalID: -1047290320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Battle_Banners_Atlas_2
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 1517
+        width: 130
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8636e131372f08047947e4ecae98b266
+      internalID: 1411360034
       vertices: []
       indices: 
       edges: []
@@ -164,6 +185,7 @@ TextureImporter:
     nameFileIdTable:
       Battle_Banners_Atlas_0: -111682612
       Battle_Banners_Atlas_1: -1047290320
+      Battle_Banners_Atlas_2: 1411360034
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

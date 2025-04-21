@@ -82,7 +82,7 @@ public class AI : MonoBehaviour
         avtThuyTinh.SetActive(false);
 
         StartCoroutine(WaitFiveSeconds());
-        StartCoroutine(StartGame());
+        // StartCoroutine(StartGame());
 
         Hand = GameObject.Find("Enemy_Hand");
         Graveyard = GameObject.Find("Enemy_Graveyard");
@@ -405,12 +405,25 @@ public class AI : MonoBehaviour
         StartCoroutine(ShuffleNow());
     }
     
-    IEnumerator StartGame()
+    // IEnumerator StartGame()
+    // {
+    //     for (int i = 0; i <= 4; i++)
+    //     {
+    //         yield return new WaitForSeconds(0.5f);
+    //         Instantiate(CardToHand, transform.position, transform.rotation);
+    //     }
+    // }
+    public void AIStartGame()
+    {
+        StartCoroutine(StartGameCoroutine());
+    }
+
+    IEnumerator StartGameCoroutine()
     {
         for (int i = 0; i <= 4; i++)
         {
-            yield return new WaitForSeconds(0.5f);
-            Instantiate(CardToHand, transform.position, transform.rotation);
+            yield return new WaitForSeconds(1f);
+            Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
         }
     }
 
