@@ -140,14 +140,6 @@ public class ThisCard : MonoBehaviour
 
         if (!summoned)
         {
-            // foreach (GameObject zone in battleZones)
-            // {
-            //     if (this.transform.parent == zone.transform)
-            //     {
-            //         Summon();
-            //         break;
-            //     }
-            // }
             foreach (GameObject zone in battleZones)
             {
                 if (this.transform.parent == zone.transform)
@@ -159,7 +151,6 @@ public class ThisCard : MonoBehaviour
                     }
                     else
                     {
-                        // Nếu không khớp thuộc tính thì đẩy về tay
                         this.transform.SetParent(Hand.transform);
                         transform.localPosition = Vector3.zero;
                         transform.localRotation = Quaternion.identity;
@@ -188,12 +179,11 @@ public class ThisCard : MonoBehaviour
             Attack();
         }
 
-        // Khi bài chưa ở mộ và đủ điều kiện triệu hồi bình thường
         if (canBeSummon)
         {
             summonBorder.SetActive(true);
         }
-        // Khi bài đang ở mộ và được hồi sinh
+
         else if (beInGraveyard && UcanReturn)
         {
             summonBorder.SetActive(true);
@@ -294,7 +284,6 @@ public class ThisCard : MonoBehaviour
         {
             bool enemyHasCards = false;
 
-            // Kiểm tra enemy còn bài không
             foreach (GameObject zone in EnemyZones)
             {
                 if (zone.transform.childCount > 0)

@@ -82,7 +82,7 @@ public class AI : MonoBehaviour
         avtThuyTinh.SetActive(false);
 
         StartCoroutine(WaitFiveSeconds());
-        // StartCoroutine(StartGame());
+        // AIStartGame();
 
         Hand = GameObject.Find("Enemy_Hand");
         Graveyard = GameObject.Find("Enemy_Graveyard");
@@ -269,6 +269,12 @@ public class AI : MonoBehaviour
             attackPhase = true;
         }
 
+        // if (summonPhase == true)
+        // {
+        //     StartCoroutine(SummonAllPossibleCards());
+        //     summonPhase = false; // Đặt false ngay để tránh gọi lại nhiều lần
+        // }
+
         if (0 == 0)
         {
             int k = 0;
@@ -317,17 +323,6 @@ public class AI : MonoBehaviour
             l = 0;
         }
 
-        // if (attackPhase == true && endPhase == false)
-        // {
-        //     for (int i = 0; i < 40; i++)
-        //     {
-        //         if (canAttack[i] == true)
-        //         {
-        //             PlayerHp.staticHp -= cardInZone[i].attack;
-        //         }
-        //     }
-        //     endPhase = true;
-        // }
         if (attackPhase == true && endPhase == false)
         {
             bool playerHasCards = false;
@@ -404,15 +399,7 @@ public class AI : MonoBehaviour
         Instantiate(CardBack, transform.position, transform.rotation);
         StartCoroutine(ShuffleNow());
     }
-    
-    // IEnumerator StartGame()
-    // {
-    //     for (int i = 0; i <= 4; i++)
-    //     {
-    //         yield return new WaitForSeconds(0.5f);
-    //         Instantiate(CardToHand, transform.position, transform.rotation);
-    //     }
-    // }
+
     public void AIStartGame()
     {
         StartCoroutine(StartGameCoroutine());
@@ -458,4 +445,54 @@ public class AI : MonoBehaviour
         yield return new WaitForSeconds(5f);
         summonPhase = true;
     }
+
+    // IEnumerator SummonAllPossibleCards()
+    // {
+    //     summonPhase = true;
+
+    //     bool summoned = true;
+    //     while (summoned)
+    //     {
+    //         summoned = false;
+
+    //         // Cập nhật danh sách bài trên tay và zone trống
+    //         // int j = 0;
+    //         cardsInHand.Clear();
+    //         foreach (Transform child in Hand.transform)
+    //         {
+    //             cardsInHand.Add(child.GetComponent<AICardToHand>().thisCard[0]);
+    //         }
+
+    //         foreach (Transform child in Hand.transform)
+    //         {
+    //             AICardToHand cardScript = child.GetComponent<AICardToHand>();
+    //             Card thisCard = cardScript.thisCard[0];
+
+    //             if (thisCard.cost <= currentMana)
+    //             {
+    //                 // Tìm zone trống
+    //                 GameObject emptyZone = Zones.FirstOrDefault(zone => zone.transform.childCount == 0);
+    //                 if (emptyZone != null)
+    //                 {
+    //                     // Triệu hồi
+    //                     child.transform.SetParent(emptyZone.transform);
+    //                     child.transform.localPosition = Vector3.zero;
+    //                     child.transform.localRotation = Quaternion.identity;
+    //                     child.transform.localScale = Vector3.zero;
+    //                     child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+
+    //                     TurnSystem.currentEnemyMana -= thisCard.cost;
+    //                     summoned = true;
+
+    //                     yield return new WaitForSeconds(0.5f);
+    //                     break; // Sau khi triệu hồi 1 lá thì break để làm mới danh sách
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     // Kết thúc giai đoạn triệu hồi
+    //     summonPhase = false;
+    //     attackPhase = true;
+    // }
 }

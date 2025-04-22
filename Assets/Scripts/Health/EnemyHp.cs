@@ -15,7 +15,7 @@ public class EnemyHp : MonoBehaviour
     void Start()
     {
         maxHp = 20;
-        staticHp = 10;
+        staticHp = 20;
     }
 
     void Update()

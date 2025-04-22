@@ -34,12 +34,12 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(21, "Gióng", 2, 1, 5," ", Resources.Load<Sprite>("Lac_Viet_Deck/Giong"), 0, 0, 0, 0, false, 0, "Common", ElementType.Earth));
 
         //Spell Cards
-        cardList.Add(new Card(22, "Chiến nỏ", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Chien_no"), 0, 0, 0, 0, true, 1, "Common", ElementType.Earth));
-        cardList.Add(new Card(23, "Tĩnh dưỡng", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Tinh_duong"), 0, 2, 0, 2, true, 0, "Common", ElementType.Earth));
-        cardList.Add(new Card(24, "Hố chông", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Ho_chong"), 0, 0, 0, 0, true, 2, "Common", ElementType.Earth));
-        cardList.Add(new Card(25, "Công thành bất ngờ", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Cong_thanh"), 0, 0, 0, 0, true, 3, "Common", ElementType.Earth));
-        cardList.Add(new Card(26, "Liên hoàn sấm sét", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Sam_set"), 0, 0, 0, 0, true, 4, "Common", ElementType.Earth));
-        cardList.Add(new Card(27, "Bất hoại", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_hoai"), 0, 0, 0, 3, true, 0, "Common", ElementType.Earth));
+        cardList.Add(new Card(22, "Chiến nỏ", 1, 0, 0,"-1 HP của kẻ địch", Resources.Load<Sprite>("Lac_Viet_Deck/Chien_no"), 0, 0, 0, 0, true, 1, "Common", ElementType.Earth));
+        cardList.Add(new Card(23, "Tĩnh dưỡng", 1, 0, 0,"+2 HP, +2 Mana", Resources.Load<Sprite>("Lac_Viet_Deck/Tinh_duong"), 0, 2, 0, 2, true, 0, "Common", ElementType.Earth));
+        cardList.Add(new Card(24, "Hố chông", 1, 0, 0,"-2 HP của kẻ địch", Resources.Load<Sprite>("Lac_Viet_Deck/Ho_chong"), 0, 0, 0, 0, true, 2, "Common", ElementType.Earth));
+        cardList.Add(new Card(25, "Công thành bất ngờ", 1, 0, 0,"-3 HP của kẻ địch", Resources.Load<Sprite>("Lac_Viet_Deck/Cong_thanh"), 0, 0, 0, 0, true, 3, "Common", ElementType.Earth));
+        cardList.Add(new Card(26, "Liên hoàn sấm sét", 1, 0, 0,"-4 HP của kẻ địch", Resources.Load<Sprite>("Lac_Viet_Deck/Sam_set"), 0, 0, 0, 0, true, 4, "Common", ElementType.Earth));
+        cardList.Add(new Card(27, "Bất hoại", 1, 0, 0,"+3 HP", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_hoai"), 0, 0, 0, 3, true, 0, "Common", ElementType.Earth));
         cardList.Add(new Card(28, "Trao kiếm", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Trao_kiem"), 2, 0, 0, 0, true, 0, "Common", ElementType.Earth));
         cardList.Add(new Card(29, "Chiến trường không khoan nhượng", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Chien_truong"), 0, 0, 0, 0, true, 5, "Common", ElementType.Earth));
         cardList.Add(new Card(30, "Đồng lòng chiến đấu", 1, 0, 0," ", Resources.Load<Sprite>("Lac_Viet_Deck/Dong_long_chien_dau"), 0, 0, 1, 0, true, 0, "Common", ElementType.Earth));

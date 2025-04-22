@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-
 public class Shop : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI goldText;

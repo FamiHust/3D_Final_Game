@@ -54,7 +54,7 @@ public class PlayerDeck : MonoBehaviour
         }
         Shuffle();
 
-        // StartCoroutine(StartGame());
+        // StartGame();
     }
 
     // Update is called once per frame
@@ -122,16 +122,6 @@ public class PlayerDeck : MonoBehaviour
         }
         
     }
-
-    // public IEnumerator StartGame()
-    // {
-    //     for (int i = 0; i <= 4; i++)
-    //     {
-    //         yield return new WaitForSeconds(0.5f);
-    //         Instantiate(CardToHand, transform.position, transform.rotation);
-    //     }
-        
-    // }
 
     public void Shuffle()
     {
