@@ -218,62 +218,125 @@ public class AI : MonoBehaviour
             endPhase = false;
         }
 
+        // if (summonPhase == true)
+        // {
+        //     summonID = 0;
+        //     summonThisID = 0;
+        //     int index = 0;
+        //     for (int i = 0; i < 40; i++)
+        //     {
+        //         if (AiCanSummon[i] == true)
+        //         {
+        //             cardsID[index] = cardsInHand[i].id;
+        //             index++;
+        //         }
+        //     }
+
+        //     for (int i = 0; i < 40; i++)
+        //     {
+        //         if (cardsID[i] != 0)
+        //         {
+        //             if (cardsID[i] > summonID)
+        //             {
+        //                 summonID = cardsID[i];
+        //             }
+        //         }
+        //     }
+        //     summonThisID = summonID;
+
+        //     foreach (Transform child in Hand.transform)
+        //     {
+        //         if (child.GetComponent<AICardToHand>().id == summonThisID && CardDatabase.cardList[summonThisID].cost <= currentMana)
+        //         {
+        //             foreach (GameObject zone in Zones)
+        //             {
+        //                 if (zone.transform.childCount == 0)
+        //                 {
+        //                     child.transform.SetParent(zone.transform);
+        //                     child.transform.localPosition = Vector3.zero;
+        //                     child.transform.localRotation = Quaternion.identity;
+        //                     child.transform.localScale = Vector3.zero;
+        //                     child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+
+        //                     TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
+        //                     break;
+        //                 }
+        //             }
+        //             break;
+        //         }
+        //     }
+        //     summonPhase = false;
+        //     attackPhase = true;
+        // }
+
         if (summonPhase == true)
         {
-            summonID = 0;
-            summonThisID = 0;
-            int index = 0;
-            for (int i = 0; i < 40; i++)
+            bool hasSummoned = false;
+            do
             {
-                if (AiCanSummon[i] == true)
-                {
-                    cardsID[index] = cardsInHand[i].id;
-                    index++;
-                }
-            }
+                hasSummoned = false;
+                summonID = 0;
+                summonThisID = 0;
+                int index = 0;
 
-            for (int i = 0; i < 40; i++)
-            {
-                if (cardsID[i] != 0)
+                // Lọc ra các lá có thể triệu hồi
+                for (int i = 0; i < 40; i++)
                 {
-                    if (cardsID[i] > summonID)
+                    if (AiCanSummon[i] == true && cardsInHand[i].cost <= currentMana)
                     {
-                        summonID = cardsID[i];
+                        cardsID[index] = cardsInHand[i].id;
+                        index++;
                     }
                 }
-            }
-            summonThisID = summonID;
 
-            foreach (Transform child in Hand.transform)
-            {
-                if (child.GetComponent<AICardToHand>().id == summonThisID && CardDatabase.cardList[summonThisID].cost <= currentMana)
+                // Chọn lá có ID lớn nhất
+                for (int i = 0; i < 40; i++)
                 {
-                    foreach (GameObject zone in Zones)
+                    if (cardsID[i] != 0)
                     {
-                        if (zone.transform.childCount == 0)
+                        if (cardsID[i] > summonID)
                         {
-                            child.transform.SetParent(zone.transform);
-                            child.transform.localPosition = Vector3.zero;
-                            child.transform.localRotation = Quaternion.identity;
-                            child.transform.localScale = Vector3.zero;
-                            child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-
-                            TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
-                            break;
+                            summonID = cardsID[i];
                         }
                     }
-                    break;
                 }
-            }
+
+                summonThisID = summonID;
+
+                foreach (Transform child in Hand.transform)
+                {
+                    if (child.GetComponent<AICardToHand>().id == summonThisID && CardDatabase.cardList[summonThisID].cost <= currentMana)
+                    {
+                        foreach (GameObject zone in Zones)
+                        {
+                            if (zone.transform.childCount == 0)
+                            {
+                                child.transform.SetParent(zone.transform);
+                                child.transform.localPosition = Vector3.zero;
+                                child.transform.localRotation = Quaternion.identity;
+                                child.transform.localScale = Vector3.zero;
+                                child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+
+                                // TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
+                                // hasSummoned = true;
+                                if (TurnSystem.currentEnemyMana >= CardDatabase.cardList[summonThisID].cost)
+                                {
+                                    TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
+                                    hasSummoned = true;
+                                }
+                                else
+                                {
+                                    hasSummoned = false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            } while (hasSummoned); // Lặp lại nếu triệu hồi thành công
             summonPhase = false;
             attackPhase = true;
         }
-
-        // if (summonPhase == true)
-        // {
-        //     StartCoroutine(SummonAllPossibleCards());
-        //     summonPhase = false; // Đặt false ngay để tránh gọi lại nhiều lần
-        // }
 
         if (0 == 0)
         {

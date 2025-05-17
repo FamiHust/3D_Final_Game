@@ -109,13 +109,15 @@ public class TurnSystem : MonoBehaviour
         if (!landConfirmed) return;
 
         isYourTurn = true;
-        yourTurn ++;
-        maxMana ++;
+        yourTurn++;
+        maxMana++;
         currentMana = maxMana;
 
         startTurn = true;
         timerStart = true;
         seconds = 30;
+        
+        AI.draw = false;
     }
 
     public void StartGame()

@@ -90,6 +90,6 @@ public class OpenPack : MonoBehaviour
     IEnumerator Return()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Shop");
     }
 }

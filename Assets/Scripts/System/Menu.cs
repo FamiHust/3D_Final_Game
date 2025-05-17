@@ -51,6 +51,12 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(menu);
     }
 
+    public void ReturnToLoadingMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LoadingMenu");
+    }
+
     public void ConcedeDefeated()
     {
         Time.timeScale = 0;

@@ -86,7 +86,7 @@ public class PlayerDeck : MonoBehaviour
 
         if (TurnSystem.startTurn == true)
         {
-            if (handSize <= 4)
+            if (handSize < 5)
             {
                 StartCoroutine(Draw(1));
             }
@@ -103,7 +103,7 @@ public class PlayerDeck : MonoBehaviour
 
     IEnumerator StartGameCoroutine()
     {
-        for (int i = 0; i <= 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(1f);
             Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
