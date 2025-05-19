@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene/_hirez/Scenes/AdventureTime.unity
+- path: Assets/Scene/_hirez/Scenes/Menu.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

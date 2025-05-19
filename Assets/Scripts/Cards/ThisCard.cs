@@ -42,6 +42,8 @@ public class ThisCard : MonoBehaviour
     public GameObject Enemy;
     public GameObject summonBorder;
     public GameObject Graveyard;
+    public GameObject HealEffect;
+    public GameObject SummonEffect;
 
     public bool summoningSickness;
     public bool cantAttack;
@@ -264,13 +266,19 @@ public class ThisCard : MonoBehaviour
         }
         return false;
     }
-
+    
     public void Summon()
     {
         TurnSystem.currentMana -= cost;
         summoned = true;
         MaxMana(addXmaxMana);
         drawX = drawXcards;
+
+        // Hiển thị hiệu ứng triệu hồi
+        if (SummonEffect != null)
+        {
+            SummonEffect.SetActive(true);
+        }
     }
 
     public void MaxMana(int x)

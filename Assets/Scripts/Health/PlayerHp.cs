@@ -15,7 +15,7 @@ public class PlayerHp : MonoBehaviour
     void Start()
     {
         maxHp = 20;
-        staticHp = 20;
+        staticHp = 10;
     }
 
     void Update()

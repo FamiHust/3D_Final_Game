@@ -37,7 +37,7 @@ public class AI : MonoBehaviour
     [SerializeField] private GameObject cardInDeck7;
 
     public GameObject CardBack;
-    public GameObject CardToHand;
+    public GameObject aiCardToHand;
     public GameObject[] Clones;
     public static bool draw;
 
@@ -146,7 +146,7 @@ public class AI : MonoBehaviour
         int handSize = Hand.transform.childCount;
         
 
-        if (TurnSystem.startTurn == false && draw == false)
+        if (TurnSystem.startTurn == false && draw == false && TurnSystem.isYourTurn == false)
         {
             if (handSize < 5)
             {
@@ -218,57 +218,6 @@ public class AI : MonoBehaviour
             endPhase = false;
         }
 
-        // if (summonPhase == true)
-        // {
-        //     summonID = 0;
-        //     summonThisID = 0;
-        //     int index = 0;
-        //     for (int i = 0; i < 40; i++)
-        //     {
-        //         if (AiCanSummon[i] == true)
-        //         {
-        //             cardsID[index] = cardsInHand[i].id;
-        //             index++;
-        //         }
-        //     }
-
-        //     for (int i = 0; i < 40; i++)
-        //     {
-        //         if (cardsID[i] != 0)
-        //         {
-        //             if (cardsID[i] > summonID)
-        //             {
-        //                 summonID = cardsID[i];
-        //             }
-        //         }
-        //     }
-        //     summonThisID = summonID;
-
-        //     foreach (Transform child in Hand.transform)
-        //     {
-        //         if (child.GetComponent<AICardToHand>().id == summonThisID && CardDatabase.cardList[summonThisID].cost <= currentMana)
-        //         {
-        //             foreach (GameObject zone in Zones)
-        //             {
-        //                 if (zone.transform.childCount == 0)
-        //                 {
-        //                     child.transform.SetParent(zone.transform);
-        //                     child.transform.localPosition = Vector3.zero;
-        //                     child.transform.localRotation = Quaternion.identity;
-        //                     child.transform.localScale = Vector3.zero;
-        //                     child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-
-        //                     TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
-        //                     break;
-        //                 }
-        //             }
-        //             break;
-        //         }
-        //     }
-        //     summonPhase = false;
-        //     attackPhase = true;
-        // }
-
         if (summonPhase == true)
         {
             bool hasSummoned = false;
@@ -317,8 +266,6 @@ public class AI : MonoBehaviour
                                 child.transform.localScale = Vector3.zero;
                                 child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
 
-                                // TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
-                                // hasSummoned = true;
                                 if (TurnSystem.currentEnemyMana >= CardDatabase.cardList[summonThisID].cost)
                                 {
                                     TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
@@ -470,10 +417,11 @@ public class AI : MonoBehaviour
 
     IEnumerator StartGameCoroutine()
     {
-        for (int i = 0; i <= 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(1f);
-            Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
+            // Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
+            Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
         }
     }
 
@@ -486,7 +434,6 @@ public class AI : MonoBehaviour
         {
             Destroy(Clone);
         }
-        
     }
 
     IEnumerator Draw(int z)
@@ -494,7 +441,7 @@ public class AI : MonoBehaviour
         for (int i = 0; i < z; i++)
         {
             yield return new WaitForSeconds(0.5f);
-            Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
+            Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
         }
     }
 
@@ -508,54 +455,4 @@ public class AI : MonoBehaviour
         yield return new WaitForSeconds(5f);
         summonPhase = true;
     }
-
-    // IEnumerator SummonAllPossibleCards()
-    // {
-    //     summonPhase = true;
-
-    //     bool summoned = true;
-    //     while (summoned)
-    //     {
-    //         summoned = false;
-
-    //         // Cập nhật danh sách bài trên tay và zone trống
-    //         // int j = 0;
-    //         cardsInHand.Clear();
-    //         foreach (Transform child in Hand.transform)
-    //         {
-    //             cardsInHand.Add(child.GetComponent<AICardToHand>().thisCard[0]);
-    //         }
-
-    //         foreach (Transform child in Hand.transform)
-    //         {
-    //             AICardToHand cardScript = child.GetComponent<AICardToHand>();
-    //             Card thisCard = cardScript.thisCard[0];
-
-    //             if (thisCard.cost <= currentMana)
-    //             {
-    //                 // Tìm zone trống
-    //                 GameObject emptyZone = Zones.FirstOrDefault(zone => zone.transform.childCount == 0);
-    //                 if (emptyZone != null)
-    //                 {
-    //                     // Triệu hồi
-    //                     child.transform.SetParent(emptyZone.transform);
-    //                     child.transform.localPosition = Vector3.zero;
-    //                     child.transform.localRotation = Quaternion.identity;
-    //                     child.transform.localScale = Vector3.zero;
-    //                     child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-
-    //                     TurnSystem.currentEnemyMana -= thisCard.cost;
-    //                     summoned = true;
-
-    //                     yield return new WaitForSeconds(0.5f);
-    //                     break; // Sau khi triệu hồi 1 lá thì break để làm mới danh sách
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     // Kết thúc giai đoạn triệu hồi
-    //     summonPhase = false;
-    //     attackPhase = true;
-    // }
 }

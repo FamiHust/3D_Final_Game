@@ -103,7 +103,7 @@ public class PlayerDeck : MonoBehaviour
 
     IEnumerator StartGameCoroutine()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 4; i++)
         {
             yield return new WaitForSeconds(1f);
             Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
