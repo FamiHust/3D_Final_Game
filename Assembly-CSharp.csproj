@@ -66,31 +66,43 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Cards\CardDatabase.cs" />
     <Compile Include="Assets\Scripts\Cards\CardBackPrefab.cs" />
-    <Compile Include="Assets\Scripts\LandSetupUI.cs" />
+    <Compile Include="Assets\Scripts\GameManager\Shop.cs" />
+    <Compile Include="Assets\Scripts\GameManager\MusicVolumeUI.cs" />
     <Compile Include="Assets\Scripts\GoToHeaven.cs" />
     <Compile Include="Assets\Scripts\CameraMoverSwitcher.cs" />
-    <Compile Include="Assets\Scripts\Shop.cs" />
-    <Compile Include="Assets\Scripts\LandManager.cs" />
+    <Compile Include="Assets\Scripts\CursorManager.cs" />
     <Compile Include="Assets\Scripts\OpenPack.cs" />
-    <Compile Include="Assets\Scripts\LoadingMenu.cs" />
+    <Compile Include="Assets\Scripts\GameManager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\DoNotDestroy.cs" />
     <Compile Include="Assets\Scripts\System\Collection.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInfoDisplay.cs" />
     <Compile Include="Assets\Scripts\ChampionSelector.cs" />
     <Compile Include="Assets\Scripts\ZoneElement.cs" />
+    <Compile Include="Assets\Scripts\TypewriterEffect.cs" />
+    <Compile Include="Assets\Scripts\PlayerScoreManager.cs" />
     <Compile Include="Assets\Scripts\System\PlayerDeck.cs" />
+    <Compile Include="Assets\Scripts\GameManager\LoadingMenu.cs" />
+    <Compile Include="Assets\Scripts\LevelButtonController.cs" />
+    <Compile Include="Assets\Scripts\DisplayUsername.cs" />
     <Compile Include="Assets\Scripts\System\Draggable.cs" />
     <Compile Include="Assets\Scripts\AI_Cards\AI.cs" />
+    <Compile Include="Assets\Scripts\LevelUnlockManager.cs" />
     <Compile Include="Assets\Scripts\System\EndGame.cs" />
     <Compile Include="Assets\Scripts\Cards\CardToHand.cs" />
     <Compile Include="Assets\Scripts\Cards\Card.cs" />
+    <Compile Include="Assets\Scripts\GameManager\LandSetupUI.cs" />
+    <Compile Include="Assets\Scripts\CursorHoverHandler.cs" />
     <Compile Include="Assets\Scripts\AI_Cards\AICardToHand.cs" />
     <Compile Include="Assets\Scripts\System\DeckCreator.cs" />
+    <Compile Include="Assets\Scripts\GameManager\LandManager.cs" />
+    <Compile Include="Assets\Scripts\LoginPagePlayfab.cs" />
+    <Compile Include="Assets\Layer Lab\GUI-TheStone\Scripts\PanelTheStone.cs" />
     <Compile Include="Assets\Scripts\Health\EnemyHp.cs" />
     <Compile Include="Assets\Scripts\AI_Cards\AICardBack.cs" />
-    <Compile Include="Assets\Scripts\SoundManager.cs" />
+    <Compile Include="Assets\Layer Lab\GUI-TheStone\Scripts\PanelControlTheStone.cs" />
     <Compile Include="Assets\Scripts\Health\PlayerHp.cs" />
     <Compile Include="Assets\Scripts\LandGroup.cs" />
+    <Compile Include="Assets\Scripts\ShakeCamera.cs" />
     <Compile Include="Assets\Scripts\System\WindowInDeck.cs" />
     <Compile Include="Assets\Scripts\System\TurnSystem.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInCollection.cs" />
@@ -99,11 +111,11 @@
     <Compile Include="Assets\Scripts\Cards\CardBack.cs" />
     <Compile Include="Assets\Scripts\Cards\ThisCard.cs" />
     <Compile Include="Assets\Scripts\System\Menu.cs" />
+    <Compile Include="Assets\Scripts\PlayfabGoldManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Models\shaders\Unlit - Transparent Colored.shader" />
     <None Include="Assets\ScriptTemplates\52-Mirror__Network Authenticator-NewNetworkAuthenticator.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -123,7 +135,6 @@
     <None Include="Assets\ScriptTemplates\52-Mirror__Network Behaviour-NewNetworkBehaviour.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Data\Sprites\Fantasy Game Cards 5\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\ScriptTemplates\55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
@@ -1112,6 +1123,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj" />
+    <ProjectReference Include="PlayFabEditorExtensions.csproj" />
+    <ProjectReference Include="PlayFab.csproj" />
+    <ProjectReference Include="PlayFabSDKEditor.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

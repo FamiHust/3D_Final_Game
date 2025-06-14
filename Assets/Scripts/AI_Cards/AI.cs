@@ -4,16 +4,20 @@ using UnityEngine;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine.UI;
+using TMPro;
 
 public enum AIType
 {
     ThuyTinh,
-    SonTinh
+    SonTinh,
+    YeuMa,
+    LacDieu
 }
 
 public class AI : MonoBehaviour
 {
-    
+    public static AIType currentLevel;
+
     public List<Card> deck = new List<Card>();
     public List<Card> container = new List<Card>();
     public static List<Card> staticEnemyDeck = new List<Card>();
@@ -63,12 +67,14 @@ public class AI : MonoBehaviour
 
     public GameObject avtSonTinh;
     public GameObject avtThuyTinh;
+    public GameObject avtYeuMa;
+    public GameObject avtLacDieu;
     public GameObject Thuy_Tinh_Land;
     public GameObject Son_Tinh_Land;
-    public Image avatarFrame;
+    public GameObject Yeu_Ma_Land;
+    public GameObject Lac_Dieu_Land;
 
-    public Color sonTinhColor;
-    public Color thuyTinhColor;
+    public TextMeshProUGUI opponentNameText;
 
     void Awake()
     {
@@ -80,6 +86,7 @@ public class AI : MonoBehaviour
     {
         avtSonTinh.SetActive(false);
         avtThuyTinh.SetActive(false);
+        avtYeuMa.SetActive(false);
 
         StartCoroutine(WaitFiveSeconds());
         // AIStartGame();
@@ -110,15 +117,29 @@ public class AI : MonoBehaviour
             {
                 Thuy_Tinh_Land.SetActive(true);
                 avtThuyTinh.SetActive(true);
-                avatarFrame.color = thuyTinhColor;
-                z = Random.Range(32, 51); 
+                opponentNameText.text = "Thuy Tinh";
+                z = Random.Range(32, 53);
             }
             else if (aiType == AIType.SonTinh)
             {
                 Son_Tinh_Land.SetActive(true);
                 avtSonTinh.SetActive(true);
-                avatarFrame.color = sonTinhColor;
-                z = Random.Range(52, 90); 
+                opponentNameText.text = "Son Tinh";
+                z = Random.Range(52, 92);
+            }
+            else if (aiType == AIType.YeuMa)
+            {
+                Yeu_Ma_Land.SetActive(true);
+                avtYeuMa.SetActive(true);
+                opponentNameText.text = "Yeu Ma";
+                z = Random.Range(91, 119);
+            }
+            else if (aiType == AIType.LacDieu)
+            {
+                Lac_Dieu_Land.SetActive(true);
+                avtLacDieu.SetActive(true);
+                opponentNameText.text = "Lac Dieu";
+                z = Random.Range(120, 135);
             }
             deck[i] = CardDatabase.cardList[z];
         }
@@ -128,14 +149,14 @@ public class AI : MonoBehaviour
     void Update()
     {
         staticEnemyDeck = deck;
-        
+
         if (deckSize < 30) cardInDeck1.SetActive(false);
         if (deckSize < 20) cardInDeck2.SetActive(false);
         if (deckSize < 10) cardInDeck3.SetActive(false);
-        if (deckSize < 5)  cardInDeck4.SetActive(false);
-        if (deckSize < 3)  cardInDeck5.SetActive(false);
-        if (deckSize < 2)  cardInDeck6.SetActive(false);
-        if (deckSize < 1)  cardInDeck7.SetActive(false);
+        if (deckSize < 5) cardInDeck4.SetActive(false);
+        if (deckSize < 3) cardInDeck5.SetActive(false);
+        if (deckSize < 2) cardInDeck6.SetActive(false);
+        if (deckSize < 1) cardInDeck7.SetActive(false);
 
         if (AICardToHand.DrawX > 0)
         {
@@ -144,7 +165,7 @@ public class AI : MonoBehaviour
         }
 
         int handSize = Hand.transform.childCount;
-        
+
 
         if (TurnSystem.startTurn == false && draw == false && TurnSystem.isYourTurn == false)
         {
@@ -160,11 +181,11 @@ public class AI : MonoBehaviour
         {
             int j = 0;
             howManyCards = 0;
-            foreach(Transform child in Hand.transform)
+            foreach (Transform child in Hand.transform)
             {
                 howManyCards++;
             }
-            foreach(Transform child in Hand.transform)
+            foreach (Transform child in Hand.transform)
             {
                 cardsInHand[j] = child.GetComponent<AICardToHand>().thisCard[0];
                 j++;
@@ -181,7 +202,7 @@ public class AI : MonoBehaviour
 
         if (TurnSystem.isYourTurn == false)
         {
-            for (int i =0; i < 40; i++)
+            for (int i = 0; i < 40; i++)
             {
                 if (cardsInHand[i].id != 0)
                 {
@@ -203,9 +224,9 @@ public class AI : MonoBehaviour
         if (TurnSystem.isYourTurn == false)
         {
             drawPhase = true;
-        } 
+        }
 
-        if (drawPhase == true && summonPhase == false && attackPhase == false)
+        if (drawPhase == true && summonPhase == false && attackPhase == false && Hand.transform.childCount >= 5)
         {
             StartCoroutine(WaitForSummonPhase());
         }
@@ -269,6 +290,7 @@ public class AI : MonoBehaviour
                                 if (TurnSystem.currentEnemyMana >= CardDatabase.cardList[summonThisID].cost)
                                 {
                                     TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
+                                    SoundManager.PlaySound(SoundType.Summon);
                                     hasSummoned = true;
                                 }
                                 else
@@ -309,7 +331,7 @@ public class AI : MonoBehaviour
             k = 0;
         }
 
-        if (0 ==0)
+        if (0 == 0)
         {
             int l = 0;
             howManyCards_3 = 0;
@@ -361,18 +383,35 @@ public class AI : MonoBehaviour
                     if (attackerIndex >= cardInZone.Count || !canAttack[attackerIndex]) continue;
                     if (playerFieldCards.Count == 0) break;
 
-                    Transform target = playerFieldCards[0];
-                    var targetCard = target.GetComponent<ThisCard>(); // hoặc script tương đương nếu có
+                    Card attacker = cardInZone[attackerIndex];
+                    bool attacked = false;
 
-                     // Gây sát thương lên lá bài của player
-                    targetCard.hurted = cardInZone[attackerIndex].attack;
+                    // Tìm một mục tiêu mà có thể gây sát thương >= thủ
+                    foreach (Transform target in playerFieldCards)
+                    {
+                        var targetCardScript = target.GetComponent<ThisCard>();
+                        Card targetCard = targetCardScript.thisCard[0];
 
-                    // Đánh dấu kẻ tấn công đã tấn công
-                    canAttack[attackerIndex] = false;
+                        if (attacker.attack >= targetCard.defense)
+                        {
+                            targetCardScript.hurted = attacker.attack;
 
-                    playerFieldCards.RemoveAt(0);
-                    attackerIndex++;
+                            CameraShake.instance.Shake();
+                            SoundManager.PlaySound(SoundType.Attack);
+
+                            canAttack[attackerIndex] = false;
+                            playerFieldCards.Remove(target); // Xóa mục tiêu đã bị tấn công
+                            attacked = true;
+                            break;
+                        }
+                    }
+
+                    if (attacked)
+                    {
+                        attackerIndex++;
+                    }
                 }
+
             }
             else
             {
@@ -382,6 +421,9 @@ public class AI : MonoBehaviour
                     if (canAttack[i])
                     {
                         PlayerHp.staticHp -= cardInZone[i].attack;
+                        CameraShake.instance.Shake();
+                        SoundManager.PlaySound(SoundType.Attack);
+
                         canAttack[i] = false;
                     }
                 }
@@ -394,7 +436,7 @@ public class AI : MonoBehaviour
         {
             AiEndPhase = true;
         }
-          
+
     }
 
     public void Shuffle()
@@ -420,6 +462,7 @@ public class AI : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(1f);
+            SoundManager.PlaySound(SoundType.Draw);
             // Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
             Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
         }
@@ -440,7 +483,8 @@ public class AI : MonoBehaviour
     {
         for (int i = 0; i < z; i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
+            SoundManager.PlaySound(SoundType.Draw);
             Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
         }
     }
@@ -455,4 +499,5 @@ public class AI : MonoBehaviour
         yield return new WaitForSeconds(5f);
         summonPhase = true;
     }
+
 }

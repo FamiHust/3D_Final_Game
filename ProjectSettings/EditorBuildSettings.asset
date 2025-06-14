@@ -9,17 +9,26 @@ EditorBuildSettings:
     path: Assets/Scene/_hirez/Scenes/LoadingMenu.unity
     guid: c0db9a162e3a49e43a424da410e37471
   - enabled: 1
+    path: Assets/Scene/_hirez/Scenes/Login.unity
+    guid: db339b52aad811d4ea1718981a52005f
+  - enabled: 1
     path: Assets/Scene/_hirez/Scenes/Menu.unity
     guid: 6f30bc7c84d667d4483111f2dffa302d
+  - enabled: 1
+    path: Assets/Scene/_hirez/Scenes/Plot.unity
+    guid: dd7131597bd7834409037a8660ca3d78
+  - enabled: 1
+    path: Assets/Scene/_hirez/Scenes/Tutorial.unity
+    guid: 77bd6b015e5a8da49ac9023f438a67d5
+  - enabled: 1
+    path: Assets/Scene/_hirez/Scenes/Map.unity
+    guid: d46751e7bcd23bf4a947e86d4717ba0e
   - enabled: 1
     path: Assets/Scene/_hirez/Scenes/AdventureTime.unity
     guid: 64d9ea1239e21454d8f26c13ef1f0e52
   - enabled: 1
     path: Assets/Scene/_hirez/Scenes/CreatingDeck.unity
     guid: ffa09122da028c2448f10718d2459948
-  - enabled: 1
-    path: Assets/Scene/_hirez/Scenes/Collection.unity
-    guid: 9af1d3d209611244194a72e26a4fa773
   - enabled: 1
     path: Assets/Scene/_hirez/Scenes/Shop.unity
     guid: e0d8793bc897b4c498fd217f68126c55

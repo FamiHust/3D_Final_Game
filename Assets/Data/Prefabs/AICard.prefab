@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: -2610353111430109804}
   - component: {fileID: 2078557440048066232}
   - component: {fileID: 1748626451084223065}
+  - component: {fileID: 4446676619534770522}
   m_Layer: 5
   m_Name: AICard
   m_TagString: Clones
@@ -685,7 +686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -917,6 +918,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4446676619534770522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199560293524222039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c299ed70edbc35d44984b29b6777a8d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorType: 2
 --- !u!1 &5049278236091521433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,7 +1361,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

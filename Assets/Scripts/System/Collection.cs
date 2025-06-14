@@ -1,7 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using PlayFab;
+using PlayFab.ClientModels;
+using Newtonsoft.Json; 
 
 public class Collection : MonoBehaviour
 {
@@ -9,11 +11,11 @@ public class Collection : MonoBehaviour
     public List<TextMeshProUGUI> cardTexts;
 
     public static int x;
-    public int[] HowManyCards = new int[91];
+    public int[] HowManyCards = new int[136]; // Index từ 1 -> 117
 
     public bool openPack;
     public List<GameObject> cardObjects_2;
-    public int[] o;
+    public int[] o = new int[5]; 
     public int oo;
     public int rand;
     public string card;
@@ -21,12 +23,12 @@ public class Collection : MonoBehaviour
     void Start()
     {
         x = 1;
-        for (int i = 1; i <= 90; i++)
-        {
-            HowManyCards[i] = PlayerPrefs.GetInt("x" + i, 0);
-        }
 
-        if (openPack == true)
+        if (!openPack)
+        {
+            LoadCardsFromPlayfab(); // Load collection từ PlayFab
+        }
+        else
         {
             for (int i = 0; i <= 4; i++)
             {
@@ -37,12 +39,12 @@ public class Collection : MonoBehaviour
 
     void Update()
     {
-        if (openPack == false)
+        if (!openPack)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 9; i++)
             {
                 int cardID = x + i;
-                if (cardID > 90) continue;
+                if (cardID > 135) continue;
 
                 cardObjects[i].GetComponent<CardInCollection>().thisID = cardID;
                 cardTexts[i].text = "x" + HowManyCards[cardID];
@@ -51,20 +53,10 @@ public class Collection : MonoBehaviour
                 cardObjects[i].GetComponent<CardInCollection>().beGrey = isZero;
             }
         }
-
-        // Lưu lại PlayerPrefs
-        for (int i = 1; i <= 90; i++)
-        {
-            PlayerPrefs.SetInt("x" + i, HowManyCards[i]);
-        }
-
-        if (openPack == true)
+        else
         {
             for (int i = 0; i <= 4; i++)
             {
-                int cardID = i;
-                // if (cardID > 40) continue;
-
                 cardObjects_2[i].GetComponent<CardInCollection>().thisID = o[i];
             }
         }
@@ -72,25 +64,26 @@ public class Collection : MonoBehaviour
 
     public void UpButton()
     {
-        if (x - 10 >= 1)
-            x -= 10;
+        if (x - 9 >= 1) x -= 9;
     }
 
     public void DownButton()
     {
-        if (x + 10 <= 90)
-            x += 10;
+        if (x + 9 <= 135) x += 9;
     }
 
     public void ChangeCardAmount(int index, int delta)
     {
         int cardID = x + index;
-        if (cardID < 1 || cardID > 90) return;
+        if (cardID < 1 || cardID > 135) return;
 
         HowManyCards[cardID] += delta;
         HowManyCards[cardID] = Mathf.Max(0, HowManyCards[cardID]);
+
+        SaveCardsToPlayfab(); // Lưu sau khi thay đổi
     }
 
+    // Các hàm + và - từng card
     public void Card1Plus() => ChangeCardAmount(0, 1);
     public void Card1Minus() => ChangeCardAmount(0, -1);
 
@@ -118,20 +111,69 @@ public class Collection : MonoBehaviour
     public void Card9Plus() => ChangeCardAmount(8, 1);
     public void Card9Minus() => ChangeCardAmount(8, -1);
 
-    public void Card10Plus() => ChangeCardAmount(9, 1);
-    public void Card10Minus() => ChangeCardAmount(9, -1);
-
     public void getRandomCard()
     {
-        rand = Random.Range(1, 90);
-        PlayerPrefs.SetInt("x" + rand, (int)HowManyCards[rand]++);
+        rand = Random.Range(1, 135);
+        HowManyCards[rand]++;
         card = CardDatabase.cardList[rand].cardName;
 
-        for (int i = 1; i <= 90; i++)
-        {
-            PlayerPrefs.SetInt("x" + i, (int)HowManyCards[i]);
-        }
         o[oo] = rand;
         oo++;
+
+        SaveCardsToPlayfab(); // Lưu sau khi mở pack
     }
+
+    public void SaveCardsToPlayfab()
+    {
+        string json = JsonConvert.SerializeObject(HowManyCards);
+
+        var request = new UpdateUserDataRequest
+        {
+            Data = new Dictionary<string, string>
+            {
+                { "CardCollection", json }
+            }
+        };
+
+        PlayFabClientAPI.UpdateUserData(request, result =>
+        {
+            Debug.Log("Card data saved to PlayFab.");
+        }, error =>
+        {
+            Debug.LogError("Save failed: " + error.GenerateErrorReport());
+        });
+    }
+
+    public void LoadCardsFromPlayfab(System.Action onDone = null)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
+        {
+            if (result.Data != null && result.Data.ContainsKey("CardCollection"))
+            {
+                string json = result.Data["CardCollection"].Value;
+                HowManyCards = JsonConvert.DeserializeObject<int[]>(json);
+                Debug.Log("Card data loaded from PlayFab.");
+            }
+            else
+            {
+                Debug.Log("No existing card data, initializing...");
+                HowManyCards = new int[136];
+
+                // Gán mặc định 40 lá đầu tiên, mỗi lá 1 cái
+                for (int i = 1; i <= 60; i++)
+                {
+                    HowManyCards[i] = 1;
+                }
+
+                // Lưu dữ liệu khởi tạo lên PlayFab
+                SaveCardsToPlayfab();
+            }
+
+            onDone?.Invoke();
+        }, error =>
+        {
+            Debug.LogError("Load failed: " + error.GenerateErrorReport());
+        });
+    }
+
 }

@@ -1065,6 +1065,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="PlayFabEditorExtensions.csproj" />
+    <ProjectReference Include="PlayFab.csproj" />
+    <ProjectReference Include="PlayFabSDKEditor.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

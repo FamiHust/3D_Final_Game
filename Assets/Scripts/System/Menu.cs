@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     [SerializeField] private string play;
     [SerializeField] private string map;
     [SerializeField] private string deck;
-    [SerializeField] private string collection;
+    [SerializeField] private string tutorial;
     [SerializeField] private string Settings;
     [SerializeField] private string menu;
     [SerializeField] private string shop;
@@ -33,10 +33,10 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(deck);
     }
 
-    public void LoadCollection()
+    public void LoadTutorial()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(collection);
+        SceneManager.LoadScene(tutorial);
     }
 
     public void LoadShop()
@@ -69,7 +69,13 @@ public class Menu : MonoBehaviour
         ConcedeDefeat.SetActive(false);
     }
 
-    public void ExitGame()
+    public void Load()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void Quit()
     {
         Application.Quit();
     }

@@ -7,20 +7,21 @@ public class GoToHeaven : MonoBehaviour
     public GameObject background;
     public float x;
     public GameObject obj;
-    // Start is called before the first frame update
+
     void Start()
     {
         x = 250;
         background = GameObject.Find("Background");
         this.transform.SetParent(background.transform);
         this.transform.localScale = Vector3.one;
+        SoundManager.PlaySound(SoundType.Shuffle);
         StartCoroutine(Die());
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(transform.position.x, x += 1000*Time.deltaTime, transform.position.z);
+        this.transform.position = new Vector3(transform.position.x, x += 1500*Time.deltaTime, transform.position.z);
     }
 
     IEnumerator Die()

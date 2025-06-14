@@ -41,7 +41,7 @@ public class PlayerDeck : MonoBehaviour
         x = 0;
         deckSize = 40;
 
-        for (int i = 1; i <= 99; i++)
+        for (int i = 1; i <= 135; i++)
         {
             if (PlayerPrefs.GetInt("deck" + i, 0) > 0)
             {
@@ -84,7 +84,7 @@ public class PlayerDeck : MonoBehaviour
             ThisCard.drawX = 0;
         }
 
-        if (TurnSystem.startTurn == true)
+        if (TurnSystem.startTurn == true && TurnSystem.isYourTurn)
         {
             if (handSize < 5)
             {
@@ -103,7 +103,7 @@ public class PlayerDeck : MonoBehaviour
 
     IEnumerator StartGameCoroutine()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(1f);
             Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
@@ -140,7 +140,8 @@ public class PlayerDeck : MonoBehaviour
     {
         for (int i = 0; i < x; i++)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
+            SoundManager.PlaySound(SoundType.Draw);
             Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
         }
     }

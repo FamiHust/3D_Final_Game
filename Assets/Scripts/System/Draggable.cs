@@ -101,4 +101,26 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             transform.DOScale(originalScale, 0.15f).SetEase(Ease.InBack);
         }
     }
+
+    public void ForceEndDrag()
+    {
+        if (!isDragging) return;
+
+        isDragging = false;
+
+        this.transform.SetParent(parentToReturnTo != null ? parentToReturnTo : transform.parent);
+        if (placeHolder != null)
+        {
+            this.transform.SetSiblingIndex(placeHolder.transform.GetSiblingIndex());
+            Destroy(placeHolder);
+        }
+
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        transform.DOScale(originalScale, 0.1f).SetEase(Ease.OutBack);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+
+        zoneHighlighter?.ResetZones();
+    }
 } 

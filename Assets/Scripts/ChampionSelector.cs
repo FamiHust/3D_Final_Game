@@ -14,4 +14,14 @@ public class ChampionSelector : MonoBehaviour
     {
         selectedChampion = AIType.ThuyTinh;
     }
+
+    public void SelectYeuMa()
+    {
+        selectedChampion = AIType.YeuMa;
+    }
+
+    public void SelectLacDieu()
+    {
+        selectedChampion = AIType.LacDieu;
+    }
 }

@@ -9,7 +9,6 @@ public class OpenPack : MonoBehaviour
 {
     public float updated;
     public float max;
-
     public Image bar;
 
     public GameObject prefab;
@@ -22,7 +21,6 @@ public class OpenPack : MonoBehaviour
 
     public int clickedCard;
 
-    // Start is called before the first frame update
     void Start()
     {
         max = 100f;
@@ -31,7 +29,6 @@ public class OpenPack : MonoBehaviour
         StartCoroutine(Wait());
     }
 
-    // Update is called once per frame
     void Update()
     {
         bar.fillAmount = updated / max;
@@ -59,16 +56,16 @@ public class OpenPack : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Instantiate(prefab, pack.transform.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         Instantiate(prefab, pack.transform.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         Instantiate(prefab, pack.transform.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         Instantiate(prefab, pack.transform.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         Instantiate(prefab, pack.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(1.5f);

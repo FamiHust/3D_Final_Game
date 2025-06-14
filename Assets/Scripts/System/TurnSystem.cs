@@ -1,25 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Threading;
 
 public class TurnSystem : MonoBehaviour
 {
     public static bool isYourTurn;
-    public int yourTurn;
-    public int yourOpponentTurn;
+    public int turnCount;
+
+    public int playerTurnCount = 0;
+    public int enemyTurnCount = 0;
 
     public TextMeshProUGUI manaText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI enemyManaText;
-    public TextMeshProUGUI turnText;
+    public Text turnText;
 
+    [SerializeField] private Slider manaSlider;
+    [SerializeField] private Slider enemyManaSlider;
+    [SerializeField] private float lerpSpeed = 5f;
 
-    public int random;
-    public int seconds;
-    public bool turnEnd;
+    private float displayedMana;
+    private float displayedEnemyMana;
+
+    public int seconds = 30;
     public bool timerStart;
 
     public static int maxMana;
@@ -30,94 +34,129 @@ public class TurnSystem : MonoBehaviour
     public static bool startTurn;
     public static bool landConfirmed = false;
 
-    // Start is called before the first frame update
+    private Coroutine timerCoroutine;
+    private Coroutine turnTextCoroutine;
+    private bool isProcessingTurn = false;
+
+    public GameObject EndYourTurnBtn;
+
+    private bool gameStarted = false;
+
     void Start()
     {
-        seconds = 30;
-        timerStart = true;
+        manaSlider.maxValue = maxMana;
+        enemyManaSlider.maxValue = maxEnemyMana;
 
-        StartGame();
+        displayedMana = currentMana;
+        displayedEnemyMana = currentEnemyMana;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (isYourTurn == true)
-        {
-            turnText.text = "Your Turn";
-            yourTurn = 1;
-            yourOpponentTurn = 0;
-        } else turnText.text = "Opponent's Turn";
+        if (!gameStarted) return;
+
+        EndYourTurnBtn.SetActive(isYourTurn);
+
+        displayedMana = Mathf.Lerp(displayedMana, currentMana, Time.deltaTime * lerpSpeed);
+        displayedEnemyMana = Mathf.Lerp(displayedEnemyMana, currentEnemyMana, Time.deltaTime * lerpSpeed);
+
+        manaSlider.maxValue = maxMana;
+        enemyManaSlider.maxValue = maxEnemyMana;
+
+        manaSlider.value = displayedMana;
+        enemyManaSlider.value = displayedEnemyMana;
 
         manaText.text = currentMana + "/" + maxMana;
-
-        if (isYourTurn == true && seconds > 0 && timerStart == true && landConfirmed)
-        {
-            StartCoroutine(Timer());
-            timerStart = false;
-        }
-
-        if (seconds == 0 && isYourTurn == true)
-        {
-            EndYourTurn();
-            timerStart = true;
-            seconds = 30;
-        }
-
-        timerText.text = seconds + "";
-
-        if (isYourTurn == false && seconds > 0 && timerStart == true && landConfirmed)
-        {
-            StartCoroutine(EnemyTimer());
-            timerStart = false;
-        }
-
-        if (seconds == 0 && isYourTurn == false)
-        {
-            EndOpponentTurn();
-            timerStart = true;
-            seconds = 30;
-        }
-
         enemyManaText.text = currentEnemyMana + "/" + maxEnemyMana;
 
-        if (AI.AiEndPhase == true)
+        timerText.text = seconds.ToString();
+
+        if (landConfirmed && !isProcessingTurn)
         {
-            EndOpponentTurn();
-            AI.AiEndPhase = false;
+            if (isYourTurn && seconds > 0 && timerStart && timerCoroutine == null)
+            {
+                timerCoroutine = StartCoroutine(Timer());
+            }
+
+            if (!isYourTurn && seconds > 0 && timerStart && timerCoroutine == null)
+            {
+                timerCoroutine = StartCoroutine(EnemyTimer());
+            }
+
+            if (seconds == 0 && isYourTurn)
+            {
+                EndYourTurn();
+            }
+
+            if (seconds == 0 && !isYourTurn)
+            {
+                EndOpponentTurn();
+            }
+
+            if (AI.AiEndPhase)
+            {
+                AI.AiEndPhase = false;
+                EndOpponentTurn();
+            }
         }
     }
-    
+
     public void EndYourTurn()
     {
-        if (!landConfirmed) return;
+        if (!landConfirmed || isProcessingTurn) return;
+        isProcessingTurn = true;
+        SoundManager.PlaySound(SoundType.NextTurn);
+
+        // ✨ NEW: Hủy kéo bài đang diễn ra
+        ForceCancelAllDrags();
+
+        StopTimer();
 
         isYourTurn = false;
-        yourOpponentTurn++;
-        maxEnemyMana++;
+        turnCount++;
+        playerTurnCount++;
+
+        if (maxEnemyMana < 8)
+            maxEnemyMana++;
+
         currentEnemyMana = maxEnemyMana;
 
         AI.draw = false;
 
-        timerStart = true;
-        seconds = 30;
-
+        ShowTurnText("Lượt đối thủ");
+        StartCoroutine(DelayStartNextTurn(false));
     }
 
     public void EndOpponentTurn()
     {
-        if (!landConfirmed) return;
+        if (!landConfirmed || isProcessingTurn) return;
+        isProcessingTurn = true;
+        SoundManager.PlaySound(SoundType.NextTurn);
+
+        StopTimer();
 
         isYourTurn = true;
-        yourTurn++;
-        maxMana++;
+        turnCount++;
+        enemyTurnCount++;
+
+        if (maxMana < 8)
+            maxMana++;
+
         currentMana = maxMana;
 
         startTurn = true;
-        timerStart = true;
+
+        ShowTurnText("Lượt của bạn");
+        StartCoroutine(DelayStartNextTurn(true));
+    }
+
+    private IEnumerator DelayStartNextTurn(bool nextIsPlayer)
+    {
+        yield return new WaitForSeconds(0.5f);
+
         seconds = 30;
-        
-        AI.draw = false;
+        timerStart = true;
+        isProcessingTurn = false;
     }
 
     public void StartGame()
@@ -125,36 +164,63 @@ public class TurnSystem : MonoBehaviour
         maxMana = 2;
         currentMana = 2;
         maxEnemyMana = 2;
-        currentMana = 2;
+        currentEnemyMana = 2;
 
         if (!landConfirmed) return;
-        random = Random.Range(0, 2);
 
+        StartCoroutine(DelayedStartGame());
+    }
+
+    private IEnumerator DelayedStartGame()
+    {
+        yield return new WaitForSeconds(5f); // ⏱ Chờ 5 giây trước khi bắt đầu
+
+        int random = Random.Range(0, 2);
         if (random == 0)
         {
             isYourTurn = true;
-            yourTurn = 1;
-            yourOpponentTurn = 0;
-            startTurn = false;
+            turnCount = 1;
+            playerTurnCount = 1;
+            enemyTurnCount = 0;
+            ShowTurnText("Lượt của bạn");
         }
-
-        if (random == 1)
+        else
         {
             isYourTurn = false;
-            yourTurn = 0;
-            yourOpponentTurn = 1;
+            turnCount = 0;
+            playerTurnCount = 0;
+            enemyTurnCount = 1;
+            ShowTurnText("Lượt đối thủ");
         }
+
+        seconds = 30;
+        timerStart = true;
+        gameStarted = true;
+    }
+
+    private void StopTimer()
+    {
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+        }
+
+        timerStart = false;
     }
 
     IEnumerator Timer()
     {
         yield return new WaitForSeconds(1f);
 
-        if (isYourTurn == true && seconds > 0)
+        if (isYourTurn && seconds > 0)
         {
-            // yield return new WaitForSeconds(1f);
             seconds--;
-            StartCoroutine(Timer());
+            timerCoroutine = StartCoroutine(Timer());
+        }
+        else
+        {
+            timerCoroutine = null;
         }
     }
 
@@ -162,11 +228,40 @@ public class TurnSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        if (isYourTurn == false && seconds > 0)
+        if (!isYourTurn && seconds > 0)
         {
-            // yield return new WaitForSeconds(1f);
             seconds--;
-            StartCoroutine(EnemyTimer());
+            timerCoroutine = StartCoroutine(EnemyTimer());
+        }
+        else
+        {
+            timerCoroutine = null;
         }
     }
-}
+
+    private void ShowTurnText(string message)
+    {
+        if (turnTextCoroutine != null)
+            StopCoroutine(turnTextCoroutine);
+
+        turnTextCoroutine = StartCoroutine(ShowTurnTextRoutine(message));
+    }
+
+    private IEnumerator ShowTurnTextRoutine(string message)
+    {
+        turnText.text = message;
+        turnText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        turnText.gameObject.SetActive(false);
+    }
+
+    private void ForceCancelAllDrags()
+    {
+        Draggable[] draggables = FindObjectsOfType<Draggable>();
+        foreach (Draggable drag in draggables)
+        {
+            drag.ForceEndDrag();
+        }
+    }
+
+} 

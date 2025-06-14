@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
+
 public class ThisCard : MonoBehaviour
 {
     public List<Card> thisCard = new List<Card>();
@@ -71,7 +72,7 @@ public class ThisCard : MonoBehaviour
     public GameObject[] battleZones = new GameObject[8];
     public GameObject[] EnemyZones = new GameObject[8];
     public AICardToHand aiCardToHand;
-
+    
     void Start()
     {
         thisCard[0] = CardDatabase.cardList[thisID];
@@ -158,7 +159,7 @@ public class ThisCard : MonoBehaviour
                         transform.localRotation = Quaternion.identity;
                         transform.localScale = Vector3.one;
                     }
-                 break;
+                    break;
                 }
             }
         }
@@ -226,7 +227,10 @@ public class ThisCard : MonoBehaviour
 
         if (dealDamage && IsInAnyBattleZone())
         {
-            dealxDamage(damageDealBySpell);
+            if (Input.GetMouseButtonDown(0))
+            {
+                dealxDamage(damageDealBySpell);
+            }
         }
 
         if (stopDealDamage)
@@ -239,6 +243,7 @@ public class ThisCard : MonoBehaviour
         {
             StartCoroutine(Wait());
         }
+        
     }
 
     void HandleAttackBorderDisplay()
@@ -273,6 +278,7 @@ public class ThisCard : MonoBehaviour
         summoned = true;
         MaxMana(addXmaxMana);
         drawX = drawXcards;
+        SoundManager.PlaySound(SoundType.Summon);
 
         // Hiển thị hiệu ứng triệu hồi
         if (SummonEffect != null)
@@ -300,7 +306,7 @@ public class ThisCard : MonoBehaviour
                     break;
                 }
             }
-
+        
             if (Target == Enemy)
             {
                 if (!spell && enemyHasCards)
@@ -309,6 +315,9 @@ public class ThisCard : MonoBehaviour
                 }
 
                 EnemyHp.staticHp -= attack;
+                SoundManager.PlaySound(SoundType.Attack);
+                CameraShake.instance.Shake();
+
                 targeting = false;
                 cantAttack = true;
             }
@@ -324,6 +333,9 @@ public class ThisCard : MonoBehaviour
                             aiCard.hurted = attack;
                             hurted = aiCard.attack;
                             cantAttack = true;
+                            SoundManager.PlaySound(SoundType.Attack);
+                            CameraShake.instance.Shake();
+
                             break;
                         }
                     }
@@ -393,30 +405,37 @@ public class ThisCard : MonoBehaviour
     public void Heal()
     {
         PlayerHp.staticHp += healXpower;
+        SoundManager.PlaySound(SoundType.Heal);
     }
 
     public void dealxDamage(int x)
     {
-        if (Input.GetMouseButtonDown(0))
+        Debug.Log("Target: " + Target);
+        
+        if (Target == Enemy && !stopDealDamage)
         {
-            if (Target == Enemy && !stopDealDamage)
+            EnemyHp.staticHp -= damageDealBySpell;
+            SoundManager.PlaySound(SoundType.Attack);
+            CameraShake.instance.Shake();
+
+            stopDealDamage = true;
+            Debug.Log("Hurt");
+        }
+        else
+        {
+            foreach (GameObject zone in EnemyZones)
             {
-                EnemyHp.staticHp -= damageDealBySpell;
-                stopDealDamage = true;
-            }
-            else
-            {
-                foreach (GameObject zone in EnemyZones)
+                if (zone.transform.childCount > 0)
                 {
-                    if (zone.transform.childCount > 0)
+                    var aiCard = zone.transform.GetChild(0).GetComponent<AICardToHand>();
+                    if (aiCard != null && aiCard.isTarget)
                     {
-                        var aiCard = zone.transform.GetChild(0).GetComponent<AICardToHand>();
-                        if (aiCard != null && aiCard.isTarget)
-                        {
-                            aiCard.hurted += damageDealBySpell;
-                            stopDealDamage = true;
-                            break;
-                        }
+                        aiCard.hurted += damageDealBySpell;
+                        SoundManager.PlaySound(SoundType.Attack);
+                        CameraShake.instance.Shake();
+
+                        stopDealDamage = true;  
+                        break;
                     }
                 }
             }

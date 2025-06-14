@@ -1,20 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.UI;
 
-public class WindowInDeck : MonoBehaviour
+public class WindowInDeck : MonoBehaviour, IPointerClickHandler
 {
-    
     public GameObject Panel;
-    public TextMeshProUGUI nameText;
+    public Text nameText;
 
     public int id;
     public int quantityOf;
     public GameObject Creator;
 
-    // Start is called before the first frame update
     void Start()
     {
         Panel = GameObject.Find("Panel");
@@ -25,10 +22,15 @@ public class WindowInDeck : MonoBehaviour
         id = DeckCreator.lastAdded;
     }
 
-    // Update is called once per frame
     void Update()
     {
         quantityOf = Creator.GetComponent<DeckCreator>().quantity[id];
         nameText.text = CardDatabase.cardList[id].cardName + " x" + quantityOf;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Gọi hàm xóa bài trong Deck
+        Creator.GetComponent<DeckCreator>().RemoveCardFromDeck(id);
     }
 }

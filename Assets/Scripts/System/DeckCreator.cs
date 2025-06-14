@@ -22,7 +22,7 @@ public class DeckCreator : MonoBehaviour
     public static int lastAdded;
     public int[] quantity;
     public int maxCards = 40;
-    public TextMeshProUGUI cardCountText;
+    public Text cardCountText;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +31,6 @@ public class DeckCreator : MonoBehaviour
         cardCountText.text = $"Deck: {sum}/{maxCards}";
     }
 
-
-    
     public void EnterDeck()
     {
         mouseOverDeck = true;
@@ -79,10 +77,6 @@ public class DeckCreator : MonoBehaviour
     {
         dragged = Collection.x+8;
     }
-    public void Card10()
-    {
-        dragged = Collection.x+9;
-    }
 
     public void Drop()
     {
@@ -99,6 +93,8 @@ public class DeckCreator : MonoBehaviour
 
             CalculateDrop();
             UpdateCardCountDisplay();
+
+            SoundManager.PlaySound(SoundType.Drop);
         }
     }
 
@@ -156,5 +152,37 @@ public class DeckCreator : MonoBehaviour
         }
 
         cardCountText.text = $"Deck: {sum}/{maxCards}";
+    }
+
+    public void RemoveCardFromDeck(int id)
+    {
+        if (cardsWithThisID[id] > 0)
+        {
+            cardsWithThisID[id]--;
+            quantity[id]--;
+
+            coll.GetComponent<Collection>().HowManyCards[id]++;
+
+            // Cập nhật text hiển thị
+            UpdateCardCountDisplay();
+
+            // Nếu quantity về 0 -> hủy object trong deck
+            if (quantity[id] <= 0)
+            {
+                alreadyCreated[id] = false;
+
+                // Tìm all WindowInDeck trong scene, xóa đúng cái đang giữ ID này
+                WindowInDeck[] allCards = FindObjectsOfType<WindowInDeck>();
+                foreach (var card in allCards)
+                {
+                    if (card.id == id)
+                    {
+                        SoundManager.PlaySound(SoundType.Drop);
+                        Destroy(card.gameObject);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

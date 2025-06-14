@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class CardInfoDisplay : MonoBehaviour
 {
     public static CardInfoDisplay instance;
-
+    
     [SerializeField] private Image cardImage;
     [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private Text descriptionText;
     [SerializeField] private TextMeshProUGUI atkText;
     [SerializeField] private TextMeshProUGUI defText;
     [SerializeField] private TextMeshProUGUI costText;
