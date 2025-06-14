@@ -28,7 +28,7 @@ public class DeckCreator : MonoBehaviour
     void Start()
     {
         sum = 0;
-        cardCountText.text = $"Deck: {sum}/{maxCards}";
+        cardCountText.text = $"Bộ bài: {sum}/{maxCards}";
     }
 
     public void EnterDeck()
@@ -78,10 +78,44 @@ public class DeckCreator : MonoBehaviour
         dragged = Collection.x+8;
     }
 
+    // public void Drop()
+    // {
+    //     if (mouseOverDeck == true && coll.GetComponent<Collection>().HowManyCards[dragged] > 0)
+    //     {
+    //         cardsWithThisID[dragged]++;
+
+    //         if (cardsWithThisID[dragged] < 0)
+    //         {
+    //             cardsWithThisID[dragged] = 0;
+    //         }
+
+    //         coll.GetComponent<Collection>().HowManyCards[dragged]--;
+
+    //         CalculateDrop();
+    //         UpdateCardCountDisplay();
+
+    //         SoundManager.PlaySound(SoundType.Drop);
+    //     }
+    // }
     public void Drop()
     {
-        if (mouseOverDeck == true && coll.GetComponent<Collection>().HowManyCards[dragged] > 0)
+        if (mouseOverDeck && coll.GetComponent<Collection>().HowManyCards[dragged] > 0)
         {
+            // Tính tổng hiện tại
+            int currentTotal = 0;
+            for (int i = 0; i < numberOfCardsInDatabase; i++)
+            {
+                currentTotal += cardsWithThisID[i];
+            }
+
+            // Nếu đã đủ 40 lá, không thêm nữa
+            if (currentTotal >= maxCards)
+            {
+                Debug.Log("Đã đủ 40 lá, không thể thêm nữa.");
+                return;
+            }
+
+            // Thêm bài vào deck
             cardsWithThisID[dragged]++;
 
             if (cardsWithThisID[dragged] < 0)
@@ -105,7 +139,7 @@ public class DeckCreator : MonoBehaviour
 
         if (cardsWithThisID[i] > 0 && alreadyCreated[i] == false)
         {
-            lastAdded =i;
+            lastAdded = i;
             Instantiate(prefab, Vector3.zero, Quaternion.identity);
             alreadyCreated[i] = true;
 
@@ -113,7 +147,7 @@ public class DeckCreator : MonoBehaviour
         }
         else if (cardsWithThisID[i] > 0 && alreadyCreated[i] == true)
         {
-            quantity[i] ++;
+            quantity[i]++;
         }
     }
 
@@ -129,7 +163,7 @@ public class DeckCreator : MonoBehaviour
         {
             for (int i = 0; i < numberOfCardsInDatabase; i++)
             {
-                PlayerPrefs.SetInt("deck" + i, cardsWithThisID[i]);
+                PlayerPrefs.SetInt("Bộ bài:" + i, cardsWithThisID[i]);
             }
         }
 
@@ -138,7 +172,7 @@ public class DeckCreator : MonoBehaviour
 
         for (int i = 0; i < numberOfCardsInDatabase; i++)
         {
-            saveDeck[i] = PlayerPrefs.GetInt("deck" + i, 0);
+            saveDeck[i] = PlayerPrefs.GetInt("Bộ bài:" + i, 0);
         }
     }
 
@@ -151,7 +185,7 @@ public class DeckCreator : MonoBehaviour
             sum += cardsWithThisID[i];
         }
 
-        cardCountText.text = $"Deck: {sum}/{maxCards}";
+        cardCountText.text = $"Bộ bài: {sum}/{maxCards}";
     }
 
     public void RemoveCardFromDeck(int id)

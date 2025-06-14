@@ -6853,15 +6853,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: None
+    - m_Text: "Tr\u1ED1ng"
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: "Th\u1EA3o nguy\xEAn"
       m_Image: {fileID: 0}
-    - m_Text: Water
+    - m_Text: "\u0110\u1EA1i d\u01B0\u01A1ng"
       m_Image: {fileID: 0}
-    - m_Text: Forest
+    - m_Text: "R\u1EEBng n\xFAi"
       m_Image: {fileID: 0}
-    - m_Text: Swamp
+    - m_Text: "\u0110\u1EA7m l\u1EA7y"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15809,7 +15809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: None
+  m_text: "Tr\u1ED1ng"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
   m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
@@ -16168,7 +16168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: None
+  m_text: "Tr\u1ED1ng"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
   m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
@@ -26435,7 +26435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: None
+  m_text: "Tr\u1ED1ng"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
   m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
@@ -38385,15 +38385,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: None
+    - m_Text: "Tr\u1ED1ng"
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: "Th\u1EA3o nguy\xEAn"
       m_Image: {fileID: 0}
-    - m_Text: Water
+    - m_Text: "\u0110\u1EA1i d\u01B0\u01A1ng"
       m_Image: {fileID: 0}
-    - m_Text: Forest
+    - m_Text: "R\u1EEBng n\xFAi"
       m_Image: {fileID: 0}
-    - m_Text: Swamp
+    - m_Text: "\u0110\u1EA7m l\u1EA7y"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -39637,15 +39637,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: None
+    - m_Text: "Tr\u1ED1ng"
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: "Th\u1EA3o nguy\xEAn"
       m_Image: {fileID: 0}
-    - m_Text: Water
+    - m_Text: "\u0110\u1EA1i d\u01B0\u01A1ng"
       m_Image: {fileID: 0}
-    - m_Text: Forest
+    - m_Text: "R\u1EEBng n\xFAi"
       m_Image: {fileID: 0}
-    - m_Text: Swamp
+    - m_Text: "\u0110\u1EA7m l\u1EA7y"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -46344,7 +46344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: None
+  m_text: "Tr\u1ED1ng"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
   m_sharedMaterial: {fileID: 7908499825950019370, guid: fa08fff1716a04db18700207b6c202e5, type: 2}
@@ -48993,15 +48993,15 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: None
+    - m_Text: "Tr\u1ED1ng"
       m_Image: {fileID: 0}
-    - m_Text: Earth
+    - m_Text: "Th\u1EA3o nguy\xEAn"
       m_Image: {fileID: 0}
-    - m_Text: Water
+    - m_Text: "\u0110\u1EA1i d\u01B0\u01A1ng"
       m_Image: {fileID: 0}
-    - m_Text: Forest
+    - m_Text: "R\u1EEBng n\xFAi"
       m_Image: {fileID: 0}
-    - m_Text: Swamp
+    - m_Text: "\u0110\u1EA7m l\u1EA7y"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
