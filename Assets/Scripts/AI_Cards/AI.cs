@@ -394,10 +394,17 @@ public class AI : MonoBehaviour
 
                         if (attacker.attack >= targetCard.defense)
                         {
-                            targetCardScript.hurted = attacker.attack;
+                            targetCardScript.hurted += attacker.attack;
+                            
+                            AIEffect effect = targetCardScript.GetComponentInChildren<AIEffect>();
+                            // Thêm đoạn gọi hiệu ứng
+                            if (effect != null)
+                            {
+                                effect.PlayHurtAnimation();
+                            }
 
-                            CameraShake.instance.Shake();
                             SoundManager.PlaySound(SoundType.Attack);
+                            CameraShake.instance.Recoil();
 
                             canAttack[attackerIndex] = false;
                             playerFieldCards.Remove(target); // Xóa mục tiêu đã bị tấn công
@@ -411,7 +418,6 @@ public class AI : MonoBehaviour
                         attackerIndex++;
                     }
                 }
-
             }
             else
             {
@@ -463,7 +469,6 @@ public class AI : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             SoundManager.PlaySound(SoundType.Draw);
-            // Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
             Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
         }
     }
@@ -499,5 +504,4 @@ public class AI : MonoBehaviour
         yield return new WaitForSeconds(5f);
         summonPhase = true;
     }
-
 }

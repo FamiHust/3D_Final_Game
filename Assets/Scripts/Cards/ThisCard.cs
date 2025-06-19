@@ -25,6 +25,8 @@ public class ThisCard : MonoBehaviour
 
     [SerializeField] private Sprite thisSprite;
     [SerializeField] private Image thatImage;
+    [SerializeField] private Image healthBarImage;
+
     public GameObject Hand;
 
     public bool cardBack;
@@ -45,6 +47,7 @@ public class ThisCard : MonoBehaviour
     public GameObject Graveyard;
     public GameObject HealEffect;
     public GameObject SummonEffect;
+    [SerializeField] private GameObject HealthBar;
 
     public bool summoningSickness;
     public bool cantAttack;
@@ -71,7 +74,6 @@ public class ThisCard : MonoBehaviour
 
     public GameObject[] battleZones = new GameObject[8];
     public GameObject[] EnemyZones = new GameObject[8];
-    public AICardToHand aiCardToHand;
     
     void Start()
     {
@@ -122,7 +124,19 @@ public class ThisCard : MonoBehaviour
         costText.text = cost.ToString();
         actualpower = defense - hurted;
         atkText.text = attack.ToString();
-        defText.text = actualpower.ToString();
+        defText.text = actualpower.ToString() + "/" + defense.ToString();
+
+        if (healthBarImage != null && defense > 0)
+        {
+            float percent = (float)actualpower / (float)defense;
+            healthBarImage.fillAmount = percent;
+        }
+
+        if (HealthBar != null)
+        {
+            HealthBar.SetActive(!spell && !beInGraveyard);
+        }
+
         descriptionText.text = cardDescription;
         thatImage.sprite = thisSprite;
 
@@ -212,7 +226,7 @@ public class ThisCard : MonoBehaviour
             UcanReturn = false;
         }
 
-        if (canHeal && summoned)
+        if (canHeal && summoned && spell && healXpower > 0)
         {
             Heal();
             canHeal = false;
@@ -243,6 +257,21 @@ public class ThisCard : MonoBehaviour
         {
             StartCoroutine(Wait());
         }
+        // Tắt HealthBar khi ở trên tay (Hand), bật khi ở BattleZone
+        if (HealthBar != null)
+        {
+            bool isInBattleZone = false;
+            foreach (GameObject zone in battleZones)
+            {
+                if (this.transform.parent == zone.transform)
+                {
+                    isInBattleZone = true;
+                    break;
+                }
+            }
+            // Chỉ bật HealthBar nếu đang ở BattleZone, không phải spell, không ở mộ bài
+            HealthBar.SetActive(isInBattleZone && !spell && !beInGraveyard);
+        }
         
     }
 
@@ -271,7 +300,7 @@ public class ThisCard : MonoBehaviour
         }
         return false;
     }
-    
+
     public void Summon()
     {
         TurnSystem.currentMana -= cost;
@@ -285,6 +314,8 @@ public class ThisCard : MonoBehaviour
         {
             SummonEffect.SetActive(true);
         }
+
+        if (HealthBar != null) HealthBar.SetActive(true);
     }
 
     public void MaxMana(int x)
@@ -306,7 +337,7 @@ public class ThisCard : MonoBehaviour
                     break;
                 }
             }
-        
+
             if (Target == Enemy)
             {
                 if (!spell && enemyHasCards)
@@ -330,8 +361,17 @@ public class ThisCard : MonoBehaviour
                         var aiCard = zone.transform.GetChild(0).GetComponent<AICardToHand>();
                         if (aiCard != null && aiCard.isTarget)
                         {
-                            aiCard.hurted = attack;
+                            aiCard.hurted += attack;
                             hurted = aiCard.attack;
+
+                            AIEffect effect = aiCard.GetComponentInChildren<AIEffect>();
+                            // Đoạn thêm effect
+                            if (effect != null && aiCard.IsInBattleZone())
+                            {
+                                effect.PlayHurtAnimation();
+                            }
+
+
                             cantAttack = true;
                             SoundManager.PlaySound(SoundType.Attack);
                             CameraShake.instance.Shake();
@@ -353,6 +393,12 @@ public class ThisCard : MonoBehaviour
 
     public void Destroy()
     {
+        StartCoroutine(DelayDestroy());
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(2f);
         Graveyard = GameObject.Find("My_Graveyard");
         canBeDestroyed = true;
 
@@ -366,11 +412,13 @@ public class ThisCard : MonoBehaviour
             summoned = false;
             beInGraveyard = true;
             hurted = 0;
-
             if (spell)
             {
                 gameObject.SetActive(false);
             }
+
+            if (HealthBar != null)
+                HealthBar.SetActive(false);
         }
     }
 
@@ -399,19 +447,20 @@ public class ThisCard : MonoBehaviour
             UcanReturn = false;
             beInGraveyard = false;
             summoningSickness = true;
+
+            if (HealthBar != null) HealthBar.SetActive(true);
         }
     }
 
     public void Heal()
     {
         PlayerHp.staticHp += healXpower;
+        HealEffect.SetActive(true);
         SoundManager.PlaySound(SoundType.Heal);
     }
 
     public void dealxDamage(int x)
-    {
-        Debug.Log("Target: " + Target);
-        
+    {        
         if (Target == Enemy && !stopDealDamage)
         {
             EnemyHp.staticHp -= damageDealBySpell;
@@ -419,7 +468,6 @@ public class ThisCard : MonoBehaviour
             CameraShake.instance.Shake();
 
             stopDealDamage = true;
-            Debug.Log("Hurt");
         }
         else
         {
@@ -431,6 +479,14 @@ public class ThisCard : MonoBehaviour
                     if (aiCard != null && aiCard.isTarget)
                     {
                         aiCard.hurted += damageDealBySpell;
+
+                        AIEffect effect = aiCard.GetComponentInChildren<AIEffect>();
+                        // Thêm đoạn gọi hiệu ứng
+                        if (effect != null)
+                        {
+                            effect.PlayHurtAnimation();
+                        }
+
                         SoundManager.PlaySound(SoundType.Attack);
                         CameraShake.instance.Shake();
 

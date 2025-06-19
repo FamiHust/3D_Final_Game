@@ -78,25 +78,6 @@ public class DeckCreator : MonoBehaviour
         dragged = Collection.x+8;
     }
 
-    // public void Drop()
-    // {
-    //     if (mouseOverDeck == true && coll.GetComponent<Collection>().HowManyCards[dragged] > 0)
-    //     {
-    //         cardsWithThisID[dragged]++;
-
-    //         if (cardsWithThisID[dragged] < 0)
-    //         {
-    //             cardsWithThisID[dragged] = 0;
-    //         }
-
-    //         coll.GetComponent<Collection>().HowManyCards[dragged]--;
-
-    //         CalculateDrop();
-    //         UpdateCardCountDisplay();
-
-    //         SoundManager.PlaySound(SoundType.Drop);
-    //     }
-    // }
     public void Drop()
     {
         if (mouseOverDeck && coll.GetComponent<Collection>().HowManyCards[dragged] > 0)

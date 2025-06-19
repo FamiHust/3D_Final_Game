@@ -11,7 +11,8 @@ public enum SoundType
     Victory,
     Defeated,
     Drop,
-    NextTurn
+    NextTurn,
+    Typing
 }
 
 [RequireComponent(typeof(AudioSource))]

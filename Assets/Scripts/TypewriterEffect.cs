@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class TypewriterEffect : MonoBehaviour
 {
     [Header("UI Elements")]
-    public Text uiText; // Text UI component
+    public Text uiText;
 
     [Header("Typewriter Settings")]
     [TextArea]
-    public string fullText; // Văn bản đầy đủ cần hiển thị
-    public float delay = 0.05f; // Thời gian trễ giữa các ký tự
+    public string fullText;
+    public float delay = 0.05f;
 
     private Coroutine typingCoroutine;
 
@@ -34,11 +34,14 @@ public class TypewriterEffect : MonoBehaviour
         foreach (char c in fullText)
         {
             uiText.text += c;
+            if (c != ' ') // Không phát âm khi là dấu cách
+            {
+                SoundManager.PlaySound(SoundType.Typing, 1.2f);
+            }
             yield return new WaitForSeconds(delay);
         }
     }
 
-    // Gọi hàm này nếu bạn muốn gán văn bản khác và chạy lại hiệu ứng
     public void SetTextAndStart(string newText)
     {
         fullText = newText;

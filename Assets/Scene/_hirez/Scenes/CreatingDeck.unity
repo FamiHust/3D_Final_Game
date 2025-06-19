@@ -2801,10 +2801,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1494245650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 2000, y: 1100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &496350854
 MonoBehaviour:
@@ -3573,6 +3573,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b4972f9790df2f2448dca1c863a4ccd5, type: 3}
   - {fileID: 8300000, guid: ab288efaa89b5aa418f69954ad4c8b2a, type: 3}
   - {fileID: 8300000, guid: 7694cd07924d087489cb70e8f82909c7, type: 3}
+  - {fileID: 8300000, guid: 013e809a62b8b3342bcec9913560b231, type: 3}
   volumeSlider: {fileID: 0}
 --- !u!82 &614885381
 AudioSource:

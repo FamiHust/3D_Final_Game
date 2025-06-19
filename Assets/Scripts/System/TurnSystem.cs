@@ -42,6 +42,10 @@ public class TurnSystem : MonoBehaviour
 
     private bool gameStarted = false;
 
+    // Thêm cho hiệu ứng nhấp nháy
+    private Coroutine blinkCoroutine;
+    private Color defaultTimerColor;
+
     void Start()
     {
         manaSlider.maxValue = maxMana;
@@ -49,6 +53,9 @@ public class TurnSystem : MonoBehaviour
 
         displayedMana = currentMana;
         displayedEnemyMana = currentEnemyMana;
+
+        // Lưu màu mặc định của timerText
+        defaultTimerColor = timerText.color;
     }
 
     void Update()
@@ -70,6 +77,22 @@ public class TurnSystem : MonoBehaviour
         enemyManaText.text = currentEnemyMana + "/" + maxEnemyMana;
 
         timerText.text = seconds.ToString();
+
+        // Hiệu ứng nhấp nháy khi còn <= 10s
+        if (seconds <= 10 && timerStart)
+        {
+            if (blinkCoroutine == null)
+                blinkCoroutine = StartCoroutine(BlinkTimerText());
+        }
+        else
+        {
+            if (blinkCoroutine != null)
+            {
+                StopCoroutine(blinkCoroutine);
+                blinkCoroutine = null;
+                timerText.color = defaultTimerColor;
+            }
+        }
 
         if (landConfirmed && !isProcessingTurn)
         {
@@ -207,6 +230,14 @@ public class TurnSystem : MonoBehaviour
         }
 
         timerStart = false;
+
+        // Tắt hiệu ứng nhấp nháy nếu có
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+            timerText.color = defaultTimerColor;
+        }
     }
 
     IEnumerator Timer()
@@ -264,4 +295,16 @@ public class TurnSystem : MonoBehaviour
         }
     }
 
-} 
+    // Coroutine cho hiệu ứng nhấp nháy đỏ khi còn <=10s
+    private IEnumerator BlinkTimerText()
+    {
+        while (seconds <= 10 && timerStart)
+        {
+            timerText.color = Color.red;
+            yield return new WaitForSeconds(0.5f);
+            timerText.color = defaultTimerColor;
+            yield return new WaitForSeconds(0.5f);
+        }
+        timerText.color = defaultTimerColor;
+    }
+}

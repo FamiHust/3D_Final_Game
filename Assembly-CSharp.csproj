@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\System\Collection.cs" />
     <Compile Include="Assets\Scripts\Cards\CardInfoDisplay.cs" />
     <Compile Include="Assets\Scripts\ChampionSelector.cs" />
+    <Compile Include="Assets\Layer Lab\Scripts\PanelControl.cs" />
     <Compile Include="Assets\Scripts\ZoneElement.cs" />
     <Compile Include="Assets\Scripts\TypewriterEffect.cs" />
     <Compile Include="Assets\Scripts\PlayerScoreManager.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\LevelUnlockManager.cs" />
     <Compile Include="Assets\Scripts\System\EndGame.cs" />
     <Compile Include="Assets\Scripts\Cards\CardToHand.cs" />
+    <Compile Include="Assets\Layer Lab\Scripts\PanelView.cs" />
     <Compile Include="Assets\Scripts\Cards\Card.cs" />
     <Compile Include="Assets\Scripts\GameManager\LandSetupUI.cs" />
     <Compile Include="Assets\Scripts\CursorHoverHandler.cs" />
@@ -112,6 +114,7 @@
     <Compile Include="Assets\Scripts\Cards\ThisCard.cs" />
     <Compile Include="Assets\Scripts\System\Menu.cs" />
     <Compile Include="Assets\Scripts\PlayfabGoldManager.cs" />
+    <Compile Include="Assets\Scripts\AI_Cards\AIEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -125,6 +128,7 @@
     <None Include="Assets\ScriptTemplates\53-Mirror__Network Behaviour With Actions-NewNetworkBehaviourWithActions.cs.txt" />
     <None Include="Assets\Shader\TransparencyWithZ.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Layer Lab\GUI Pro-CasualGame\ResourcesData\Shader &amp; Materials\UIAdditive.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\ScriptTemplates\57-Mirror__Network Transform-NewNetworkTransform.cs.txt" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -137,6 +141,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\ScriptTemplates\55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" />
+    <None Include="Assets\Layer Lab\GUI Pro-CasualGame\ResourcesData\Shader &amp; Materials\MobileAdditive.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\ScriptTemplates\54-Mirror__Custom Interest Management-CustomInterestManagement.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

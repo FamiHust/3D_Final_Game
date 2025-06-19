@@ -160,7 +160,7 @@ public class Collection : MonoBehaviour
                 HowManyCards = new int[136];
 
                 // Gán mặc định 40 lá đầu tiên, mỗi lá 1 cái
-                for (int i = 1; i <= 60; i++)
+                for (int i = 1; i <= 40; i++)
                 {
                     HowManyCards[i] = 1;
                 }

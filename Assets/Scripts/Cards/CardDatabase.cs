@@ -43,7 +43,7 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(28, "Trao kiếm", 1, 0, 0, "[Thảo nguyên] Rút thêm 2 lá từ bộ bài", Resources.Load<Sprite>("Lac_Viet_Deck/Trao_kiem"), 2, 0, 0, 0, true, 0, "Common", ElementType.Earth));
         cardList.Add(new Card(29, "Chiến trường không khoan nhượng", 1, 0, 0, "[Thảo nguyên] -5 HP của cả quân ta lần quân địch", Resources.Load<Sprite>("Lac_Viet_Deck/Chien_truong"), 0, 0, 0, -5, true, 5, "Common", ElementType.Earth));
         cardList.Add(new Card(30, "Đồng lòng chiến đấu", 1, 0, 0, "[Thảo nguyên] Hồi sinh 1 lá dưới mộ bài", Resources.Load<Sprite>("Lac_Viet_Deck/Dong_long_chien_dau"), 0, 0, 1, 0, true, 0, "Common", ElementType.Earth));
-        cardList.Add(new Card(31, "Bắt cóc", 1, 0, 0, "[Thảo nguyên] Rút thêm 3 lá từ bộ bài", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_coc"), 1, 0, 0, 0, true, 0, "Common", ElementType.Earth));
+        cardList.Add(new Card(31, "Bắt cóc", 1, 0, 0, "[Thảo nguyên] Rút thêm 3 lá từ bộ bài", Resources.Load<Sprite>("Lac_Viet_Deck/Bat_coc"), 3, 0, 0, 0, true, 0, "Common", ElementType.Earth));
 
         /* Thủy Tinh Deck*/
         // Creature Cards
@@ -113,11 +113,11 @@ public class CardDatabase : MonoBehaviour
 
         /*Yêu Ma Deck*/
         cardList.Add(new Card(93, "Mũ Trùm", 1, 1, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Mu_trum"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
-        cardList.Add(new Card(94, "Xương Cuồng", 2, 0, 7, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Xuong_cuong_xanh"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
-        cardList.Add(new Card(95, "Xương Cuồng", 1, 0, 5, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Xuong_cuong_vang"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
+        cardList.Add(new Card(94, "Xương Cuồng", 2, 7, 7, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Xuong_cuong_xanh"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
+        cardList.Add(new Card(95, "Xương Cuồng", 1, 5, 5, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Xuong_cuong_vang"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
         cardList.Add(new Card(96, "Hồ Tinh", 3, 1, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Ho_ly_tinh"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(97, "Xương Cuồng", 2, 1, 6, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Xuong_cuong_tim"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
-        cardList.Add(new Card(98, "Cóc băng nhào mật", 2, 0, 3, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Coc_bang"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
+        cardList.Add(new Card(98, "Cóc băng nhào mật", 2, 3, 3, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Coc_bang"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(99, "Cự Ngạ Quỷ", 5, 2, 5, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Cu_nga_quy"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
         cardList.Add(new Card(100, "Dạ xoa điên cuồng", 6, 5, 5, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Da_xoa"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
         cardList.Add(new Card(101, "Ma da", 2, 2, 1, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Ma_da"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
@@ -131,12 +131,12 @@ public class CardDatabase : MonoBehaviour
         cardList.Add(new Card(109, "Yêu rắn khổng lồ", 3, 2, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Yeu_ran"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(110, "Ông ba bị", 2, 1, 3, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Ba_bi"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(111, "Âu Kình", 2, 1, 6, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Au_kinh"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
-        cardList.Add(new Card(112, "Cây ma", 2, 0, 7, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Cay_ma"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
+        cardList.Add(new Card(112, "Cây ma", 2, 7, 7, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Cay_ma"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(113, "Thần trùng", 2, 2, 1, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Than_trung"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(114, "Quỷ nhập tràng", 3, 1, 1, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Quy_nhap_trang"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
-        cardList.Add(new Card(115, "Ma lượm", 2, 0, 3, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Ma_luom"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
+        cardList.Add(new Card(115, "Ma lượm", 2, 3, 3, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Ma_luom"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(116, "Âu Kình", 4, 1, 4, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Au_kinh_2"), 0, 0, 0, 0, false, 0, "Rare", ElementType.Swamp));
-        cardList.Add(new Card(117, "Cẩu quỷ", 2, 0, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Cau_quy"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
+        cardList.Add(new Card(117, "Cẩu quỷ", 2, 2, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Cau_quy"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(118, "Ma Thần vòng", 2, 1, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Ma_vong"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
         cardList.Add(new Card(119, "Thiên Linh Cái", 2, 1, 2, "[Đầm lầy]", Resources.Load<Sprite>("Yeu_Ma_Deck/Thien_linh"), 0, 0, 0, 0, false, 0, "Common", ElementType.Swamp));
 

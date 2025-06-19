@@ -24,6 +24,8 @@ public class AICardToHand : MonoBehaviour
 
     [SerializeField] private Sprite thisSprite;
     [SerializeField] private Image thatImage;
+    [SerializeField] private Image healthBarImage;
+    [SerializeField] private GameObject HealthBar;
 
     public static int DrawX;
     public int drawXcards;
@@ -50,6 +52,7 @@ public class AICardToHand : MonoBehaviour
     public bool summoningSickness;
     public bool isSummoned;
 
+    public AIEffect aiEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -114,7 +117,13 @@ public class AICardToHand : MonoBehaviour
         actualpower = defense - hurted;
 
         atkText.text = "" + attack;
-        defText.text = "" + actualpower;
+        defText.text = actualpower.ToString() + "/" + defense.ToString();
+        if (healthBarImage != null && defense > 0)
+        {
+            float percent = (float)actualpower / (float)defense;
+            healthBarImage.fillAmount = percent;
+        }
+
         descriptionText.text = "" + cardDescription;
         thatImage.sprite = thisSprite;
 
@@ -130,10 +139,8 @@ public class AICardToHand : MonoBehaviour
 
         if (hurted >= defense && thisCardCanBeDestroyed == true)
         {
-            this.transform.SetParent(Graveyard.transform);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.Euler(45, 0, 0);
-            hurted = 0;
+            StartCoroutine(MoveToGraveyardAfterDelay());
+            thisCardCanBeDestroyed = false; // Đảm bảo chỉ chạy 1 lần!
         }
 
         if (this.transform.parent == Hand.transform)
@@ -167,7 +174,7 @@ public class AICardToHand : MonoBehaviour
                 break;
             }
         }
-        
+
         foreach (GameObject zone in battleZones)
         {
             if (this.transform.parent == zone.transform && isSummoned == false)
@@ -218,10 +225,33 @@ public class AICardToHand : MonoBehaviour
         {
             CardInfoDisplay.instance.ShowCardInfo(thisCard[0]);
         }
-    } 
+    }
 
     public void OnExitAICard()
     {
         CardInfoDisplay.instance.HideCardInfo();
-    }  
+    }
+
+    IEnumerator MoveToGraveyardAfterDelay()
+    {
+        yield return new WaitForSeconds(2f); // Delay 2 giây
+
+        this.transform.SetParent(Graveyard.transform);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(45, 0, 0);
+        hurted = 0;
+
+        if (healthBarImage != null)
+            HealthBar.SetActive(false);
+    }
+    
+    public bool IsInBattleZone()
+    {
+        foreach (GameObject zone in battleZones)
+        {
+            if (this.transform.parent == zone.transform)
+                return true;
+        }
+        return false;
+    }
 }
