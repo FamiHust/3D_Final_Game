@@ -30,10 +30,13 @@ public class Collection : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i <= 4; i++)
+            LoadCardsFromPlayfab(() => 
             {
-                getRandomCard();
-            }
+                for (int i = 0; i <= 4; i++)
+                {
+                    getRandomCard();
+                }
+            });
         }
     }
 

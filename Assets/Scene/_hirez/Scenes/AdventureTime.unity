@@ -4010,6 +4010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeDuration: 0.6
   shakeMagnitude: 0.6
+  recoilDistance: 0.3
+  recoilDuration: 0.1
 --- !u!23 &6852
 MeshRenderer:
   m_ObjectHideFlags: 0
