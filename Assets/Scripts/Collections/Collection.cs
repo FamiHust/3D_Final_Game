@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using Newtonsoft.Json; 
+using Newtonsoft.Json;
 
 public class Collection : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class Collection : MonoBehaviour
 
     public bool openPack;
     public List<GameObject> cardObjects_2;
-    public int[] o = new int[5]; 
+    public int[] o = new int[5];
     public int oo;
     public int rand;
     public string card;
@@ -30,7 +30,7 @@ public class Collection : MonoBehaviour
         }
         else
         {
-            LoadCardsFromPlayfab(() => 
+            LoadCardsFromPlayfab(() =>
             {
                 for (int i = 0; i <= 4; i++)
                 {
@@ -178,5 +178,4 @@ public class Collection : MonoBehaviour
             Debug.LogError("Load failed: " + error.GenerateErrorReport());
         });
     }
-
 }
