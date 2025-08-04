@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 public class PlayerDeck : MonoBehaviour
 {
@@ -37,31 +38,46 @@ public class PlayerDeck : MonoBehaviour
     void Start()
     {
         deck.Clear();
-        int[] deckData = DeckCreator.lastDeckLoaded; // phải đảm bảo DeckCreator.lastDeckLoaded đã được set trước khi chuyển scene!
+
+        int[] deckData = DeckCreator.lastDeckLoaded;
+
+        // Nếu chưa có, thử lấy từ PlayerPrefs
+        if (deckData == null || deckData.Length == 0)
+        {
+            string json = PlayerPrefs.GetString("DeckData", "");
+            if (!string.IsNullOrEmpty(json))
+            {
+                deckData = JsonConvert.DeserializeObject<int[]>(json);
+                Debug.Log("Loaded deck from PlayerPrefs fallback.");
+            }
+        }
 
         if (deckData != null && deckData.Length > 0)
         {
-            for (int i = 1; i < deckData.Length; i++)
+            for (int i = 0; i < deckData.Length; i++)
             {
                 for (int j = 0; j < deckData[i]; j++)
                 {
-                    deck.Add(CardDatabase.cardList[i]);
+                    if (i >= 0 && i < CardDatabase.cardList.Count)
+                        deck.Add(CardDatabase.cardList[i]);
+                    else
+                        Debug.LogWarning($"Card index {i} out of range!");
                 }
             }
             deckSize = deck.Count;
         }
         else
         {
-            Debug.LogWarning("Deck data not loaded from PlayFab! Using empty deck.");
             deckSize = 0;
         }
 
-        // Chuẩn bị container cho shuffle (phải cùng size)
+        // Init container
         container = new List<Card>(deck.Count);
         for (int i = 0; i < deck.Count; i++) container.Add(null);
 
         Shuffle();
     }
+
 
     void Update()
     {

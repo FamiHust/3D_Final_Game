@@ -15,6 +15,7 @@ public class TurnSystem : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI enemyManaText;
     public Text turnText;
+    public GameObject TurnText;
 
     [SerializeField] private Slider manaSlider;
     [SerializeField] private Slider enemyManaSlider;
@@ -281,9 +282,9 @@ public class TurnSystem : MonoBehaviour
     private IEnumerator ShowTurnTextRoutine(string message)
     {
         turnText.text = message;
-        turnText.gameObject.SetActive(true);
+        TurnText.SetActive(true);
         yield return new WaitForSeconds(4f);
-        turnText.gameObject.SetActive(false);
+        TurnText.SetActive(false);
     }
 
     private void ForceCancelAllDrags()

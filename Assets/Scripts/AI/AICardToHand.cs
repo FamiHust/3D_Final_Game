@@ -114,7 +114,8 @@ public class AICardToHand : MonoBehaviour
         nameText.text = "" + cardName;
         costText.text = "" + cost;
 
-        actualpower = defense - hurted;
+        // actualpower = defense - hurted;
+        actualpower = Mathf.Max(0, defense - hurted);
 
         atkText.text = "" + attack;
         defText.text = actualpower.ToString() + "/" + defense.ToString();

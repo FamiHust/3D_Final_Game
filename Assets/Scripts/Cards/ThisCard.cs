@@ -122,7 +122,9 @@ public class ThisCard : MonoBehaviour
 
         nameText.text = cardName;
         costText.text = cost.ToString();
-        actualpower = defense - hurted;
+        // actualpower = defense - hurted;
+        actualpower = Mathf.Max(0, defense - hurted);
+
         atkText.text = attack.ToString();
         defText.text = actualpower.ToString() + "/" + defense.ToString();
 

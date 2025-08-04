@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,10 +241,10 @@ RectTransform:
   - {fileID: 1971645207}
   m_Father: {fileID: 196043817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 555, y: -39}
-  m_SizeDelta: {x: 410, y: 78}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 555, y: 0}
+  m_SizeDelta: {x: 0, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &41600160
 MonoBehaviour:
@@ -2119,6 +2120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c299ed70edbc35d44984b29b6777a8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &784947390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08dc24d3017d09408c1f917a8d40edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultCursor: {fileID: 0}
+  pointerCursor: {fileID: 0}
+  attackCursor: {fileID: 0}
+  settings: {fileID: 0}
+  hotspot: {x: 0, y: 0}
 --- !u!4 &784947392
 Transform:
   m_ObjectHideFlags: 0
@@ -2682,10 +2689,10 @@ RectTransform:
   - {fileID: 2050663690}
   m_Father: {fileID: 196043817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -39}
-  m_SizeDelta: {x: 320, y: 78}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 160, y: 0}
+  m_SizeDelta: {x: 0, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &886902821
 MonoBehaviour:
@@ -3483,6 +3490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c299ed70edbc35d44984b29b6777a8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorType: 1
 --- !u!1 &1194930310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,10 +3942,10 @@ RectTransform:
   - {fileID: 1986882128}
   m_Father: {fileID: 196043817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 950, y: -39}
-  m_SizeDelta: {x: 320, y: 78}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 950, y: 0}
+  m_SizeDelta: {x: 0, y: 78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511720602
 MonoBehaviour:
@@ -4867,6 +4875,9 @@ MonoBehaviour:
   menu: Menu
   shop: 
   ConcedeDefeat: {fileID: 0}
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  doorDuration: 1.5
 --- !u!4 &2047399585
 Transform:
   m_ObjectHideFlags: 0

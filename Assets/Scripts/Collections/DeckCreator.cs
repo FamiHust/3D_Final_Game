@@ -29,6 +29,11 @@ public class DeckCreator : MonoBehaviour
     public int maxCards = 40;
     public Text cardCountText;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         sum = 0;
@@ -105,10 +110,14 @@ public class DeckCreator : MonoBehaviour
         }
     }
 
-    // SAVE deck lên PlayFab
     public void SaveDeckToPlayfab()
     {
         string json = JsonConvert.SerializeObject(cardsWithThisID);
+        
+        // Save to PlayerPrefs
+        PlayerPrefs.SetString("DeckData", json);
+        PlayerPrefs.Save();
+
         var request = new UpdateUserDataRequest
         {
             Data = new Dictionary<string, string>
@@ -120,7 +129,6 @@ public class DeckCreator : MonoBehaviour
         PlayFabClientAPI.UpdateUserData(request, result =>
         {
             Debug.Log("Deck saved to PlayFab.");
-            // Sau khi lưu thì gán luôn cho biến static để dùng ở scene khác
             lastDeckLoaded = (int[])cardsWithThisID.Clone();
         }, error =>
         {
@@ -156,32 +164,63 @@ public class DeckCreator : MonoBehaviour
         });
     }
 
+    // public void CreateDeck()
+    // {
+    //     sum = 0;
+    //     for (int i = 0; i < numberOfCardsInDatabase; i++)
+    //     {
+    //         sum += cardsWithThisID[i];
+    //     }
+
+    //     if (sum == 40)
+    //     {
+    //         SaveDeckToPlayfab();
+    //         Debug.Log("Deck saved to PlayFab!");
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("Deck must have exactly 40 cards.");
+    //     }
+
+    //     sum = 0;
+    //     numberOfDifferentCards = 0;
+
+    //     for (int i = 0; i < numberOfCardsInDatabase; i++)
+    //     {
+    //         saveDeck[i] = cardsWithThisID[i];
+    //     }
+    // }
     public void CreateDeck()
     {
-        sum = 0;
-        for (int i = 0; i < numberOfCardsInDatabase; i++)
-        {
-            sum += cardsWithThisID[i];
-        }
-
-        if (sum == 40)
-        {
-            SaveDeckToPlayfab();
-            Debug.Log("Deck saved to PlayFab!");
-        }
-        else
-        {
-            Debug.Log("Deck must have exactly 40 cards.");
-        }
-
+        // Tính tổng số lá
         sum = 0;
         numberOfDifferentCards = 0;
 
         for (int i = 0; i < numberOfCardsInDatabase; i++)
         {
-            saveDeck[i] = cardsWithThisID[i];
+            sum += cardsWithThisID[i];
+            if (cardsWithThisID[i] > 0)
+                numberOfDifferentCards++;
+        }
+
+        if (sum == maxCards)
+        {
+            SaveDeckToPlayfab();
+
+            // Lưu vào saveDeck
+            for (int i = 0; i < numberOfCardsInDatabase; i++)
+            {
+                saveDeck[i] = cardsWithThisID[i];
+            }
+
+            Debug.Log("Deck saved to PlayFab!");
+        }
+        else
+        {
+            Debug.LogWarning($"Deck must have exactly {maxCards} cards. Currently: {sum}");
         }
     }
+
 
     public void UpdateCardCountDisplay()
     {
