@@ -125,6 +125,7 @@ MonoBehaviour:
   descriptionText: {fileID: 1380554797269728240}
   thisSprite: {fileID: 0}
   thatImage: {fileID: 4031237468257087825}
+  healthBarImage: {fileID: 0}
   Hand: {fileID: 0}
   cardBack: 0
   numberOfCardsInDeck: 0
@@ -139,6 +140,7 @@ MonoBehaviour:
   Graveyard: {fileID: 0}
   HealEffect: {fileID: 0}
   SummonEffect: {fileID: 0}
+  HealthBar: {fileID: 0}
   summoningSickness: 0
   cantAttack: 0
   canAttack: 0
@@ -175,7 +177,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  aiCardToHand: {fileID: 0}
 --- !u!114 &7775666029039037905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,7 +1258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

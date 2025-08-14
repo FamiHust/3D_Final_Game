@@ -8,8 +8,7 @@ public class PlayerScoreManager : MonoBehaviour
 {
     public static PlayerScoreManager Instance;
 
-    [Header("Score Display")]
-    public TextMeshProUGUI scoreText; // Gán TextMeshPro từ Inspector
+    public TextMeshProUGUI scoreText;
 
     public int CurrentScore { get; private set; } = 0;
 
@@ -58,7 +57,6 @@ public class PlayerScoreManager : MonoBehaviour
             }
 
             UpdateScoreUI();
-            Debug.Log($"[PlayFab] Score loaded: {CurrentScore}");
         },
         error =>
         {

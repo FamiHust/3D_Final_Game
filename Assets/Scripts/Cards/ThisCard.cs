@@ -5,17 +5,16 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-
 public class ThisCard : MonoBehaviour
 {
     public List<Card> thisCard = new List<Card>();
     public int thisID;
     public int id;
-    public string cardName;
     public int cost;
     public int attack;
     public int defense;
     public string cardDescription;
+    public string cardName;
 
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI costText;
@@ -27,7 +26,6 @@ public class ThisCard : MonoBehaviour
     [SerializeField] private Image thatImage;
     [SerializeField] private Image healthBarImage;
 
-    public GameObject Hand;
 
     public bool cardBack;
     public static bool staticCardBack;
@@ -40,6 +38,7 @@ public class ThisCard : MonoBehaviour
     public int drawXcards;
     public int addXmaxMana;
 
+    public GameObject Hand;
     public GameObject attackBorder;
     public GameObject Target;
     public GameObject Enemy;
@@ -122,6 +121,7 @@ public class ThisCard : MonoBehaviour
 
         nameText.text = cardName;
         costText.text = cost.ToString();
+        
         // actualpower = defense - hurted;
         actualpower = Mathf.Max(0, defense - hurted);
 
@@ -259,22 +259,19 @@ public class ThisCard : MonoBehaviour
         {
             StartCoroutine(Wait());
         }
-        // Tắt HealthBar khi ở trên tay (Hand), bật khi ở BattleZone
-        if (HealthBar != null)
+
+        bool isInBattleZone = false;
+
+        foreach (GameObject zone in battleZones)
         {
-            bool isInBattleZone = false;
-            foreach (GameObject zone in battleZones)
+            if (this.transform.parent == zone.transform)
             {
-                if (this.transform.parent == zone.transform)
-                {
-                    isInBattleZone = true;
-                    break;
-                }
+                isInBattleZone = true;
+                break;
             }
-            // Chỉ bật HealthBar nếu đang ở BattleZone, không phải spell, không ở mộ bài
-            HealthBar.SetActive(isInBattleZone && !spell && !beInGraveyard);
         }
-        
+        // Chỉ bật HealthBar nếu đang ở BattleZone, không phải spell, không ở mộ bài
+        HealthBar.SetActive(isInBattleZone && !spell && !beInGraveyard);
     }
 
     void HandleAttackBorderDisplay()
@@ -311,13 +308,8 @@ public class ThisCard : MonoBehaviour
         drawX = drawXcards;
         SoundManager.PlaySound(SoundType.Summon);
 
-        // Hiển thị hiệu ứng triệu hồi
-        if (SummonEffect != null)
-        {
-            SummonEffect.SetActive(true);
-        }
-
-        if (HealthBar != null) HealthBar.SetActive(true);
+        SummonEffect.SetActive(true);
+        HealthBar.SetActive(true);
     }
 
     public void MaxMana(int x)
@@ -364,15 +356,25 @@ public class ThisCard : MonoBehaviour
                         if (aiCard != null && aiCard.isTarget)
                         {
                             aiCard.hurted += attack;
-                            hurted = aiCard.attack;
+                            
+                            // Chỉ nhận phản damage khi attack < defense của địch
+                            // Lượng damage bị phản = defense của địch - attack của mình
+                            if (attack <= aiCard.defense)
+                            {
+                                hurted += (aiCard.defense - attack);
+                            }
+
+                            if (attack <= aiCard.defense)
+                            {
+                                hurted += aiCard.defense;
+                            }
 
                             AIEffect effect = aiCard.GetComponentInChildren<AIEffect>();
-                            // Đoạn thêm effect
-                            if (effect != null && aiCard.IsInBattleZone())
+
+                            if (aiCard.IsInBattleZone())
                             {
                                 effect.PlayHurtAnimation();
                             }
-
 
                             cantAttack = true;
                             SoundManager.PlaySound(SoundType.Attack);
@@ -419,8 +421,7 @@ public class ThisCard : MonoBehaviour
                 gameObject.SetActive(false);
             }
 
-            if (HealthBar != null)
-                HealthBar.SetActive(false);
+            HealthBar.SetActive(false);
         }
     }
 
@@ -450,7 +451,7 @@ public class ThisCard : MonoBehaviour
             beInGraveyard = false;
             summoningSickness = true;
 
-            if (HealthBar != null) HealthBar.SetActive(true);
+            HealthBar.SetActive(true);
         }
     }
 
@@ -483,11 +484,8 @@ public class ThisCard : MonoBehaviour
                         aiCard.hurted += damageDealBySpell;
 
                         AIEffect effect = aiCard.GetComponentInChildren<AIEffect>();
-                        // Thêm đoạn gọi hiệu ứng
-                        if (effect != null)
-                        {
-                            effect.PlayHurtAnimation();
-                        }
+
+                        effect.PlayHurtAnimation();
 
                         SoundManager.PlaySound(SoundType.Attack);
                         CameraShake.instance.Shake();

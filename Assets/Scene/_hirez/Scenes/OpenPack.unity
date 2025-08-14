@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -333,9 +334,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 231824270}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: LoadShop
+      - m_Target: {fileID: 905101704}
+        m_TargetAssemblyTypeName: OpenPack, Assembly-CSharp
+        m_MethodName: Skip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -625,6 +626,9 @@ MonoBehaviour:
   menu: 
   shop: Shop
   ConcedeDefeat: {fileID: 0}
+  leftDoor: {fileID: 0}
+  rightDoor: {fileID: 0}
+  doorDuration: 1.5
 --- !u!4 &231824271
 Transform:
   m_ObjectHideFlags: 0
@@ -9754,7 +9758,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9784,7 +9788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9814,7 +9818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9844,7 +9848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9874,7 +9878,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9c0be1fa75518f14e901a68f668bc184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10479,7 +10483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10509,7 +10513,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10539,7 +10543,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10569,7 +10573,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10599,7 +10603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b24d6de2fa908cc4e851289d4b6d67d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8673304e102d4bf48a634bca1dda0885, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

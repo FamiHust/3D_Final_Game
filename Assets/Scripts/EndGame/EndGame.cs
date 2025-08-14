@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
-    [SerializeField] private GameObject WinPanel;
-    [SerializeField] private GameObject LosePanel;
-
-    [SerializeField] private GameObject money;
-    [SerializeField] private bool gotMoney;
-    [SerializeField] private int goldReceived;
-    [SerializeField] private int diamondReceived;
-    private bool hasAddedScore = false;
-
     public AIType currentLevelAI; 
 
+    [SerializeField] private GameObject WinPanel;
+    [SerializeField] private GameObject LosePanel;
+    [SerializeField] private GameObject money;
+
+    [SerializeField] private int goldReceived;
+    [SerializeField] private int diamondReceived;
+
+    [SerializeField] private bool gotMoney;
+    private bool hasAddedScore = false;
     private bool isGameEnded = false;
 
     void Update()
@@ -51,7 +51,7 @@ public class EndGame : MonoBehaviour
                 LevelUnlockManager.Instance.UnlockNextLevel(currentLevelAI);
             }
 
-            isGameEnded = true; // Đảm bảo không gọi lại Victory nữa
+            isGameEnded = true;
         }
     }
 

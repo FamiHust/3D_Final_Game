@@ -22,22 +22,13 @@ public class LandSetupUI : MonoBehaviour
         lands[landIndex].SetLandElement(chosenElement);
     }
 
-    // public void ConfirmElementSetup()
-    // {
-    //     gameObject.SetActive(false);
-    //     Buttons.SetActive(true);
-    //     TurnSystem.landConfirmed = true;
-
-    //     FindObjectOfType<PlayerDeck>().StartGame(); 
-    //     FindObjectOfType<AI>().AIStartGame();
-    // }
     public void ConfirmElementSetup()
     {
         gameObject.SetActive(false);
         Buttons.SetActive(true);
         TurnSystem.landConfirmed = true;
 
-        FindObjectOfType<TurnSystem>().StartGame(); // ← RẤT QUAN TRỌNG
+        FindObjectOfType<TurnSystem>().StartGame();
         FindObjectOfType<PlayerDeck>().StartGame();
         FindObjectOfType<AI>().AIStartGame();
     }

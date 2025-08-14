@@ -18,20 +18,21 @@ public class AI : MonoBehaviour
 {
     public static AIType currentLevel;
 
+    [Header("Data")]
     public List<Card> deck = new List<Card>();
     public List<Card> container = new List<Card>();
     public static List<Card> staticEnemyDeck = new List<Card>();
-    public List<Card> cardsInHand = new List<Card>();
-    public List<Card> cardInZone = new List<Card>();
 
+    public List<Card> cardsInHand = new List<Card>();  
+    public List<Card> cardInZone  = new List<Card>(); 
+
+    [Header("Scene Refs")]
     public GameObject Hand;
     public GameObject[] Zones = new GameObject[8];
     public GameObject[] playerZones = new GameObject[8];
     public GameObject Graveyard;
 
-    [SerializeField] private int z;
-    public static int deckSize;
-
+    [Header("Deck Visual Stacks")]
     [SerializeField] private GameObject cardInDeck1;
     [SerializeField] private GameObject cardInDeck2;
     [SerializeField] private GameObject cardInDeck3;
@@ -40,31 +41,34 @@ public class AI : MonoBehaviour
     [SerializeField] private GameObject cardInDeck6;
     [SerializeField] private GameObject cardInDeck7;
 
+    [Header("Prefabs / Misc")]
     public GameObject CardBack;
     public GameObject aiCardToHand;
     public GameObject[] Clones;
-    public static bool draw;
 
+    [Header("States")]
+    public static bool draw;
     public int currentMana;
-    public bool[] AiCanSummon;
     public bool drawPhase;
     public bool summonPhase;
     public bool attackPhase;
     public bool endPhase;
+    private bool isWaitingSummon;
+
+    [Header("Summon helpers")]
+    public bool[] AiCanSummon;
     public int[] cardsID;
     public int summonThisID;
     public int summonID;
 
-    AICardToHand AiCardToHand;
-    public int sumonID;
     public int howManyCards;
     public int howManyCards_2;
     public int howManyCards_3;
 
-    public bool[] canAttack;
     public static bool AiEndPhase;
     public AIType aiType;
 
+    [Header("Avatars & Lands")]
     public GameObject avtSonTinh;
     public GameObject avtThuyTinh;
     public GameObject avtYeuMa;
@@ -74,22 +78,40 @@ public class AI : MonoBehaviour
     public GameObject Yeu_Ma_Land;
     public GameObject Lac_Dieu_Land;
 
+    [Header("UI")]
     public TextMeshProUGUI opponentNameText;
+
+    private const int MaxHandMirror = 40;
+    private const int MaxZoneMirror = 40;
+    private const int DeckSizeDefault = 40;
+
+    public static int deckSize;
+    private int z;
 
     void Awake()
     {
-        Shuffle();
+        cardsInHand = Enumerable.Repeat(CardDatabase.cardList[0], MaxHandMirror).ToList();
+        cardInZone  = Enumerable.Repeat(CardDatabase.cardList[0], MaxZoneMirror).ToList();
+        AiCanSummon = new bool[MaxHandMirror];
+        cardsID     = new int[MaxHandMirror];
+
+        deckSize = DeckSizeDefault;
+
+        Shuffle(); 
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         avtSonTinh.SetActive(false);
         avtThuyTinh.SetActive(false);
         avtYeuMa.SetActive(false);
+        avtLacDieu.SetActive(false);
+        Thuy_Tinh_Land.SetActive(false);
+        Son_Tinh_Land.SetActive(false);
+        Yeu_Ma_Land.SetActive(false);
+        Lac_Dieu_Land.SetActive(false);
 
         StartCoroutine(WaitFiveSeconds());
-        // AIStartGame();
 
         Hand = GameObject.Find("Enemy_Hand");
         Graveyard = GameObject.Find("Enemy_Graveyard");
@@ -97,66 +119,69 @@ public class AI : MonoBehaviour
 
         for (int i = 0; i < 8; i++)
         {
-            if (i == 0) Zones[i] = GameObject.Find("Enemy_Zone");
-            else Zones[i] = GameObject.Find("Enemy_Zone" + i);
+            Zones[i] = (i == 0) ? GameObject.Find("Enemy_Zone") : GameObject.Find("Enemy_Zone" + i);
         }
-
         for (int i = 0; i < 8; i++)
         {
-            if (i == 0) playerZones[i] = GameObject.Find("Zone");
-            else playerZones[i] = GameObject.Find("Zone" + i);
+            playerZones[i] = (i == 0) ? GameObject.Find("Zone") : GameObject.Find("Zone" + i);
         }
 
-        z = 0;
-        deckSize = 40;
         draw = true;
 
+        deck.Clear();
         for (int i = 0; i < deckSize; i++)
         {
+            int pick = 0;
             if (aiType == AIType.ThuyTinh)
             {
-                Thuy_Tinh_Land.SetActive(true);
-                avtThuyTinh.SetActive(true);
-                opponentNameText.text = "Thuy Tinh";
-                z = Random.Range(32, 53);
+                Thuy_Tinh_Land?.SetActive(true);
+                avtThuyTinh?.SetActive(true);
+                if (opponentNameText) opponentNameText.text = "Thuy Tinh";
+                pick = Random.Range(32, 53);
             }
             else if (aiType == AIType.SonTinh)
             {
-                Son_Tinh_Land.SetActive(true);
-                avtSonTinh.SetActive(true);
-                opponentNameText.text = "Son Tinh";
-                z = Random.Range(52, 92);
+                Son_Tinh_Land?.SetActive(true);
+                avtSonTinh?.SetActive(true);
+                if (opponentNameText) opponentNameText.text = "Son Tinh";
+                pick = Random.Range(52, 92);
             }
             else if (aiType == AIType.YeuMa)
             {
-                Yeu_Ma_Land.SetActive(true);
-                avtYeuMa.SetActive(true);
-                opponentNameText.text = "Yeu Ma";
-                z = Random.Range(91, 119);
+                Yeu_Ma_Land?.SetActive(true);
+                avtYeuMa?.SetActive(true);
+                if (opponentNameText) opponentNameText.text = "Yeu Ma";
+                pick = Random.Range(91, 119);
             }
             else if (aiType == AIType.LacDieu)
             {
-                Lac_Dieu_Land.SetActive(true);
-                avtLacDieu.SetActive(true);
-                opponentNameText.text = "Lac Dieu";
-                z = Random.Range(120, 135);
+                Lac_Dieu_Land?.SetActive(true);
+                avtLacDieu?.SetActive(true);
+                if (opponentNameText) opponentNameText.text = "Lac Dieu";
+                pick = Random.Range(120, 135);
             }
-            deck[i] = CardDatabase.cardList[z];
+            deck.Add(CardDatabase.cardList[pick]);
         }
+
+        // Sau khi deck đã có dữ liệu thực thì shuffle
+        DoShuffleDeckList();
+
+        Instantiate(CardBack, transform.position, transform.rotation);
+        StartCoroutine(ShuffleNow());
     }
 
-    // Update is called once per frame
     void Update()
     {
         staticEnemyDeck = deck;
 
-        if (deckSize < 30) cardInDeck1.SetActive(false);
-        if (deckSize < 20) cardInDeck2.SetActive(false);
-        if (deckSize < 10) cardInDeck3.SetActive(false);
-        if (deckSize < 5) cardInDeck4.SetActive(false);
-        if (deckSize < 3) cardInDeck5.SetActive(false);
-        if (deckSize < 2) cardInDeck6.SetActive(false);
-        if (deckSize < 1) cardInDeck7.SetActive(false);
+        // Cập nhật hiển thị số chồng bài
+        if (deckSize < 30 && cardInDeck1) cardInDeck1.SetActive(false);
+        if (deckSize < 20 && cardInDeck2) cardInDeck2.SetActive(false);
+        if (deckSize < 10 && cardInDeck3) cardInDeck3.SetActive(false);
+        if (deckSize < 5  && cardInDeck4) cardInDeck4.SetActive(false);
+        if (deckSize < 3  && cardInDeck5) cardInDeck5.SetActive(false);
+        if (deckSize < 2  && cardInDeck6) cardInDeck6.SetActive(false);
+        if (deckSize < 1  && cardInDeck7) cardInDeck7.SetActive(false);
 
         if (AICardToHand.DrawX > 0)
         {
@@ -164,10 +189,10 @@ public class AI : MonoBehaviour
             AICardToHand.DrawX = 0;
         }
 
-        int handSize = Hand.transform.childCount;
+        int handSize = Hand ? Hand.transform.childCount : 0;
 
-
-        if (TurnSystem.startTurn == false && draw == false && TurnSystem.isYourTurn == false)
+        // Draw phase (đầu lượt AI)
+        if (!TurnSystem.startTurn && !draw && !TurnSystem.isYourTurn)
         {
             if (handSize < 5)
             {
@@ -175,9 +200,9 @@ public class AI : MonoBehaviour
                 draw = true;
             }
         }
+
         currentMana = TurnSystem.currentEnemyMana;
 
-        if (0 == 0)
         {
             int j = 0;
             howManyCards = 0;
@@ -187,275 +212,212 @@ public class AI : MonoBehaviour
             }
             foreach (Transform child in Hand.transform)
             {
-                cardsInHand[j] = child.GetComponent<AICardToHand>().thisCard[0];
+                var aiCard = child.GetComponent<AICardToHand>();
+                cardsInHand[j] = (aiCard != null) ? aiCard.thisCard[0] : CardDatabase.cardList[0];
                 j++;
             }
-            for (int i = 0; i < 40; i++)
+            for (int i = j; i < MaxHandMirror; i++)
             {
-                if (i >= howManyCards)
-                {
-                    cardsInHand[i] = CardDatabase.cardList[0];
-                }
+                cardsInHand[i] = CardDatabase.cardList[0];
             }
-            j = 0;
         }
 
-        if (TurnSystem.isYourTurn == false)
+        if (!TurnSystem.isYourTurn)
         {
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < MaxHandMirror; i++)
             {
-                if (cardsInHand[i].id != 0)
-                {
-                    if (currentMana >= cardsInHand[i].cost)
-                    {
-                        AiCanSummon[i] = true;
-                    }
-                }
+                AiCanSummon[i] = (cardsInHand[i].id != 0 && currentMana >= cardsInHand[i].cost);
             }
         }
         else
         {
-            for (int i = 0; i < 40; i++)
-            {
-                AiCanSummon[i] = false;
-            }
+            for (int i = 0; i < MaxHandMirror; i++) AiCanSummon[i] = false;
         }
 
-        if (TurnSystem.isYourTurn == false)
-        {
-            drawPhase = true;
-        }
+        if (!TurnSystem.isYourTurn) drawPhase = true;
 
-        if (drawPhase == true && summonPhase == false && attackPhase == false && Hand.transform.childCount >= 5)
+        if (drawPhase && !summonPhase && !attackPhase && !isWaitingSummon)
         {
+            isWaitingSummon = true;
             StartCoroutine(WaitForSummonPhase());
         }
 
-        if (TurnSystem.isYourTurn == true)
+        if (TurnSystem.isYourTurn)
         {
             drawPhase = false;
             summonPhase = false;
             attackPhase = false;
             endPhase = false;
+            return;
         }
 
-        if (summonPhase == true)
+        if (summonPhase)
         {
-            bool hasSummoned = false;
-            do
-            {
-                hasSummoned = false;
-                summonID = 0;
-                summonThisID = 0;
-                int index = 0;
-
-                // Lọc ra các lá có thể triệu hồi
-                for (int i = 0; i < 40; i++)
-                {
-                    if (AiCanSummon[i] == true && cardsInHand[i].cost <= currentMana)
-                    {
-                        cardsID[index] = cardsInHand[i].id;
-                        index++;
-                    }
-                }
-
-                // Chọn lá có ID lớn nhất
-                for (int i = 0; i < 40; i++)
-                {
-                    if (cardsID[i] != 0)
-                    {
-                        if (cardsID[i] > summonID)
-                        {
-                            summonID = cardsID[i];
-                        }
-                    }
-                }
-
-                summonThisID = summonID;
-
-                foreach (Transform child in Hand.transform)
-                {
-                    if (child.GetComponent<AICardToHand>().id == summonThisID && CardDatabase.cardList[summonThisID].cost <= currentMana)
-                    {
-                        foreach (GameObject zone in Zones)
-                        {
-                            if (zone.transform.childCount == 0)
-                            {
-                                child.transform.SetParent(zone.transform);
-                                child.transform.localPosition = Vector3.zero;
-                                child.transform.localRotation = Quaternion.identity;
-                                child.transform.localScale = Vector3.zero;
-                                child.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-
-                                if (TurnSystem.currentEnemyMana >= CardDatabase.cardList[summonThisID].cost)
-                                {
-                                    TurnSystem.currentEnemyMana -= CardDatabase.cardList[summonThisID].cost;
-                                    SoundManager.PlaySound(SoundType.Summon);
-                                    hasSummoned = true;
-                                }
-                                else
-                                {
-                                    hasSummoned = false;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-            } while (hasSummoned); // Lặp lại nếu triệu hồi thành công
+            DoSummonLoop();
             summonPhase = false;
             attackPhase = true;
         }
 
-        if (0 == 0)
-        {
-            int k = 0;
-            howManyCards_2 = 0;
-
-            foreach (GameObject zone in Zones)
-            {
-                foreach (Transform child in zone.transform)
-                {
-                    howManyCards_2++;
-                    canAttack[k] = child.GetComponent<AICardToHand>().canAttack;
-                    k++;
-                }
-            }
-            for (int i = 0; i < 40; i++)
-            {
-                if (i >= howManyCards_2)
-                {
-                    canAttack[i] = false;
-                }
-            }
-            k = 0;
-        }
-
-        if (0 == 0)
+        // Mirror zone (không dùng để quyết định tấn công)
         {
             int l = 0;
             howManyCards_3 = 0;
-
             foreach (GameObject zone in Zones)
             {
                 foreach (Transform child in zone.transform)
                 {
                     howManyCards_3++;
-                    cardInZone[l] = child.GetComponent<AICardToHand>().thisCard[0];
+                    var aiCard = child.GetComponent<AICardToHand>();
+                    cardInZone[l] = (aiCard != null) ? aiCard.thisCard[0] : CardDatabase.cardList[0];
                     l++;
                 }
             }
-            for (int i = 0; i < 40; i++)
+            for (int i = l; i < MaxZoneMirror; i++)
             {
-                if (i >= howManyCards_3)
-                {
-                    cardInZone[i] = CardDatabase.cardList[0];
-                }
+                cardInZone[i] = CardDatabase.cardList[0];
             }
-            l = 0;
         }
 
-        if (attackPhase == true && endPhase == false)
+        if (attackPhase && !endPhase)
         {
-            bool playerHasCards = false;
-            List<Transform> playerFieldCards = new List<Transform>();
-
-            // Kiểm tra xem player có lá bài nào trên sân không
-            foreach (GameObject zone in playerZones)
-            {
-                if (zone.transform.childCount > 0)
-                {
-                    playerHasCards = true;
-                    foreach (Transform child in zone.transform)
-                    {
-                        playerFieldCards.Add(child);
-                    }
-                }
-            }
-
-            // Tấn công bài trên sân
-            if (playerHasCards)
-            {
-                int attackerIndex = 0;
-
-                foreach (Transform enemyCard in Zones.SelectMany<GameObject, Transform>(z => z.transform.Cast<Transform>()))
-                {
-                    if (attackerIndex >= cardInZone.Count || !canAttack[attackerIndex]) continue;
-                    if (playerFieldCards.Count == 0) break;
-
-                    Card attacker = cardInZone[attackerIndex];
-                    bool attacked = false;
-
-                    // Tìm một mục tiêu mà có thể gây sát thương >= thủ
-                    foreach (Transform target in playerFieldCards)
-                    {
-                        var targetCardScript = target.GetComponent<ThisCard>();
-                        Card targetCard = targetCardScript.thisCard[0];
-
-                        if (attacker.attack >= targetCard.defense)
-                        {
-                            targetCardScript.hurted += attacker.attack;
-                            
-                            AIEffect effect = targetCardScript.GetComponentInChildren<AIEffect>();
-                            // Thêm đoạn gọi hiệu ứng
-                            if (effect != null)
-                            {
-                                effect.PlayHurtAnimation();
-                            }
-
-                            SoundManager.PlaySound(SoundType.Attack);
-                            CameraShake.instance.Recoil();
-
-                            canAttack[attackerIndex] = false;
-                            playerFieldCards.Remove(target); // Xóa mục tiêu đã bị tấn công
-                            attacked = true;
-                            break;
-                        }
-                    }
-
-                    if (attacked)
-                    {
-                        attackerIndex++;
-                    }
-                }
-            }
-            else
-            {
-                // Nếu không còn bài trên sân player thì đánh thẳng máu
-                for (int i = 0; i < 40; i++)
-                {
-                    if (canAttack[i])
-                    {
-                        PlayerHp.staticHp -= cardInZone[i].attack;
-                        CameraShake.instance.Shake();
-                        SoundManager.PlaySound(SoundType.Attack);
-
-                        canAttack[i] = false;
-                    }
-                }
-            }
-
+            DoAttackPhase();
             endPhase = true;
         }
 
-        if (endPhase == true)
+        if (endPhase)
         {
             AiEndPhase = true;
         }
-
     }
 
     public void Shuffle()
     {
-        for (int i = 0; i < deckSize; i++)
-        {
-            container[0] = deck[i];
-            int randomIndex = Random.Range(i, deckSize);
-            deck[i] = deck[randomIndex];
-            deck[randomIndex] = container[0];
-        }
         Instantiate(CardBack, transform.position, transform.rotation);
         StartCoroutine(ShuffleNow());
+    }
+
+    private void DoShuffleDeckList()
+    {
+        for (int i = 0; i < deck.Count; i++)
+        {
+            int r = Random.Range(i, deck.Count);
+            var tmp = deck[i];
+            deck[i] = deck[r];
+            deck[r] = tmp;
+        }
+    }
+
+    private void DoSummonLoop()
+    {
+        bool hasSummoned;
+        int safety = 50;
+        do
+        {
+            hasSummoned = false;
+            int index = 0;
+            summonID = 0;
+            summonThisID = 0;
+
+            // Lọc ID các lá có thể triệu hồi (ưu tiên ID lớn nhất)
+            for (int i = 0; i < MaxHandMirror; i++)
+            {
+                if (AiCanSummon[i] && cardsInHand[i].cost <= currentMana)
+                {
+                    cardsID[index] = cardsInHand[i].id;
+                    index++;
+                }
+            }
+
+            // Chọn ID max
+            for (int i = 0; i < index; i++)
+            {
+                if (cardsID[i] > summonID) summonID = cardsID[i];
+            }
+            summonThisID = summonID;
+
+            if (summonThisID == 0) break;
+
+            // Tìm lá trong tay có id = summonThisID và đặt vào ô trống
+            Transform targetChild = null;
+            foreach (Transform child in Hand.transform)
+            {
+                var aiCard = child.GetComponent<AICardToHand>();
+                if (aiCard != null && aiCard.id == summonThisID && CardDatabase.cardList[summonThisID].cost <= currentMana)
+                {
+                    targetChild = child;
+                    break;
+                }
+            }
+
+            if (targetChild != null)
+            {
+                GameObject freeZone = Zones.FirstOrDefault(z => z.transform.childCount == 0);
+                if (freeZone != null)
+                {
+                    targetChild.SetParent(freeZone.transform);
+                    targetChild.localPosition = Vector3.zero;
+                    targetChild.localRotation = Quaternion.identity;
+                    targetChild.localScale = Vector3.zero;
+                    targetChild.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+
+                    int cost = CardDatabase.cardList[summonThisID].cost;
+                    if (TurnSystem.currentEnemyMana >= cost)
+                    {
+                        TurnSystem.currentEnemyMana -= cost;
+                        SoundManager.PlaySound(SoundType.Summon);
+                        hasSummoned = true;
+                    }
+                }
+            }
+
+            safety--;
+            if (safety <= 0) break;
+        } while (hasSummoned);
+    }
+
+    private void DoAttackPhase()
+    {
+        var enemyUnits = Zones
+            .SelectMany(z => z.transform.Cast<Transform>())
+            .Select(t => new { tr = t, ai = t.GetComponent<AICardToHand>() })
+            .Where(x => x.ai != null && x.ai.canAttack)
+            .ToList();
+
+        var playerUnits = playerZones
+            .SelectMany(z => z.transform.Cast<Transform>())
+            .Select(t => new { tr = t, pc = t.GetComponent<ThisCard>() })
+            .Where(x => x.pc != null)
+            .ToList();
+
+        if (playerUnits.Count > 0)
+        {
+            // Đánh vào bài (ưu tiên “mục tiêu đầu tiên” cho đơn giản)
+            foreach (var atk in enemyUnits)
+            {
+                if (playerUnits.Count == 0) break;
+
+                var target = playerUnits[0];
+                var attackerCard = atk.ai.thisCard[0];
+                var targetCard   = target.pc.thisCard[0];
+
+                ApplyAIDamageToPlayerCard(target.pc, attackerCard, atk.ai, targetCard);
+
+                atk.ai.canAttack = false;
+                playerUnits.RemoveAt(0);
+            }
+        }
+        else
+        {
+            // Không còn bài của Player trên sân thì đánh thẳng vào HP
+            foreach (var atk in enemyUnits)
+            {
+                var atkCard = atk.ai.thisCard[0];
+                PlayerHp.staticHp -= atkCard.attack;
+                atk.ai.canAttack = false;
+                CameraShake.instance.Shake();
+                SoundManager.PlaySound(SoundType.Attack);
+            }
+        }
     }
 
     public void AIStartGame()
@@ -477,20 +439,20 @@ public class AI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Clones = GameObject.FindGameObjectsWithTag("Clone");
-
         foreach (GameObject Clone in Clones)
         {
             Destroy(Clone);
         }
     }
 
-    IEnumerator Draw(int z)
+    IEnumerator Draw(int count)
     {
-        for (int i = 0; i < z; i++)
+        for (int i = 0; i < count; i++)
         {
             yield return new WaitForSeconds(1f);
             SoundManager.PlaySound(SoundType.Draw);
             Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
+            if (deckSize > 0) deckSize--;
         }
     }
 
@@ -501,7 +463,33 @@ public class AI : MonoBehaviour
 
     IEnumerator WaitForSummonPhase()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(Random.Range(5f, 10f));
         summonPhase = true;
+        isWaitingSummon = false;
+    }
+
+    private void ApplyAIDamageToPlayerCard(ThisCard targetCardScript, Card attacker, AICardToHand attackingAICard, Card targetCard)
+    {
+        // Gây sát thương cho bài của Player
+        targetCardScript.hurted += attacker.attack;
+
+        if (attacker.attack < targetCard.defense)
+        {
+            attackingAICard.hurted += (targetCard.defense - attacker.attack);
+        }
+
+        if (attacker.attack == targetCard.defense)
+        {
+            attackingAICard.hurted += targetCard.defense;
+        }
+
+        AIEffect effect = targetCardScript.GetComponentInChildren<AIEffect>();
+        if (effect != null)
+        {
+            effect.PlayHurtAnimation();
+        }
+
+        SoundManager.PlaySound(SoundType.Attack);
+        CameraShake.instance.Recoil();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class LevelButtonController : MonoBehaviour
 {
-    public AIType levelType; // Gán trong Inspector
+    public AIType levelType;
     public Button button;
 
     void Start()

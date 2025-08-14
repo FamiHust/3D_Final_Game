@@ -6,14 +6,14 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private TextMeshProUGUI diamondText;
+    [SerializeField] private GameObject GoldPanel;
+    [SerializeField] private GameObject MoneyPanel;
+    [SerializeField] private GameObject GemPanel;
 
     [HideInInspector] public int gold;
     [HideInInspector] public int diamond;
 
     [SerializeField] private bool playDuel;
-    [SerializeField] private GameObject GoldPanel;
-    [SerializeField] private GameObject MoneyPanel;
-    [SerializeField] private GameObject GemPanel;
 
     void Start()
     {
@@ -59,10 +59,6 @@ public class Shop : MonoBehaviour
         {
             PlayfabGoldManager.Instance.ChangeDiamond(-10);
             SceneManager.LoadScene("OpenPack");
-        }
-        else
-        {
-            Debug.Log("Not enough diamonds!");
         }
     }
 

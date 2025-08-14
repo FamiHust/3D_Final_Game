@@ -6,10 +6,11 @@ using TMPro;
 public class TurnSystem : MonoBehaviour
 {
     public static bool isYourTurn;
-    public int turnCount;
 
+    public int turnCount;
     public int playerTurnCount = 0;
     public int enemyTurnCount = 0;
+    [SerializeField] private float lerpSpeed = 5f;
 
     public TextMeshProUGUI manaText;
     public TextMeshProUGUI timerText;
@@ -19,7 +20,6 @@ public class TurnSystem : MonoBehaviour
 
     [SerializeField] private Slider manaSlider;
     [SerializeField] private Slider enemyManaSlider;
-    [SerializeField] private float lerpSpeed = 5f;
 
     private float displayedMana;
     private float displayedEnemyMana;
@@ -37,13 +37,12 @@ public class TurnSystem : MonoBehaviour
 
     private Coroutine timerCoroutine;
     private Coroutine turnTextCoroutine;
-    private bool isProcessingTurn = false;
 
     public GameObject EndYourTurnBtn;
 
+    private bool isProcessingTurn = false;
     private bool gameStarted = false;
 
-    // Thêm cho hiệu ứng nhấp nháy
     private Coroutine blinkCoroutine;
     private Color defaultTimerColor;
 
@@ -55,7 +54,6 @@ public class TurnSystem : MonoBehaviour
         displayedMana = currentMana;
         displayedEnemyMana = currentEnemyMana;
 
-        // Lưu màu mặc định của timerText
         defaultTimerColor = timerText.color;
     }
 
@@ -79,7 +77,6 @@ public class TurnSystem : MonoBehaviour
 
         timerText.text = seconds.ToString();
 
-        // Hiệu ứng nhấp nháy khi còn <= 10s
         if (seconds <= 10 && timerStart)
         {
             if (blinkCoroutine == null)
@@ -131,7 +128,6 @@ public class TurnSystem : MonoBehaviour
         isProcessingTurn = true;
         SoundManager.PlaySound(SoundType.NextTurn);
 
-        // ✨ NEW: Hủy kéo bài đang diễn ra
         ForceCancelAllDrags();
 
         StopTimer();
@@ -197,7 +193,7 @@ public class TurnSystem : MonoBehaviour
 
     private IEnumerator DelayedStartGame()
     {
-        yield return new WaitForSeconds(5f); // ⏱ Chờ 5 giây trước khi bắt đầu
+        yield return new WaitForSeconds(5f); 
 
         int random = Random.Range(0, 2);
         if (random == 0)
@@ -232,13 +228,9 @@ public class TurnSystem : MonoBehaviour
 
         timerStart = false;
 
-        // Tắt hiệu ứng nhấp nháy nếu có
-        if (blinkCoroutine != null)
-        {
-            StopCoroutine(blinkCoroutine);
-            blinkCoroutine = null;
-            timerText.color = defaultTimerColor;
-        }
+        StopCoroutine(blinkCoroutine);
+        blinkCoroutine = null;
+        timerText.color = defaultTimerColor;
     }
 
     IEnumerator Timer()
@@ -296,7 +288,6 @@ public class TurnSystem : MonoBehaviour
         }
     }
 
-    // Coroutine cho hiệu ứng nhấp nháy đỏ khi còn <=10s
     private IEnumerator BlinkTimerText()
     {
         while (seconds <= 10 && timerStart)

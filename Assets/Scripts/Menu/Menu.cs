@@ -15,10 +15,9 @@ public class Menu : MonoBehaviour
     [SerializeField] private string shop;
 
     [SerializeField] private GameObject ConcedeDefeat;
-
-    [Header("UI Transition")]
     [SerializeField] private RectTransform leftDoor;
     [SerializeField] private RectTransform rightDoor;
+
     [SerializeField] private float doorDuration = 1.5f;
 
     public void LoadLevel(int level)
@@ -29,17 +28,13 @@ public class Menu : MonoBehaviour
 
     IEnumerator TransitionAndLoad(int level)
     {
-        // Wait few seconds before starting door animation
         yield return new WaitForSeconds(1f);
 
-        // Animate doors closing (assuming anchored left/right offscreen at start)
         leftDoor.DOAnchorPosX(0, doorDuration);
         rightDoor.DOAnchorPosX(0, doorDuration);
 
-        // Wait for doors to close
         yield return new WaitForSeconds(doorDuration);
 
-        // Now load scene
         SceneManager.LoadScene(level);
     }
 
@@ -49,13 +44,6 @@ public class Menu : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(play);
     }
-
-    // public void LoadLevel(int level)
-    // {
-    //     StartCoroutine(Delay(3f));
-    //     Time.timeScale = 1;
-    //     SceneManager.LoadScene(level);
-    // }
 
     public void LoadMap()
     {

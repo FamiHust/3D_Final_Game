@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 public class DeckCreator : MonoBehaviour
 {
-    public static int[] lastDeckLoaded; // <-- Biến tĩnh dùng truyền deck sang scene khác
+    public static int[] lastDeckLoaded; 
 
-    public int[] cardsWithThisID; // Mảng lưu số lượng từng lá trong deck
+    public int[] cardsWithThisID; 
     public bool mouseOverDeck;
     public int dragged;
     public int numberOfCardsInDatabase;
@@ -38,9 +38,6 @@ public class DeckCreator : MonoBehaviour
     {
         sum = 0;
         cardCountText.text = $"Bộ bài: {sum}/{maxCards}";
-
-        // Có thể load deck ở đây nếu cần (hoặc load thủ công bên ngoài)
-        // LoadDeckFromPlayfab();
     }
 
     public void EnterDeck()
@@ -114,7 +111,6 @@ public class DeckCreator : MonoBehaviour
     {
         string json = JsonConvert.SerializeObject(cardsWithThisID);
         
-        // Save to PlayerPrefs
         PlayerPrefs.SetString("DeckData", json);
         PlayerPrefs.Save();
 
@@ -136,7 +132,6 @@ public class DeckCreator : MonoBehaviour
         });
     }
 
-    // LOAD deck từ PlayFab
     public void LoadDeckFromPlayfab(System.Action onDone = null)
     {
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
@@ -151,10 +146,10 @@ public class DeckCreator : MonoBehaviour
             {
                 Debug.Log("No deck found, initializing default deck...");
                 cardsWithThisID = new int[numberOfCardsInDatabase];
-                for (int i = 0; i < 40; i++) cardsWithThisID[i] = 1; // 40 lá đầu tiên mỗi lá 1
+                for (int i = 0; i < 40; i++) cardsWithThisID[i] = 1; 
                 SaveDeckToPlayfab();
             }
-            // Luôn gán lại cho biến static sau khi load (hoặc tạo mới)
+
             lastDeckLoaded = (int[])cardsWithThisID.Clone();
             onDone?.Invoke();
         }, error =>
@@ -164,35 +159,8 @@ public class DeckCreator : MonoBehaviour
         });
     }
 
-    // public void CreateDeck()
-    // {
-    //     sum = 0;
-    //     for (int i = 0; i < numberOfCardsInDatabase; i++)
-    //     {
-    //         sum += cardsWithThisID[i];
-    //     }
-
-    //     if (sum == 40)
-    //     {
-    //         SaveDeckToPlayfab();
-    //         Debug.Log("Deck saved to PlayFab!");
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("Deck must have exactly 40 cards.");
-    //     }
-
-    //     sum = 0;
-    //     numberOfDifferentCards = 0;
-
-    //     for (int i = 0; i < numberOfCardsInDatabase; i++)
-    //     {
-    //         saveDeck[i] = cardsWithThisID[i];
-    //     }
-    // }
     public void CreateDeck()
     {
-        // Tính tổng số lá
         sum = 0;
         numberOfDifferentCards = 0;
 
@@ -207,13 +175,10 @@ public class DeckCreator : MonoBehaviour
         {
             SaveDeckToPlayfab();
 
-            // Lưu vào saveDeck
             for (int i = 0; i < numberOfCardsInDatabase; i++)
             {
                 saveDeck[i] = cardsWithThisID[i];
             }
-
-            Debug.Log("Deck saved to PlayFab!");
         }
         else
         {

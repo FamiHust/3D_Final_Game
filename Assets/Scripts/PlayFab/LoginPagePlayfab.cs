@@ -56,24 +56,20 @@ public class LoginPagePlayfab : MonoBehaviour
             string username = accountResult.AccountInfo.Username;
             PlayerPrefs.SetString("Username", username);
 
-            // Load dữ liệu khác từ PlayFab
             PlayfabGoldManager.Instance.LoadGoldFromPlayfab(() =>
             {
                 LevelUnlockManager.Instance.LoadLevelUnlocks(() =>
                 {
-                    // Load bộ sưu tập bài
                     Collection collection = FindObjectOfType<Collection>();
                     if (collection != null)
                     {
                         collection.LoadCardsFromPlayfab(() =>
                         {
-                            // Sau khi load Collection, load deck
                             DeckCreator deckCreator = FindObjectOfType<DeckCreator>();
                             if (deckCreator != null)
                             {
                                 deckCreator.LoadDeckFromPlayfab(() =>
                                 {
-                                    // Sau khi đã load hết, chuyển scene
                                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                                 });
                             }
@@ -146,19 +142,15 @@ public class LoginPagePlayfab : MonoBehaviour
         PlayerPrefs.SetString("Username", UsernameRegisterInput.text);
         PlayerPrefs.Save();
 
-        // TẠO DECK MẶC ĐỊNH và LƯU LUÔN LÊN PLAYFAB
-        int numberOfCardsInDatabase = 136; // hoặc lấy số lượng đúng theo game của bạn
+        int numberOfCardsInDatabase = 136; 
         int[] defaultDeck = new int[numberOfCardsInDatabase];
         for (int i = 0; i < 40; i++) defaultDeck[i] = 1;
 
         SaveDefaultDeckToPlayfab(defaultDeck, () => {
-            // Đảm bảo deck đã được lưu
             DeckCreator.lastDeckLoaded = (int[])defaultDeck.Clone();
             OpenLoginPage();
         });
     }
-    
-
 
     public void OpenLoginPage()
     {

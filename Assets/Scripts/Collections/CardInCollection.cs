@@ -9,12 +9,12 @@ public class CardInCollection : MonoBehaviour
     public List<Card> thisCard = new List<Card>();
     public int thisID;
     public int id;
-    public string cardName;
     public int cost;
     public int attack;
     public int defense;
     public string cardDescription;
-
+    public string cardName;
+    
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private TextMeshProUGUI atkText;
@@ -26,7 +26,7 @@ public class CardInCollection : MonoBehaviour
     [SerializeField] private Color originalColor;
 
     public bool beGrey;
-    // Start is called before the first frame update
+
     void Start()
     {
         thisCard[0] = CardDatabase.cardList[thisID];
@@ -34,7 +34,6 @@ public class CardInCollection : MonoBehaviour
         originalColor = thatImage.color;
     }
 
-    // Update is called once per frame
     void Update()
     {
         thisCard[0] = CardDatabase.cardList[thisID];

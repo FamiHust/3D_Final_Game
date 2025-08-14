@@ -30,7 +30,6 @@ public class WindowInDeck : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Gọi hàm xóa bài trong Deck
         Creator.GetComponent<DeckCreator>().RemoveCardFromDeck(id);
     }
 }

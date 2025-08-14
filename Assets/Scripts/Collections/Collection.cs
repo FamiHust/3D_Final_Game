@@ -11,7 +11,7 @@ public class Collection : MonoBehaviour
     public List<TextMeshProUGUI> cardTexts;
 
     public static int x;
-    public int[] HowManyCards = new int[136]; // Index từ 1 -> 117
+    public int[] HowManyCards = new int[136]; 
 
     public bool openPack;
     public List<GameObject> cardObjects_2;
@@ -26,7 +26,7 @@ public class Collection : MonoBehaviour
 
         if (!openPack)
         {
-            LoadCardsFromPlayfab(); // Load collection từ PlayFab
+            LoadCardsFromPlayfab(); 
         }
         else
         {
@@ -83,10 +83,9 @@ public class Collection : MonoBehaviour
         HowManyCards[cardID] += delta;
         HowManyCards[cardID] = Mathf.Max(0, HowManyCards[cardID]);
 
-        SaveCardsToPlayfab(); // Lưu sau khi thay đổi
+        SaveCardsToPlayfab(); 
     }
 
-    // Các hàm + và - từng card
     public void Card1Plus() => ChangeCardAmount(0, 1);
     public void Card1Minus() => ChangeCardAmount(0, -1);
 
@@ -123,7 +122,7 @@ public class Collection : MonoBehaviour
         o[oo] = rand;
         oo++;
 
-        SaveCardsToPlayfab(); // Lưu sau khi mở pack
+        SaveCardsToPlayfab(); 
     }
 
     public void SaveCardsToPlayfab()
@@ -162,13 +161,11 @@ public class Collection : MonoBehaviour
                 Debug.Log("No existing card data, initializing...");
                 HowManyCards = new int[136];
 
-                // Gán mặc định 40 lá đầu tiên, mỗi lá 1 cái
                 for (int i = 1; i <= 40; i++)
                 {
                     HowManyCards[i] = 1;
                 }
 
-                // Lưu dữ liệu khởi tạo lên PlayFab
                 SaveCardsToPlayfab();
             }
 

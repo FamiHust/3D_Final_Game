@@ -6,7 +6,7 @@ public class CardBackPrefab : MonoBehaviour
 {
     [SerializeField] private GameObject Deck;
     [SerializeField] private GameObject It;
-    // Update is called once per frame
+    
     void Update()
     {
         Deck = GameObject.Find("Deck_Panel");

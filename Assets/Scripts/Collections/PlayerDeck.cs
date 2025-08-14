@@ -12,6 +12,7 @@ public class PlayerDeck : MonoBehaviour
     public static List<Card> staticDeck = new List<Card>();
 
     public static int deckSize;
+    private bool hasInitialDraw = false;
     public TextMeshProUGUI deckSizeText;
 
     public GameObject cardIndex1;
@@ -30,25 +31,19 @@ public class PlayerDeck : MonoBehaviour
     public TextMeshProUGUI loseText;
     public GameObject LoseTextGameObject;
 
-    void Awake()
-    {
-        // Shuffle sẽ được gọi sau khi deck đã được tạo từ dữ liệu PlayFab ở Start()
-    }
-
     void Start()
     {
         deck.Clear();
+        hasInitialDraw = false;
 
         int[] deckData = DeckCreator.lastDeckLoaded;
 
-        // Nếu chưa có, thử lấy từ PlayerPrefs
         if (deckData == null || deckData.Length == 0)
         {
             string json = PlayerPrefs.GetString("DeckData", "");
             if (!string.IsNullOrEmpty(json))
             {
                 deckData = JsonConvert.DeserializeObject<int[]>(json);
-                Debug.Log("Loaded deck from PlayerPrefs fallback.");
             }
         }
 
@@ -71,7 +66,6 @@ public class PlayerDeck : MonoBehaviour
             deckSize = 0;
         }
 
-        // Init container
         container = new List<Card>(deck.Count);
         for (int i = 0; i < deck.Count; i++) container.Add(null);
 
@@ -81,11 +75,6 @@ public class PlayerDeck : MonoBehaviour
 
     void Update()
     {
-        if (deckSize <= 0)
-        {
-            LoseTextGameObject.SetActive(true);
-            loseText.text = "YOU LOSE";
-        }
         int handSize = Hand.transform.childCount;
 
         staticDeck = deck;
@@ -106,15 +95,14 @@ public class PlayerDeck : MonoBehaviour
 
         if (TurnSystem.startTurn == true && TurnSystem.isYourTurn)
         {
-            if (handSize < 5)
+            if (handSize < 5 && hasInitialDraw)
             {
                 StartCoroutine(Draw(1));
             }
             TurnSystem.startTurn = false;
         }
 
-        if (deckSizeText != null)
-            deckSizeText.text = "Deck: " + deckSize;
+        deckSizeText.text = "Deck: " + deckSize;
     }
 
     public void StartGame()
@@ -129,6 +117,7 @@ public class PlayerDeck : MonoBehaviour
             yield return new WaitForSeconds(1f);
             Instantiate(CardToHand, transform.position, transform.rotation, Hand.transform);
         }
+        hasInitialDraw = true;
     }
 
     IEnumerator Example()

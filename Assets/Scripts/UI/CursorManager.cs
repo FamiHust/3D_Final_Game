@@ -12,7 +12,6 @@ public class CursorManager : MonoBehaviour
 {
     public static CursorManager Instance;
 
-    [Header("Cursor Textures")]
     public Texture2D defaultCursor;
     public Texture2D pointerCursor;
     public Texture2D attackCursor;

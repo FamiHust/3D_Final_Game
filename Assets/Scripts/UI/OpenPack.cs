@@ -89,4 +89,21 @@ public class OpenPack : MonoBehaviour
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("Shop");
     }
+
+    public void Skip()
+    {
+        StopAllCoroutines();
+
+        Destroy(pack);
+
+        c1.SetActive(true);
+        c2.SetActive(true);
+        c3.SetActive(true);
+        c4.SetActive(true);
+        c5.SetActive(true);
+
+        // clickedCard = 5;
+
+        StartCoroutine(Return());
+    }
 }

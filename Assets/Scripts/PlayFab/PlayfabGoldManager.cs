@@ -4,7 +4,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System;
 
-public class PlayfabGoldManager : MonoBehaviour // Rename to PlayfabCurrencyManager if you want
+public class PlayfabGoldManager : MonoBehaviour 
 {
     public static PlayfabGoldManager Instance;
 
@@ -43,7 +43,7 @@ public class PlayfabGoldManager : MonoBehaviour // Rename to PlayfabCurrencyMana
                 else
                     Diamond = 50;
 
-                SaveAllToPlayfab(); // Đảm bảo lưu nếu dữ liệu chưa có
+                SaveAllToPlayfab();
             }
 
             PlayerPrefs.SetInt("gold", Gold);
@@ -52,7 +52,6 @@ public class PlayfabGoldManager : MonoBehaviour // Rename to PlayfabCurrencyMana
         },
         error =>
         {
-            Debug.LogError("Error loading data: " + error.GenerateErrorReport());
             Gold = 100000;
             Diamond = 50;
             onComplete?.Invoke();
@@ -72,7 +71,6 @@ public class PlayfabGoldManager : MonoBehaviour // Rename to PlayfabCurrencyMana
 
         PlayFabClientAPI.UpdateUserData(request, result =>
         {
-            Debug.Log("Currency saved to Playfab.");
             OnGoldChanged?.Invoke();
             OnDiamondChanged?.Invoke();
         },

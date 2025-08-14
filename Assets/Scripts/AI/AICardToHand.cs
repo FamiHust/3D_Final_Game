@@ -54,7 +54,6 @@ public class AICardToHand : MonoBehaviour
 
     public AIEffect aiEffect;
 
-    // Start is called before the first frame update
     void Start()
     {
         thisCard[0] = CardDatabase.cardList[thisID];
@@ -85,7 +84,6 @@ public class AICardToHand : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (z == 0)
@@ -141,7 +139,7 @@ public class AICardToHand : MonoBehaviour
         if (hurted >= defense && thisCardCanBeDestroyed == true)
         {
             StartCoroutine(MoveToGraveyardAfterDelay());
-            thisCardCanBeDestroyed = false; // Đảm bảo chỉ chạy 1 lần!
+            thisCardCanBeDestroyed = false;
         }
 
         if (this.transform.parent == Hand.transform)
@@ -235,7 +233,7 @@ public class AICardToHand : MonoBehaviour
 
     IEnumerator MoveToGraveyardAfterDelay()
     {
-        yield return new WaitForSeconds(2f); // Delay 2 giây
+        yield return new WaitForSeconds(2f);
 
         this.transform.SetParent(Graveyard.transform);
         transform.localPosition = Vector3.zero;

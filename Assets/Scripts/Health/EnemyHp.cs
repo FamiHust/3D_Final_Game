@@ -6,16 +6,13 @@ using TMPro;
 
 public class EnemyHp : MonoBehaviour
 {
-    [Header("Cài đặt máu")]
-    [SerializeField] private float maxHp = 20f;
-    [SerializeField] private float startHp = 20f;
-
     public static float staticHp; 
 
-    [Header("UI")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI hpText;
 
+    [SerializeField] private float maxHp = 20f;
+    [SerializeField] private float startHp = 20f;
     private float currentDisplayHp;
 
     void Start()

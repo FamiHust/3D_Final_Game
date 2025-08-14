@@ -18,7 +18,6 @@ public class GoToHeaven : MonoBehaviour
         StartCoroutine(Die());
     }
 
-    // Update is called once per frame
     void Update()
     {
         this.transform.position = new Vector3(transform.position.x, x += 1500*Time.deltaTime, transform.position.z);

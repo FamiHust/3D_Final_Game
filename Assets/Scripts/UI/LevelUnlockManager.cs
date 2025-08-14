@@ -1,40 +1,3 @@
-// using UnityEngine;
-
-// public class LevelUnlockManager : MonoBehaviour
-// {
-//     public static LevelUnlockManager Instance;
-
-//     private void Awake()
-//     {
-//         if (Instance == null) Instance = this;
-//     }
-
-//     // Kiểm tra xem level đã mở chưa
-//     public bool IsLevelUnlocked(AIType ai)
-//     {
-//         return PlayerPrefs.GetInt("LevelUnlocked_" + ai.ToString(), ai == AIType.ThuyTinh ? 1 : 0) == 1;
-//         // Thủy Tinh là level đầu tiên nên mặc định mở
-//     }
-
-//     // Gọi khi thắng một level để mở khóa level tiếp theo
-//     public void UnlockNextLevel(AIType currentLevel)
-//     {
-//         AIType nextLevel = GetNextLevel(currentLevel);
-//         PlayerPrefs.SetInt("LevelUnlocked_" + nextLevel.ToString(), 1);
-//         PlayerPrefs.Save();
-//         Debug.Log("Unlocked " + nextLevel);
-//     }
-
-//     private AIType GetNextLevel(AIType current)
-//     {
-//         switch (current)
-//         {
-//             case AIType.ThuyTinh: return AIType.SonTinh;
-//             case AIType.SonTinh: return AIType.YeuMa;
-//             default: return current; // Không có level sau
-//         }
-//     }
-// }
 using System;
 using System.Collections.Generic;
 using PlayFab;
@@ -45,14 +8,14 @@ public class LevelUnlockManager : MonoBehaviour
 {
     public static LevelUnlockManager Instance;
 
-    private Dictionary<string, string> levelStates = new(); // levelName => "locked"/"unlocked"
+    private Dictionary<string, string> levelStates = new(); 
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // giữ lại khi chuyển scene
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
@@ -60,7 +23,6 @@ public class LevelUnlockManager : MonoBehaviour
         }
     }
 
-    /// Gọi sau khi đăng nhập thành công
     public void LoadLevelUnlocks(Action onSuccess = null)
     {
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
@@ -72,7 +34,6 @@ public class LevelUnlockManager : MonoBehaviour
                     levelStates[item.Key] = item.Value.Value;
             }
 
-            // Nếu chưa có dữ liệu, mặc định unlock Thủy Tinh
             if (!levelStates.ContainsKey("ThuyTinh"))
                 levelStates["ThuyTinh"] = "unlocked";
 

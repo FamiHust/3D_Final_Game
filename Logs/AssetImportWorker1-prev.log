@@ -15,7 +15,7 @@ C:/3D_Final_Game
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-50586
+55199
 Successfully changed project path to: C:/3D_Final_Game
 C:/3D_Final_Game
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/3D_Final_Game
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [14704] Host "[IP] 172.18.240.1 [Port] 0 [Flags] 2 [Guid] 1860753676 [EditorId] 1860753676 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-KP1GFLT) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [14888] Host "[IP] 172.18.64.1 [Port] 0 [Flags] 2 [Guid] 4056722313 [EditorId] 4056722313 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-KP1GFLT) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [14704] Host "[IP] 172.18.240.1 [Port] 0 [Flags] 2 [Guid] 1860753676 [EditorId] 1860753676 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-KP1GFLT) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [14888] Host "[IP] 172.18.64.1 [Port] 0 [Flags] 2 [Guid] 4056722313 [EditorId] 4056722313 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-KP1GFLT) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 7 workers.
-Refreshing native plugins compatible for Editor in 4993.90 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 17.40 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.22f1 (887be4894c44)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.22f1/Editor/Data/Resources/UnitySubsystems
@@ -70,94 +70,121 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.22f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.22f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.22f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56680
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56916
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.22f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.22f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.867419 seconds.
-- Loaded All Assemblies, in 27.173 seconds
+Registered in 0.009854 seconds.
+- Loaded All Assemblies, in  0.325 seconds
 Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  2.220 seconds
-Domain Reload Profiling: 29383ms
-	BeginReloadAssembly (17936ms)
+- Finished resetting the current domain, in  0.259 seconds
+Domain Reload Profiling: 583ms
+	BeginReloadAssembly (100ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (3ms)
-	RebuildCommonClasses (1618ms)
-	RebuildNativeTypeToScriptingClass (70ms)
-	initialDomainReloadingComplete (1578ms)
-	LoadAllAssembliesAndSetupDomain (5961ms)
-		LoadAssemblies (17926ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (57ms)
+	LoadAllAssembliesAndSetupDomain (125ms)
+		LoadAssemblies (97ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (5921ms)
-			TypeCache.Refresh (5916ms)
-				TypeCache.ScanAssembly (4236ms)
-			ScanForSourceGeneratedMonoScriptInfo (1ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (2220ms)
+		AnalyzeDomain (123ms)
+			TypeCache.Refresh (121ms)
+				TypeCache.ScanAssembly (109ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (260ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1788ms)
+		SetupLoadedEditorAssemblies (201ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (59ms)
-			SetLoadedEditorAssemblies (155ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (9ms)
-			ProcessInitializeOnLoadAttributes (1371ms)
-			ProcessInitializeOnLoadMethodAttributes (193ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (143ms)
+			ProcessInitializeOnLoadMethodAttributes (42ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (0ms)
 ========================================================================
 Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.660 seconds
+Refreshing native plugins compatible for Editor in 6.86 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.873 seconds
+Domain Reload Profiling: 1529ms
+	BeginReloadAssembly (120ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (16ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (461ms)
+		LoadAssemblies (317ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (213ms)
+			TypeCache.Refresh (189ms)
+				TypeCache.ScanAssembly (168ms)
+			ScanForSourceGeneratedMonoScriptInfo (17ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (873ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (744ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (3ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (51ms)
+			ProcessInitializeOnLoadAttributes (654ms)
+			ProcessInitializeOnLoadMethodAttributes (20ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 6.51 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3953 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 72 unused Assets / (231.2 KB). Loaded Objects now: 4410.
+Memory consumption went from 168.1 MB to 167.9 MB.
+Total: 2.910300 ms (FindLiveObjects: 0.267500 ms CreateObjectMapping: 0.112100 ms MarkObjects: 2.362300 ms  DeleteObjects: 0.167300 ms)
 
-=================================================================
-	Native Crash Reporting
-=================================================================
-Got a UNKNOWN while executing native code. This usually indicates
-a fatal error in the mono runtime or one of the native libraries 
-used by your application.
-=================================================================
-
-=================================================================
-	Managed Stacktrace:
-=================================================================
-=================================================================
-Received signal SIGSEGV
-Obtained 31 stack frames
-0x00007ff663bf2348 (Unity) DynamicHeapAllocator::Allocate
-0x00007ff663c00fec (Unity) DualThreadAllocator<DynamicHeapAllocator>::Allocate
-0x00007ff663bf2a61 (Unity) MemoryManager::Allocate
-0x00007ff663bfcfae (Unity) malloc_internal
-0x00007ff6644bdf2a (Unity) core::hash_set<core::pair<D3D12PipelineKey const ,CreateGraphicsPSOJobData * __ptr64,0>,core::hash_pair<D3D12PipelineKeyHasher,D3D12PipelineKey,CreateGraphicsPSOJobData * __ptr64>,core::equal_pair<D3D12PipelineKeyComparer,D3D12PipelineKey,CreateGraphicsPSOJobData * __ptr64> >::resize
-0x00007ff6656d596c (Unity) core::base_hash_map<UnityGUID,AssetDatabase::AssetImporterSelection,core::hash<UnityGUID>,std::equal_to<UnityGUID> >::emplace<UnityGUID const & __ptr64,AssetDatabase::AssetImporterSelection const & __ptr64>
-0x00007ff6656dd5d8 (Unity) GetImporterSelection
-0x00007ff665787219 (Unity) MatchSpecificAsset
-0x00007ff665786e02 (Unity) MatchAssetInternal
-0x00007ff665786b75 (Unity) MatchAsset
-0x00007ff66578680a (Unity) MatchAsset
-0x00007ff665730271 (Unity) AssetResolver::CalculateAssetStateInternal
-0x00007ff66572fcc9 (Unity) AssetResolver::CalculateAssetState
-0x00007ff665755fbc (Unity) AssetResolver::ResolveAsset
-0x00007ff665755441 (Unity) ResolveArtifactV2
-0x00007ff665738f53 (Unity) FindAssetsWithImporterTypeV2
-0x00007ff66578215c (Unity) GetAllScripts
-0x00007ff66578ae06 (Unity) AssetImportWorkerClient::RegisterAvailableScripts
-0x00007ff66577f96a (Unity) <lambda_e4c09a862f47a773e31babb76239f51f>::operator()
-0x00007ff6657b9a52 (Unity) asio::detail::completion_handler<core::mutable_function<void __cdecl(void)>,asio::io_context::basic_executor_type<std::allocator<void>,0> >::do_complete
-0x00007ff6657a59fe (Unity) asio::detail::win_iocp_io_context::do_one
-0x00007ff6657a762e (Unity) asio::detail::win_iocp_io_context::run
-0x00007ff6657b7dfc (Unity) IOService::Run
-0x00007ff66578b95f (Unity) AssetImportWorkerClient::Run
-0x00007ff665756847 (Unity) RunAssetImportWorkerClientV2
-0x00007ff6657568cb (Unity) RunAssetImporterV2
-0x00007ff664f56fd1 (Unity) Application::InitializeProject
-0x00007ff6653e31b5 (Unity) WinMain
-0x00007ff6667c594e (Unity) __scrt_common_main_seh
-0x00007ffafa06e8d7 (KERNEL32) BaseThreadInitThunk
-0x00007ffafb57c34c (ntdll) RtlUserThreadStart
-
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 9603.750214 seconds.
+  path: Assets/Data/Sprites/Thanh_Tich.jpg
+  artifactKey: Guid(32d9c20527f3e9844b883cd14f67d3af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Data/Sprites/Thanh_Tich.jpg using Guid(32d9c20527f3e9844b883cd14f67d3af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ebe0f06f3de36f2f7bd81754655f7e81') in 0.100575 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+TcpMessagingSession - receive error
+AssetImportWorkerClient::OnTransportError - code=10054 error=An existing connection was forcibly closed by the remote host.

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class TypewriterEffect : MonoBehaviour
 {
-    [Header("UI Elements")]
     public Text uiText;
 
     [Header("Typewriter Settings")]
@@ -34,7 +33,7 @@ public class TypewriterEffect : MonoBehaviour
         foreach (char c in fullText)
         {
             uiText.text += c;
-            if (c != ' ') // Không phát âm khi là dấu cách
+            if (c != ' ') 
             {
                 SoundManager.PlaySound(SoundType.Typing, 1.2f);
             }

@@ -6,17 +6,15 @@ using TMPro;
 
 public class PlayerHp : MonoBehaviour
 {
-    [Header("Cài đặt máu")]
-    [SerializeField] private float maxHp = 20f;
-    [SerializeField] private float startHp = 20f;
-
     public static float staticHp; 
-    private float displayedHp;
 
-    [Header("UI")]
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI hpText;
+
     [SerializeField] private float lerpSpeed = 5f;
+    [SerializeField] private float maxHp = 20f;
+    [SerializeField] private float startHp = 20f;
+    private float displayedHp;
 
     void Start()
     {

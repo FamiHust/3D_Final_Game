@@ -20,36 +20,13 @@ public class LoadingMenu : MonoBehaviour
         StartCoroutine(LoadSceneAsynchronously(nextSceneIndex));
     }
 
-    // IEnumerator LoadSceneAsynchronously(int levelIndex)
-    // {
-    //     AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
-    //     operation.allowSceneActivation = false;
-
-    //     float simulatedProgress = 0;
-
-    //     while (!operation.isDone)
-    //     {
-    //         float progress = Mathf.Clamp01(operation.progress / 0.9f);
-    //         simulatedProgress = Mathf.MoveTowards(simulatedProgress, progress, Time.deltaTime);
-
-    //         slider.value = simulatedProgress;
-
-    //         progressText.text = "Loading..." + (simulatedProgress * 100.00f).ToString("F0") + "%";
-
-    //         if (simulatedProgress >= 1f)
-    //         {
-    //             operation.allowSceneActivation = true;
-    //         }
-    //         yield return null;
-    //     }
-    // }
     IEnumerator LoadSceneAsynchronously(int levelIndex)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(levelIndex);
         operation.allowSceneActivation = false;
 
         float simulatedProgress = 0;
-        float loadingSpeed = 0.11f; // Điều chỉnh tốc độ thanh loading
+        float loadingSpeed = 0.11f; 
 
         while (!operation.isDone)
         {
@@ -67,6 +44,4 @@ public class LoadingMenu : MonoBehaviour
             yield return null;
         }
     }
-
-
 }
