@@ -54,6 +54,15 @@ public class AI : MonoBehaviour
     public bool attackPhase;
     public bool endPhase;
     private bool isWaitingSummon;
+    private bool hasResetSummoningSicknessThisTurn = false;
+
+    [Header("Timing")]
+    [SerializeField] private float postSummonDelay = 3f; // Delay giữa Summon -> Attack (tăng từ 0.7f)
+    [SerializeField] private float endTurnDelayAfterAttack = 2f; // Delay giữa Attack -> End turn (tăng từ 0.9f)
+    [SerializeField] private float minPhaseDelay = 2f; // Delay tối thiểu giữa các phase
+    [SerializeField] private float maxPhaseDelay = 5f; // Delay tối đa giữa các phase
+    private bool isDelayingAttackPhase = false;
+    private bool isDelayingEndPhase = false;
 
     [Header("Summon helpers")]
     public bool[] AiCanSummon;
@@ -87,6 +96,9 @@ public class AI : MonoBehaviour
 
     public static int deckSize;
     private int z;
+    
+    // Prevent AI from acting before its initial 5-card draw completes
+    private bool hasInitialDraw = false;
 
     void Awake()
     {
@@ -124,6 +136,14 @@ public class AI : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             playerZones[i] = (i == 0) ? GameObject.Find("Zone") : GameObject.Find("Zone" + i);
+            if (playerZones[i] == null)
+            {
+                Debug.LogError($"[AI] Player Zone {i} not found! Looking for: {(i == 0 ? "Zone" : "Zone" + i)}");
+            }
+            else
+            {
+                Debug.Log($"[AI] Player Zone {i} found: {playerZones[i].name}");
+            }
         }
 
         draw = true;
@@ -191,8 +211,12 @@ public class AI : MonoBehaviour
 
         int handSize = Hand ? Hand.transform.childCount : 0;
 
-        // Draw phase (đầu lượt AI)
-        if (!TurnSystem.startTurn && !draw && !TurnSystem.isYourTurn)
+        // Draw phase (đầu lượt AI) - only after initial 5-card draw is finished
+        bool gameStarted = false;
+        var turnSystemForTimer = FindObjectOfType<TurnSystem>();
+        if (turnSystemForTimer != null) gameStarted = turnSystemForTimer.timerStart;
+
+        if (!TurnSystem.startTurn && !draw && !TurnSystem.isYourTurn && hasInitialDraw && gameStarted)
         {
             if (handSize < 5)
             {
@@ -234,11 +258,28 @@ public class AI : MonoBehaviour
             for (int i = 0; i < MaxHandMirror; i++) AiCanSummon[i] = false;
         }
 
-        if (!TurnSystem.isYourTurn) drawPhase = true;
+        if (!TurnSystem.isYourTurn && hasInitialDraw && gameStarted) 
+        {
+            // Kiểm tra xem có phải lượt mới của AI không (không phải lượt đầu tiên)
+            var turnSystem = FindObjectOfType<TurnSystem>();
+            bool isNewAITurn = turnSystem != null && turnSystem.playerTurnCount > 1;
+            
+            if (isNewAITurn && !hasResetSummoningSicknessThisTurn)
+            {
+                // Reset summoning sickness cho tất cả AI cards đã được triệu hồi
+                ResetSummoningSicknessForAllAICards();
+                hasResetSummoningSicknessThisTurn = true;
+                Debug.Log("[AI] New AI turn detected - resetting summoning sickness for all summoned cards");
+            }
+            
+            drawPhase = true;
+            Debug.Log($"[AI] Draw Phase activated - TurnSystem.isYourTurn: {TurnSystem.isYourTurn}, hasInitialDraw: {hasInitialDraw}, gameStarted: {gameStarted}, isNewAITurn: {isNewAITurn}");
+        }
 
         if (drawPhase && !summonPhase && !attackPhase && !isWaitingSummon)
         {
             isWaitingSummon = true;
+            Debug.Log("[AI] Starting WaitForSummonPhase coroutine...");
             StartCoroutine(WaitForSummonPhase());
         }
 
@@ -255,7 +296,17 @@ public class AI : MonoBehaviour
         {
             DoSummonLoop();
             summonPhase = false;
-            attackPhase = true;
+            if (!isDelayingAttackPhase)
+            {
+                // Sử dụng delay random để tạo cảm giác tự nhiên hơn
+                float randomDelay = Random.Range(minPhaseDelay, maxPhaseDelay);
+                StartCoroutine(DelayThen(() => { 
+                    attackPhase = true; 
+                    isDelayingAttackPhase = false; 
+                    Debug.Log($"[AI] Attack Phase activated after {randomDelay:F1} seconds delay");
+                }, randomDelay));
+                isDelayingAttackPhase = true;
+            }
         }
 
         // Mirror zone (không dùng để quyết định tấn công)
@@ -280,13 +331,45 @@ public class AI : MonoBehaviour
 
         if (attackPhase && !endPhase)
         {
-            DoAttackPhase();
-            endPhase = true;
+            Debug.Log("[AI] Attack Phase executing - calling DoAttackPhase()");
+            
+            // Kiểm tra xem có AI units nào có thể tấn công không
+            var attackableUnits = Zones
+                .SelectMany(z => z.transform.Cast<Transform>())
+                .Select(t => t.GetComponent<AICardToHand>())
+                .Where(ai => ai != null && ai.canAttack)
+                .ToList();
+                
+            if (attackableUnits.Count > 0)
+            {
+                Debug.Log($"[AI] Found {attackableUnits.Count} units that can attack");
+                DoAttackPhase();
+            }
+            else
+            {
+                Debug.Log("[AI] No units can attack, skipping attack phase");
+            }
+            
+            attackPhase = false;
+            if (!isDelayingEndPhase)
+            {
+                // Sử dụng delay random để tạo cảm giác tự nhiên hơn
+                float randomDelay = Random.Range(minPhaseDelay, maxPhaseDelay);
+                StartCoroutine(DelayThen(() => { 
+                    endPhase = true; 
+                    isDelayingEndPhase = false; 
+                    Debug.Log($"[AI] End Phase activated after {randomDelay:F1} seconds delay");
+                }, randomDelay));
+                isDelayingEndPhase = true;
+            }
         }
 
         if (endPhase)
         {
             AiEndPhase = true;
+            // Reset flag để chuẩn bị cho lượt tiếp theo
+            hasResetSummoningSicknessThisTurn = false;
+            Debug.Log("[AI] End phase - resetting summoning sickness flag for next turn");
         }
     }
 
@@ -389,6 +472,39 @@ public class AI : MonoBehaviour
             .Where(x => x.pc != null)
             .ToList();
 
+        Debug.Log($"[AI] Attack Phase - Enemy Units: {enemyUnits.Count}, Player Units: {playerUnits.Count}");
+        Debug.Log($"[AI] Player Zones checked: {string.Join(", ", playerZones.Select(z => z != null ? z.name : "null"))}");
+        
+        // Debug chi tiết từng enemy unit
+        foreach (var unit in enemyUnits)
+        {
+            Debug.Log($"[AI] Enemy Unit: {unit.ai.cardName}, canAttack: {unit.ai.canAttack}, isSummoned: {unit.ai.isSummoned}, summoningSickness: {unit.ai.summoningSickness}");
+        }
+        
+        // Debug tất cả AI units trên sân (kể cả không thể tấn công)
+        var allAIUnits = Zones
+            .SelectMany(z => z.transform.Cast<Transform>())
+            .Select(t => t.GetComponent<AICardToHand>())
+            .Where(ai => ai != null)
+            .ToList();
+            
+        Debug.Log($"[AI] Total AI units on field: {allAIUnits.Count}");
+        foreach (var unit in allAIUnits)
+        {
+            Debug.Log($"[AI] All Units: {unit.cardName}, canAttack: {unit.canAttack}, isSummoned: {unit.isSummoned}, summoningSickness: {unit.summoningSickness}");
+        }
+        
+        // Debug chi tiết về summoning sickness
+        var unitsWithSickness = allAIUnits.Where(ai => ai.summoningSickness).ToList();
+        if (unitsWithSickness.Count > 0)
+        {
+            Debug.Log($"[AI] Units with summoning sickness: {unitsWithSickness.Count}");
+            foreach (var unit in unitsWithSickness)
+            {
+                Debug.Log($"[AI] SICKNESS: {unit.cardName} cannot attack due to summoning sickness");
+            }
+        }
+
         if (playerUnits.Count > 0)
         {
             // Đánh vào bài (ưu tiên “mục tiêu đầu tiên” cho đơn giản)
@@ -400,7 +516,19 @@ public class AI : MonoBehaviour
                 var attackerCard = atk.ai.thisCard[0];
                 var targetCard   = target.pc.thisCard[0];
 
+                // Vẽ line thẳng với mũi tên lớn và fade-out
+                if (SimpleParticleManager.Instance != null)
+                {
+                    var atkRt = atk.tr as RectTransform;
+                    var tgtRt = target.tr as RectTransform;
+                    if (atkRt != null && tgtRt != null)
+                    {
+                        SimpleParticleManager.Instance.ShowAttackDashedLine(atkRt, tgtRt, 6f, 26f, 16f, 36f, 0.7f, Color.white, 180f);
+                    }
+                }
+
                 ApplyAIDamageToPlayerCard(target.pc, attackerCard, atk.ai, targetCard);
+                SoundManager.PlaySound(SoundType.Attack);
 
                 atk.ai.canAttack = false;
                 playerUnits.RemoveAt(0);
@@ -408,16 +536,97 @@ public class AI : MonoBehaviour
         }
         else
         {
+            Debug.Log("[AI] No Player units found, attacking Player HP directly...");
             // Không còn bài của Player trên sân thì đánh thẳng vào HP
             foreach (var atk in enemyUnits)
             {
                 var atkCard = atk.ai.thisCard[0];
+                Debug.Log($"[AI] AI card {atkCard.cardName} attacking Player HP directly for {atkCard.attack} damage");
+                // Vẽ line vào HP
+                if (SimpleParticleManager.Instance != null)
+                {
+                    var atkRt = atk.tr as RectTransform;
+                                            if (atkRt != null)
+                        {
+                            var playerHpComponent = FindObjectOfType<PlayerHp>();
+                            if (playerHpComponent != null && playerHpComponent.PlayerModel != null && Camera.main != null)
+                            {
+                                // Sử dụng world position của player model để vẽ line
+                                var playerModelWorldPos = playerHpComponent.PlayerModel.position;
+                                var playerModelScreenPos = Camera.main.WorldToScreenPoint(playerModelWorldPos);
+                                var playerModelCanvasPos = Vector2.zero;
+                                GameObject tempTarget = null;
+                                RectTransform tempTargetRt = null;
+                                
+                                if (atkRt.parent != null)
+                                {
+                                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                                        atkRt.parent as RectTransform, 
+                                        playerModelScreenPos, 
+                                        Camera.main, 
+                                        out playerModelCanvasPos
+                                    );
+                                    
+                                    // Tạo một GameObject tạm thời để làm target cho attack line
+                                    tempTarget = new GameObject("TempPlayerModelTarget");
+                                    tempTargetRt = tempTarget.AddComponent<RectTransform>();
+                                    tempTargetRt.SetParent(atkRt.parent);
+                                    tempTargetRt.localPosition = playerModelCanvasPos;
+                                    tempTargetRt.sizeDelta = Vector2.one;
+                                    
+                                    if (tempTargetRt != null)
+                                    {
+                                        SimpleParticleManager.Instance.ShowAttackDashedLine(atkRt, tempTargetRt, 6f, 26f, 16f, 36f, 0.7f, Color.white, 180f);
+                                        
+                                        // Xóa GameObject tạm thời sau khi line effect hoàn thành
+                                        Destroy(tempTarget, 0.7f);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // Fallback: vẽ line đến HP bar nếu không có model
+                                Transform hpAnchor = GameObject.Find("Health_Bar")?.transform;
+                                var hpRt = hpAnchor as RectTransform;
+                                if (hpRt != null)
+                                {
+                                    SimpleParticleManager.Instance.ShowAttackDashedLine(atkRt, hpRt, 6f, 26f, 16f, 36f, 0.7f, Color.white, 180f);
+                                }
+                            }
+                        }
+                }
                 PlayerHp.staticHp -= atkCard.attack;
                 atk.ai.canAttack = false;
-                CameraShake.instance.Shake();
-                SoundManager.PlaySound(SoundType.Attack);
+                StartCoroutine(DelayAttackEffects(0.5f));
             }
         }
+    }
+
+    private IEnumerator DelayShake(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        if (CameraShake.instance != null)
+        {
+            SoundManager.PlaySound(SoundType.Attack);
+            CameraShake.instance.Shake();
+        }
+    }
+    
+    // Delay sound attack và camera shake khi AI tấn công trực tiếp vào máu Player
+    private IEnumerator DelayAttackEffects(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        SoundManager.PlaySound(SoundType.Attack);
+        if (CameraShake.instance != null)
+        {
+            CameraShake.instance.Shake();
+        }
+    }
+
+    private IEnumerator DelayThen(System.Action action, float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        action?.Invoke();
     }
 
     public void AIStartGame()
@@ -433,6 +642,7 @@ public class AI : MonoBehaviour
             SoundManager.PlaySound(SoundType.Draw);
             Instantiate(aiCardToHand, transform.position, transform.rotation, Hand.transform);
         }
+        hasInitialDraw = true;
     }
 
     IEnumerator ShuffleNow()
@@ -466,12 +676,16 @@ public class AI : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(5f, 10f));
         summonPhase = true;
         isWaitingSummon = false;
+        Debug.Log("[AI] Summon Phase activated after delay");
     }
 
     private void ApplyAIDamageToPlayerCard(ThisCard targetCardScript, Card attacker, AICardToHand attackingAICard, Card targetCard)
     {
         // Gây sát thương cho bài của Player
         targetCardScript.hurted += attacker.attack;
+        
+        // Ghi nhận sát thương nhận được
+        targetCardScript.damageReceived = attacker.attack;
 
         if (attacker.attack < targetCard.defense)
         {
@@ -489,7 +703,58 @@ public class AI : MonoBehaviour
             effect.PlayHurtAnimation();
         }
 
-        SoundManager.PlaySound(SoundType.Attack);
+        // Hiển thị popup sát thương
+        if (DamagePopupManager.Instance != null)
+        {
+            DamagePopupManager.Instance.ShowPlayerDamagePopup(targetCardScript.transform.position, attacker.attack);
+        }
+
         CameraShake.instance.Recoil();
+    }
+    
+    // Reset summoning sickness cho tất cả AI cards đã được triệu hồi
+    private void ResetSummoningSicknessForAllAICards()
+    {
+        foreach (GameObject zone in Zones)
+        {
+            if (zone == null) continue;
+            
+            foreach (Transform child in zone.transform)
+            {
+                var aiCard = child.GetComponent<AICardToHand>();
+                if (aiCard != null && aiCard.isSummoned && aiCard.summoningSickness)
+                {
+                    aiCard.summoningSickness = false;
+                    Debug.Log($"[AI] Reset summoning sickness for {aiCard.cardName} in zone {zone.name}");
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Thay đổi timing giữa các phase để tạo cảm giác tự nhiên hơn
+    /// </summary>
+    /// <param name="minDelay">Delay tối thiểu giữa các phase (giây)</param>
+    /// <param name="maxDelay">Delay tối đa giữa các phase (giây)</param>
+    public void SetPhaseTiming(float minDelay, float maxDelay)
+    {
+        if (minDelay >= 0 && maxDelay >= minDelay)
+        {
+            minPhaseDelay = minDelay;
+            maxPhaseDelay = maxDelay;
+            Debug.Log($"[AI] Phase timing changed to {minDelay}-{maxDelay} seconds");
+        }
+        else
+        {
+            Debug.LogWarning("[AI] Invalid phase timing values. minDelay must be >= 0 and maxDelay must be >= minDelay");
+        }
+    }
+    
+    /// <summary>
+    /// Lấy thông tin về timing hiện tại
+    /// </summary>
+    public string GetPhaseTimingInfo()
+    {
+        return $"Current phase timing: {minPhaseDelay}-{maxPhaseDelay} seconds, PostSummon: {postSummonDelay}s, EndTurn: {endTurnDelayAfterAttack}s";
     }
 }

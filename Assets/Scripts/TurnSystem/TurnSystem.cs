@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class TurnSystem : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class TurnSystem : MonoBehaviour
 
     private Coroutine blinkCoroutine;
     private Color defaultTimerColor;
+    
+    // Sử dụng System.Random để có random seed tốt hơn
+    private System.Random systemRandom;
 
     void Start()
     {
@@ -55,6 +59,9 @@ public class TurnSystem : MonoBehaviour
         displayedEnemyMana = currentEnemyMana;
 
         defaultTimerColor = timerText.color;
+        
+        // Khởi tạo System.Random với seed dựa trên thời gian thực
+        systemRandom = new System.Random((int)(DateTime.Now.Ticks % int.MaxValue));
     }
 
     void Update()
@@ -195,7 +202,8 @@ public class TurnSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(5f); 
 
-        int random = Random.Range(0, 2);
+        // Sử dụng System.Random để có kết quả ngẫu nhiên tốt hơn
+        int random = systemRandom.Next(0, 2);
         if (random == 0)
         {
             isYourTurn = true;
@@ -228,8 +236,11 @@ public class TurnSystem : MonoBehaviour
 
         timerStart = false;
 
-        StopCoroutine(blinkCoroutine);
-        blinkCoroutine = null;
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+        }
         timerText.color = defaultTimerColor;
     }
 

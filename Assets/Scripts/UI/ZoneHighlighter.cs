@@ -22,6 +22,14 @@ public class ZoneHighlighter : MonoBehaviour
         blinkCoroutine = StartCoroutine(BlinkEffect());
     }
 
+    public void HighlightZonesByElement(ElementType elementType)
+    {
+        if (blinkCoroutine != null)
+            StopCoroutine(blinkCoroutine);
+        
+        blinkCoroutine = StartCoroutine(BlinkEffectByElement(elementType));
+    }
+
     public void ResetZones()
     {
         if (blinkCoroutine != null)
@@ -50,6 +58,35 @@ public class ZoneHighlighter : MonoBehaviour
             foreach (var zone in zones)
             {
                 zone.color = lerpedColor;
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator BlinkEffectByElement(ElementType elementType)
+    {
+        Color baseColor = new Color32(255, 255, 255, 35);
+        Color blinkColor = new Color32(255, 255, 255, 15); 
+        float duration = 1f;
+        float t = 0f;
+
+        while (true)
+        {
+            t += Time.deltaTime / duration;
+            Color lerpedColor = Color.Lerp(baseColor, blinkColor, Mathf.PingPong(t, 1f));
+            
+            // Chỉ highlight những zone có cùng element type
+            for (int i = 0; i < zones.Length; i++)
+            {
+                var zoneElement = zones[i].GetComponent<ZoneElement>();
+                if (zoneElement != null && zoneElement.elementType == elementType)
+                {
+                    zones[i].color = lerpedColor;
+                }
+                else
+                {
+                    zones[i].color = defaultColor;
+                }
             }
             yield return null;
         }

@@ -2720,11 +2720,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272589130854316}
   costText: {fileID: 5693171096854431849}
   atkText: {fileID: 6541056277046706352}
@@ -3367,11 +3367,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272588974171611}
   costText: {fileID: 5693171096965956126}
   atkText: {fileID: 6541056277171112647}
@@ -4141,11 +4141,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272588722721904}
   costText: {fileID: 5693171095104009141}
   atkText: {fileID: 6541056277454322540}
@@ -4706,11 +4706,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272587933620915}
   costText: {fileID: 5693171095992794486}
   atkText: {fileID: 6541056278345102767}
@@ -5775,11 +5775,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272589091472677}
   costText: {fileID: 5693171096882209504}
   atkText: {fileID: 6541056277087103545}
@@ -6582,12 +6582,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldText: {fileID: 489498302}
   diamondText: {fileID: 316750068}
-  gold: 0
-  diamond: 0
-  playDuel: 0
   GoldPanel: {fileID: 0}
   MoneyPanel: {fileID: 0}
   GemPanel: {fileID: 0}
+  gold: 0
+  diamond: 0
+  playDuel: 0
 --- !u!4 &1104596971
 Transform:
   m_ObjectHideFlags: 0
@@ -7512,11 +7512,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272589387836944}
   costText: {fileID: 5693171096582703573}
   atkText: {fileID: 6541056276789952780}
@@ -10304,11 +10304,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272589281115656}
   costText: {fileID: 5693171096811657677}
   atkText: {fileID: 6541056276997607700}
@@ -11592,11 +11592,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272588901434106}
   costText: {fileID: 5693171097170289983}
   atkText: {fileID: 6541056277377314278}
@@ -12089,11 +12089,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272588864221518}
   costText: {fileID: 5693171097124673163}
   atkText: {fileID: 6541056277312822866}
@@ -23893,6 +23893,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255960546781752
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23984,6 +23991,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255960591384753
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24075,6 +24089,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255960697899718
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24166,6 +24187,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255960857960019
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24257,6 +24285,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255960904625639
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24348,6 +24383,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255961391530253
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24439,6 +24481,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255961805370798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24530,6 +24579,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!222 &9151255962056424301
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24621,6 +24677,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

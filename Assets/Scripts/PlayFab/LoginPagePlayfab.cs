@@ -5,6 +5,8 @@ using PlayFab.ClientModels;
 using System;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
+using DG.Tweening;
 
 public class LoginPagePlayfab : MonoBehaviour
 {
@@ -24,6 +26,11 @@ public class LoginPagePlayfab : MonoBehaviour
     [Header("Recovery")]
     [SerializeField] private TMP_InputField EmailRecoveryInput;
     [SerializeField] private GameObject RecoveryPage;
+
+    [Header("Door Effect")]
+    [SerializeField] private RectTransform leftDoor;
+    [SerializeField] private RectTransform rightDoor;
+    [SerializeField] private float doorDuration = 1.5f;
 
     public void RegisterUser()
     {
@@ -70,24 +77,48 @@ public class LoginPagePlayfab : MonoBehaviour
                             {
                                 deckCreator.LoadDeckFromPlayfab(() =>
                                 {
-                                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                                    // Bắt đầu hiệu ứng đóng cửa trước khi chuyển scene
+                                    StartCoroutine(TransitionAndLoad());
                                 });
                             }
                             else
                             {
                                 Debug.LogWarning("Không tìm thấy DeckCreator trong scene.");
-                                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                                StartCoroutine(TransitionAndLoad());
                             }
                         });
                     }
                     else
                     {
                         Debug.LogWarning("Không tìm thấy script Collection trong scene.");
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                        StartCoroutine(TransitionAndLoad());
                     }
                 });
             });
         }, OnError);
+    }
+
+    /// <summary>
+    /// Hiệu ứng đóng cửa trước khi chuyển scene
+    /// </summary>
+    private IEnumerator TransitionAndLoad()
+    {
+        // Đợi 1 giây để hiển thị message "Logged in"
+        yield return new WaitForSeconds(1f);
+
+        // Kiểm tra xem có door objects không
+        if (leftDoor != null && rightDoor != null)
+        {
+            // Hiệu ứng đóng cửa
+            leftDoor.DOAnchorPosX(0, doorDuration);
+            rightDoor.DOAnchorPosX(0, doorDuration);
+
+            // Đợi hiệu ứng đóng cửa hoàn thành
+            yield return new WaitForSeconds(doorDuration);
+        }
+
+        // Chuyển scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void SaveDefaultDeckToPlayfab(int[] deck, System.Action onDone = null)

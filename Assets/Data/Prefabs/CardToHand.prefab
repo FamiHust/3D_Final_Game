@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115359097225987870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000024276585}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000012138293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 0.23921569}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1107,6 +1107,7 @@ GameObject:
   - component: {fileID: 6768288418181934137}
   - component: {fileID: 3990582801211557938}
   - component: {fileID: 5152851731079857248}
+  - component: {fileID: 7533894916464091358}
   m_Layer: 5
   m_Name: CardToHand
   m_TagString: Clones
@@ -1127,8 +1128,8 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2291751435636295413}
-  - {fileID: 5954061581340454784}
   - {fileID: 6088376119680055004}
+  - {fileID: 5954061581340454784}
   - {fileID: 1738514803301384308}
   - {fileID: 2453538469054381044}
   - {fileID: 1892384495496820632}
@@ -1209,11 +1210,11 @@ MonoBehaviour:
     elementType: 0
   thisID: 1
   id: 0
-  cardName: 
   cost: 0
   attack: 0
   defense: 0
   cardDescription: 
+  cardName: 
   nameText: {fileID: 461272589196146770}
   costText: {fileID: 5693171096928018327}
   atkText: {fileID: 6541056277116131150}
@@ -1222,13 +1223,13 @@ MonoBehaviour:
   thisSprite: {fileID: 0}
   thatImage: {fileID: 6020734701419311761}
   healthBarImage: {fileID: 5480669554189626246}
-  Hand: {fileID: 0}
   cardBack: 0
   numberOfCardsInDeck: 0
   canBeSummon: 0
   summoned: 0
   drawXcards: 0
   addXmaxMana: 0
+  Hand: {fileID: 0}
   attackBorder: {fileID: 1081815014520953648}
   Target: {fileID: 0}
   Enemy: {fileID: 0}
@@ -1255,6 +1256,7 @@ MonoBehaviour:
   returnXcards: 0
   healXpower: 0
   damageDealBySpell: 0
+  damageReceived: 0
   battleZones:
   - {fileID: 0}
   - {fileID: 0}
@@ -1316,6 +1318,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
   placeHolderParent: {fileID: 0}
+  dragSwayAmplitude: 60
+  dragSwayResponse: 1
+  dragTiltMaxAngle: 45
+  dragTiltSensitivity: 0.6
+  positionSmoothTime: 0.06
+  rotationSmoothTime: 0.06
+  swaySmoothTime: 0.08
 --- !u!225 &8985430136447312497
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1534,6 +1543,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorType: 1
+--- !u!114 &7533894916464091358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199560293524222039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97506f0c9c02614a8afeaa35fded9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionDuration: 1.5
+  splitDelay: 0.3
+  fadeOutDelay: 0.8
+  flyToGraveyardDelay: 1
+  splitDistance: 50
+  splitRotation: 15
+  splitEase: 27
+  fadeDuration: 0.5
+  fadeEase: 5
+  flyDuration: 0.8
+  flyHeight: 100
+  flyEase: 8
+  destructionParticles: {fileID: 0}
+  splitParticles: {fileID: 0}
 --- !u!1 &5049278236091521433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.62352943}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2358,7 +2393,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ee48157d016c4b689a2d28815ca6bc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b86c33af738b458594718d357b773e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
